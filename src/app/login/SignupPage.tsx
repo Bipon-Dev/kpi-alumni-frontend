@@ -42,7 +42,7 @@ const SignupPage = () => {
           <img
             src="/src/assets/images/kpi-alumni-logo.png"
             alt="Logo"
-            className="w-12 h-12 mb-4"
+            className="w-12 h-12"
           />
           <h1 className="text-[40px] font-semibold text-white">Signup</h1>
         </header>

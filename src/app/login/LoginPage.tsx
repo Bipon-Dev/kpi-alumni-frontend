@@ -27,7 +27,7 @@ const LoginPage: FC = () => {
           <img
             src="/src/assets/images/kpi-alumni-logo.png"
             alt="Logo"
-            className="w-12 h-12 mb-4"
+            className="w-12 h-12 "
           />
           <h1 className="text-[40px] font-semibold text-white">Login</h1>
         </header>
@@ -42,12 +42,12 @@ const LoginPage: FC = () => {
             placeholder="Password"
             className="border bg-white outline-none bg-opacity-15 border-gray-300 rounded-md p-3 !text-white placeholder:text-white"
           />
-          <div className=" text-center text-blue-700 font-medium">
+          <Link to="" className=" text-center text-blue-700 font-medium">
             Forgot password?
-          </div>
+          </Link>
           <button
             type="submit"
-            className="bg-white text-2xl font-semibold rounded-md py-2 text-blue-500 transition"
+            className="bg-white text-2xl font-semibold rounded-md py-2 text-blue-500 hover:bg-blue-500 hover:text-white transition"
           >
             Submit
           </button>
