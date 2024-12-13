@@ -23,6 +23,6 @@ dist-ssr
 *.sw?
 
 # Environment
-.env
 
 yarn.lock
+config.bat
