@@ -91,7 +91,7 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
       }
 
       const response = await axios.put(`http://localhost:5050/api/v1/job/${jobId}`, updatedFields);
-      console.log("Job updated successfully:", response.data);
+     // console.log("Job updated successfully:", response.data);
 
       setSuccessMessage("Job updated successfully.");
       setError(null);
@@ -217,8 +217,8 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
         </div>
 
         <div className="flex justify-end space-x-2 mt-4">
-          <Button onClick={handleSubmit}>Update</Button>
-          <Button variant="secondary" onClick={closeModal}>
+          <Button className="w-[100px] text-white bg-secondary" onClick={handleSubmit}>Update</Button>
+          <Button className="w-[100px] text-white bg-error" onClick={closeModal}>
             Cancel
           </Button>
         </div>

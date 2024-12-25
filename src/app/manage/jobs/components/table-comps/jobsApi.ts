@@ -30,5 +30,14 @@ export const deleteJob = async (id: number) => {
     return response.data.data; // Adjust based on your API response structure
   };
 
+  //Create a method to call the Invite API
+  export const sendInvitation = async (jobId: number, email: string) => {
+    const response = await axios.post(`http://localhost:5050/api/v1/job/invite/${jobId}`, email, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return response.data.data;
+    //console.log("job: ", response.data);
+  };
+
 
   

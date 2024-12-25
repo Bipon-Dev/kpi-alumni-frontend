@@ -5,6 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigg
 import { getJobs, deleteJob,searchJobs } from "./jobsApi"; // Import the API service
 import ModalUpdateJob from "../modals/ModalUpdateJob";
 import { SearchCriteria } from "./Search";
+import ModalInviteJob from "../modals/ModalInviteJob";
 
 interface JobDto {
   id: number;
@@ -22,12 +23,14 @@ interface JobDto {
   reference: string;
   aboutJob: string;
   skillNames: string[];
+  jobLink:string;
 }
 
 const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCriteria }) => {
   const [jobs, setJobs] = useState<JobDto[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
+  const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
 
   // Fetch jobs from backend
   useEffect(() => {
@@ -83,7 +86,12 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
 
     fetchJobs();
   }, [searchCriteria]);
-
+//email invite
+  const handleInvite = (job: JobDto) => {
+    setSelectedJob(job);
+    setIsInviteModalOpen(true);
+    //console.log("Invite Modal Triggered for Job:", job);
+  };
 
   return (
     <>
@@ -105,6 +113,7 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
             <TableHead>{job.reference}</TableHead>
             <TableHead>{job.aboutJob}</TableHead>
             <TableHead>{job.skillNames.join(", ")}</TableHead>
+            <TableHead>{job.jobLink}</TableHead>
             <TableHead>
               <DropdownMenu>
                 <DropdownMenuTrigger>
@@ -113,6 +122,7 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
                 <DropdownMenuContent>
                   <DropdownMenuLabel onClick={() => handleEdit(job)}>Edit Job</DropdownMenuLabel>
                   <DropdownMenuLabel onClick={() => handleDelete(job.id)}>Delete Job</DropdownMenuLabel>
+                  <DropdownMenuLabel onClick={() => handleInvite(job)}>Invite</DropdownMenuLabel>
                 </DropdownMenuContent>
               </DropdownMenu>
             </TableHead>
@@ -124,6 +134,11 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
           closeModal={() => setIsModalOpen(false)}
           jobId={selectedJob.id}
         />
+      )}
+
+     {isInviteModalOpen && selectedJob && (
+        <ModalInviteJob
+         closeModal={() => setIsInviteModalOpen(false)} job={selectedJob} />
       )}
     </>
   );
