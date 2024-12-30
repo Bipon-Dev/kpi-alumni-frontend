@@ -1,4 +1,5 @@
 import axios from "axios";
+import { SearchCriteria } from "./Search";
 
 
 const BASE_URL = "http://localhost:5050/api/v1/job"; 
@@ -22,3 +23,21 @@ export const deleteJob = async (id: number) => {
       throw error;
     }
   };
+
+  export const searchJobs = async (criteria: SearchCriteria) => {
+    const params = new URLSearchParams(criteria as any).toString();
+    const response = await axios.get(`http://localhost:5050/api/v1/job/search?${params}`);
+    return response.data.data; // Adjust based on your API response structure
+  };
+
+  //Create a method to call the Invite API
+  export const sendInvitation = async (jobId: number, email: string) => {
+    const response = await axios.post(`http://localhost:5050/api/v1/job/invite/${jobId}`, email, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return response.data.data;
+    //console.log("job: ", response.data);
+  };
+
+
+  

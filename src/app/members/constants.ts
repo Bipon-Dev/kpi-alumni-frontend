@@ -94,3 +94,33 @@ export const sections = [
     subtitle: "Khulna Polytechnic Institute",
   },
 ];
+export const technology = [
+  {
+    id: 1,
+    technology: "CSE",
+  },
+  {
+    id: 2,
+    technology: "EEE",
+  },
+  {
+    id: 3,
+    technology: "ME",
+  },
+  {
+    id: 4,
+    technology: "CE",
+  },
+  {
+    id: 5,
+    technology: "TE",
+  },
+  {
+    id: 6,
+    technology: "Arch",
+  },
+  {
+    id: 7,
+    technology: "ChemE",
+  },
+];

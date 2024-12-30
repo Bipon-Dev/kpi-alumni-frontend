@@ -1,13 +1,13 @@
-import AdmMembersPageHeader from "./components/AdmMembersPageHeader"
-import AdmMembersPageTableSection from "./components/AdmMembersPageTableSection"
+import MembersGroupsSections from "@/app/members/MembersGroupSection";
 
 const AdmMembersPage = () => {
-    return (
-        <div>
-            <AdmMembersPageHeader />
-            <AdmMembersPageTableSection />
-        </div>
-    )
-}
+  return (
+    <div>
+      {/* <AdmMembersPageHeader />
+      <AdmMembersPageTableSection /> */}
+      <MembersGroupsSections />
+    </div>
+  );
+};
 
-export default AdmMembersPage
+export default AdmMembersPage;

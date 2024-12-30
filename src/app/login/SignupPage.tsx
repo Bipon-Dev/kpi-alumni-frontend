@@ -4,21 +4,33 @@ import { Checkbox } from "@/lib/ui/checkbox";
 import { Input } from "@/lib/ui/input";
 import { Link } from "react-router-dom";
 import useRegistrationStore from "@/lib/stores/registrationStore";
-import useAuthStore from "@/lib/stores/authStore";
+import RegistrationModal from "./RegistrationModal";
+import axios from "axios";
+import { getApiUrl } from "@/utils/env";
+import { toast } from "react-toastify";
+// import useAuthStore from "@/lib/stores/authStore";
 
 interface IFormData {
   FullName: string;
   Email: string;
+  Phone: string;
+  Session: string;
+  Department: string;
+  Shift: string;
   Password1: string;
   Password2: string;
   AcceptTc: boolean;
 }
 
 const SignupForm = () => {
-  const { loading, regWithEmailPassword } = useRegistrationStore();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<IFormData>({
     FullName: "",
     Email: "",
+    Phone: "",
+    Session: "",
+    Department: "",
+    Shift: "",
     Password1: "",
     Password2: "",
     AcceptTc: false,
@@ -31,9 +43,24 @@ const SignupForm = () => {
     }
   };
 
-  const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    regWithEmailPassword(formData);
+    setLoading(true);
+    try {
+      const { data }: { data: any } = await axios.post(`${getApiUrl()}/api/v1/registration/with-email`, formData);
+
+      if (data.error !== 0) {
+        setLoading(false);
+        toast.error(data.message);
+        return;
+      }
+
+      toast.success(data.message);
+      window.location.href = "/login";
+    } catch (ex: any) {
+      setLoading(false);
+      toast.error(ex.message);
+    }
   };
 
   return (
@@ -51,7 +78,40 @@ const SignupForm = () => {
         value={formData.Email}
         name="Email"
         onChange={handleChange}
-        placeholder="Email"
+        placeholder="Enter your email"
+        className="bg-white bg-opacity-15 border-gray-300 !text-white placeholder:text-white focus-visible:ring-0"
+      />
+
+      <Input
+        type="text"
+        value={formData.Phone}
+        name="Phone"
+        onChange={handleChange}
+        placeholder="Enter your phone"
+        className="bg-white bg-opacity-15 border-gray-300 !text-white placeholder:text-white focus-visible:ring-0"
+      />
+      <Input
+        type="text"
+        value={formData.Session}
+        name="Session"
+        onChange={handleChange}
+        placeholder="Enter your session"
+        className="bg-white bg-opacity-15 border-gray-300 !text-white placeholder:text-white focus-visible:ring-0"
+      />
+      <Input
+        type="text"
+        value={formData.Department}
+        name="Department"
+        onChange={handleChange}
+        placeholder="Enter your department"
+        className="bg-white bg-opacity-15 border-gray-300 !text-white placeholder:text-white focus-visible:ring-0"
+      />
+      <Input
+        type="text"
+        value={formData.Shift}
+        name="Shift"
+        onChange={handleChange}
+        placeholder="Enter your shift"
         className="bg-white bg-opacity-15 border-gray-300 !text-white placeholder:text-white focus-visible:ring-0"
       />
       <Input
@@ -74,7 +134,8 @@ const SignupForm = () => {
         <Checkbox
           id="tnc"
           className=""
-          onChange={() => {
+          checked={formData.AcceptTc}
+          onClick={() => {
             setFormData((prev) => ({ ...prev, AcceptTc: !prev.AcceptTc }));
           }}
         />
@@ -95,9 +156,8 @@ const SignupForm = () => {
 };
 
 const SignupPage = () => {
-  const { isAuthenticated } = useAuthStore();
-  // if (isAuthenticated) {
-  //   window.location.href = "/";
+  // const { isAuthenticated } = useAuthStore();
+  const { registrationWithGoogle } = useRegistrationStore();
   // }
   return (
     <div className="h-screen flex items-center justify-center bg-white relative overflow-hidden">
@@ -115,8 +175,8 @@ const SignupPage = () => {
           <div className="w-1/4 h-0.5 bg-white bg-opacity-50"></div>
         </div>
         {/* Login With Google Button */}
-        <div className="flex flex-col gap-2 mb-4">
-          <Button className="bg-secondary-200 text-primary">
+        <div className="-flex flex-col gap-2 mb-4 hidden">
+          <Button onClick={registrationWithGoogle} className="bg-secondary-200 text-primary">
             <span>G</span>
             <span>Sign up with Google</span>
           </Button>
@@ -133,6 +193,7 @@ const SignupPage = () => {
           </Link>
         </div>
       </div>
+      <RegistrationModal />
     </div>
   );
 };

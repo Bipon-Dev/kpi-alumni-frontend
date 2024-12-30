@@ -1,18 +1,42 @@
-import { Dialog, DialogContent, DialogTrigger } from "@/lib/ui/dialog";
-import { users } from "./Constants";
-import { MembersAddBtnComp } from "./MembersAddBtnComp";
+import { Link } from "react-router-dom";
+import { technology, users } from "./constants";
 import { MembersEditBtnComp } from "./MembersEditBtnComp";
 import MembersSearch from "./MembersSearch";
-import MembersProfileComp from "./MembersProfileComp";
+import { Button } from "@/lib/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/lib/ui/select";
 
 const MembersGroupsSections = () => {
   return (
     <div className="max-w-7xl mx-auto p-4 mt-4 rounded-xl h-full">
-      <MembersSearch />
       <div className=" flex w-full items-center justify-between">
         <h1 className="text-xl font-bold text-secondary ">127 Users</h1>
-        <div className=" m-5">
-          <MembersAddBtnComp />
+        <div className="flex items-center gap-5 m-5">
+          <MembersSearch />
+          <div className=" min-w-48 outline-none ">
+            <Select
+              onValueChange={() => ({} as React.ChangeEvent<HTMLInputElement>)}
+            >
+              <SelectTrigger className="w-full focus:ring-0 focus:ring-offset-0">
+                <SelectValue placeholder="Select Technology" />
+              </SelectTrigger>
+              <SelectContent>
+                {technology?.map((option, index: number) => (
+                  <SelectItem key={index} value={option?.technology}>
+                    {option?.technology}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <Button title="Invite" variant="secondary" className=" text-white">
+            Invite
+          </Button>
         </div>
       </div>
 
@@ -39,21 +63,16 @@ const MembersGroupsSections = () => {
                 index % 2 === 0 ? "bg-secondary-50" : "bg-secondary-100"
               } hover:bg-gray-50 cursor-pointer`}
             >
-              <Dialog>
-                <DialogTrigger asChild>
-                  <div className="p-3 flex items-center font-medium flex-1">
-                    <img
-                      src={user.image}
-                      alt={user.username}
-                      className="w-10 h-10 rounded-full mr-3"
-                    />
-                    {user.username}
-                  </div>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[525px]">
-                  <MembersProfileComp />
-                </DialogContent>
-              </Dialog>
+              <Link to="/manage/ProfilePage">
+                <div className="p-3 flex items-center font-medium flex-1">
+                  <img
+                    src={user.image}
+                    alt={user.username}
+                    className="w-10 h-10 rounded-full mr-3"
+                  />
+                  {user.username}
+                </div>
+              </Link>
               <div className="p-10 text-center text-sm flex-1">
                 {user.email}
               </div>
