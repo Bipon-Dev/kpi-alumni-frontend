@@ -19,6 +19,7 @@ const ModalAddJob: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
         deadline: "",
         reference: "",
         aboutJob: "",
+        jobLink:""
     });
     const [error, setError] = useState<string | null>(null);
 
@@ -101,6 +102,7 @@ const ModalAddJob: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
                     <Input name="deadline" type="date" value={formData.deadline} onChange={handleInputChange} required />
                     <Input name="reference" placeholder="Reference" value={formData.reference} onChange={handleInputChange} />
                     <textarea name="aboutJob" placeholder="About the Job" value={formData.aboutJob} onChange={handleInputChange} className="w-full h-24 border rounded-md"></textarea>
+                    <Input name="jobLink" placeholder="Job Link" value={formData.jobLink} onChange={handleInputChange} />
                     <div className="flex justify-end gap-2">
                         <Button type="button" className="w-[100px] text-white bg-error" onClick={closeModal}>Cancel</Button>
                         <Button type="submit" className="w-[100px] text-white bg-secondary">Create</Button>
