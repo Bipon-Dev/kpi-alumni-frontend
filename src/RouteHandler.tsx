@@ -103,7 +103,7 @@ const router = createBrowserRouter(
           path: "/manage",
           children: [
             {
-              path: "jobs/:id", 
+              path: "jobs/:id",
               element: <JobDetailsPage />,
             },
           ],
@@ -146,9 +146,9 @@ export const RouteHandler = () => {
     })();
   }, [setUserInfo, verifyLogin]);
 
-  if (loading) {
-    return <LoadingPage />;
-  }
+  // if (loading) {
+  //   return <LoadingPage />;
+  // }
   return (
     <>
       <RouterProvider
