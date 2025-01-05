@@ -10,12 +10,41 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/lib/ui/select";
-
+import { TFilterField } from "./filter-bar/filterBarTypes";
+import FilterBar from "./filter-bar/FilterBar";
+const filterFields: TFilterField[] = [
+  {
+    label: "Name",
+    name: "name",
+    type: "text",
+    placeholder: "Ex: John Doe",
+  },
+  {
+    label: "Organization",
+    name: "organization",
+    type: "text",
+    placeholder: "Ex: bikiran",
+  },
+  { label: "Email", name: "email", type: "text" },
+  { label: "Mobile", name: "mobile", type: "text" },
+  {
+    label: "Status",
+    name: "status",
+    type: "select",
+    options: ["Active", "Inactive"],
+  },
+];
 const MembersGroupsSections = () => {
   return (
-    <div className="max-w-7xl mx-auto p-4 mt-4 rounded-xl h-full">
+    <div className=" mx-auto p-4 mt-4 rounded-xl h-full">
       <div className=" flex w-full items-center justify-between">
         <h1 className="text-xl font-bold text-secondary ">127 Users</h1>
+        <div className="min-w-[500px] max-w-[700px] w-full">
+          <FilterBar
+            fields={filterFields}
+            onSearch={(val: Record<string, any>) => console.log(val)}
+          />
+        </div>
         <div className="flex items-center gap-5 m-5">
           <MembersSearch />
           <div className=" min-w-48 outline-none ">
@@ -63,7 +92,7 @@ const MembersGroupsSections = () => {
                 index % 2 === 0 ? "bg-secondary-50" : "bg-secondary-100"
               } hover:bg-gray-50 cursor-pointer`}
             >
-              <Link to="/manage/ProfilePage">
+              <Link to="/manage/members/profilePage">
                 <div className="p-3 flex items-center font-medium flex-1">
                   <img
                     src={user.image}
