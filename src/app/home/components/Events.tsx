@@ -1,5 +1,7 @@
 import EventCard from "@/app/shared/card/EventCard";
 import { eventData } from "@/lib/data/Events";
+import { Button } from "@/lib/ui/button";
+import { Link } from "react-router-dom";
 
 const Events = () => {
   return (
@@ -11,6 +13,13 @@ const Events = () => {
             <EventCard key={event.id} {...event} />
           ))}
         </div>
+      </div>
+      <div className="text-center mt-8 mb-12">
+        <Link to="/events">
+          <Button size="lg" className="text-white">
+            View All Events
+          </Button>
+        </Link>
       </div>
     </section>
   );
