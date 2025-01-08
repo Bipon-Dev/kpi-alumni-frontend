@@ -1,11 +1,15 @@
-import MembersGroupsSections from "@/app/members/MembersGroupSection";
+import MemberProvider from "./context/MemberProvider";
+import { FC } from "react";
+import MembersGroupsSections from "./MembersGroupSection";
 
-const AdmMembersPage = () => {
+const AdmMembersPage: FC = () => {
   return (
     <div>
       {/* <AdmMembersPageHeader />
       <AdmMembersPageTableSection /> */}
-      <MembersGroupsSections />
+      <MemberProvider>
+        <MembersGroupsSections />
+      </MemberProvider>
     </div>
   );
 };

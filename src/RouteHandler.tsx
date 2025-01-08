@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import LayoutComp from "./lib/layout/LayoutComp";
 import AdmEventPage from "./app/manage/events/AdmEventPage";
 import MembersPage from "./app/members/MembersPage";
-import MembersGroupsSections from "./app/members/MembersGroupSection";
+import MembersGroupsSections from "./app/manage/members/MembersGroupSection";
 import EventPage from "./app/events/EventPage";
 import AdmMembersPage from "./app/manage/members/AdmMembersPage";
 import AdmJobsPage from "./app/manage/jobs/AdmJobsPage";
