@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import LayoutComp from "./lib/layout/LayoutComp";
 import AdmEventPage from "./app/manage/events/AdmEventPage";
 import MembersPage from "./app/members/MembersPage";
-import MembersGroupsSections from "./app/members/MembersGroupSection";
+import MembersGroupsSections from "./app/manage/members/MembersGroupSection";
 import EventPage from "./app/events/EventPage";
 import AdmMembersPage from "./app/manage/members/AdmMembersPage";
 import AdmJobsPage from "./app/manage/jobs/AdmJobsPage";
@@ -19,6 +19,7 @@ import AdmManageUserPage from "./app/manage/users/AdmManageUserPage";
 import useAuthStore from "./lib/stores/authStore";
 import JobDetailsPage from "./app/manage/jobs/components/table-comps/JobDetailsPage";
 import ClientLayout from "./lib/layout/ClientLayout";
+import ProfilePage from "./app/manage/profile/ProfilePage";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
@@ -119,6 +120,15 @@ const router = createBrowserRouter(
               element: (
                 <ProtectedRoute
                   element={<AdmMembersPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/members/profilePage",
+              element: (
+                <ProtectedRoute
+                  element={<ProfilePage />}
                   isAuthenticated={isAuthenticated}
                 />
               ),

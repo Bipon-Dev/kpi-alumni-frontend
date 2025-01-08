@@ -1,0 +1,42 @@
+/* Table */
+table.table-container {
+  @apply w-full;
+}
+table.table-container thead {
+  @apply bg-primary-100 hover:!bg-primary-100 overflow-hidden;
+}
+table.table-container th {
+  @apply px-2 py-2 font-medium text-[13px] relative;
+}
+table.table-container th::after {
+  content: "";
+  width: 1px;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: var(--primary-300);
+}
+table.table-container th:last-child::after {
+  @apply hidden;
+}
+table.table-container th:first-child {
+  @apply rounded-tl-lg  text-start;
+}
+table.table-container th:last-child {
+  @apply rounded-tr-lg  text-end;
+}
+table.table-container tr {
+  @apply transition-colors hover:bg-muted/50 even:bg-primary-50;
+}
+table.table-container td {
+  @apply px-2 py-2 font-normal text-[13px];
+}
+
+table.table-container tr.not-found {
+  @apply h-40 hover:!bg-transparent;
+}
+table.table-container .not-found td {
+  @apply text-center text-primary !text-base !font-medium;
+}
