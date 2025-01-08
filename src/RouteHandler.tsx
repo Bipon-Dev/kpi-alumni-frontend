@@ -11,122 +11,119 @@ import { useEffect } from "react";
 import LayoutComp from "./lib/layout/LayoutComp";
 import AdmEventPage from "./app/manage/events/AdmEventPage";
 import MembersPage from "./app/members/MembersPage";
-import MembersGroupsSections from "./app/manage/members/MembersGroupSection";
+import MembersGroupsSections from "./app/members/MembersGroupSection";
 import EventPage from "./app/events/EventPage";
 import AdmMembersPage from "./app/manage/members/AdmMembersPage";
 import AdmJobsPage from "./app/manage/jobs/AdmJobsPage";
 import AdmManageUserPage from "./app/manage/users/AdmManageUserPage";
 import useAuthStore from "./lib/stores/authStore";
 import JobDetailsPage from "./app/manage/jobs/components/table-comps/JobDetailsPage";
-import ProfilePage from "./app/manage/profile/ProfilePage";
+import ClientLayout from "./lib/layout/ClientLayout";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
 const router = createBrowserRouter(
   [
     {
-      path: "*",
-      element: <div>404 Not Found</div>,
-    },
-    {
       path: "/",
-      element: <HomePage />,
-    },
-    {
-      path: "/login",
-      element: <LoginPage />,
-    },
-    {
-      path: "/signup",
-      element: <SignupPage />,
-    },
-    {
-      path: "/members",
-      element: <MembersPage />,
-    },
-    {
-      path: "/MembersGroupSection",
-      element: <MembersGroupsSections />,
-    },
-    {
-      path: "/events",
-      element: <EventPage />,
-    },
-    {
-      path: "/manage",
-      element: <LayoutComp />,
+      element: <ClientLayout />,
       children: [
         {
-          path: "/manage",
-          element: (
-            <ProtectedRoute
-              element={<ManageDashboardPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
+          path: "*",
+          element: <div>404 Not Found</div>,
         },
         {
-          path: "/manage/dashboard",
-          element: (
-            <ProtectedRoute
-              element={<ManageDashboardPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
+          path: "/",
+          element: <HomePage />,
         },
         {
-          path: "/manage/event",
-          element: (
-            <ProtectedRoute
-              element={<AdmEventPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
+          path: "/login",
+          element: <LoginPage />,
         },
         {
-          path: "/manage/user",
-          element: (
-            <ProtectedRoute
-              element={<AdmManageUserPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
+          path: "/signup",
+          element: <SignupPage />,
         },
         {
-          path: "/manage/jobs",
-          element: (
-            <ProtectedRoute
-              element={<AdmJobsPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
+          path: "/members",
+          element: <MembersPage />,
+        },
+        {
+          path: "/MembersGroupSection",
+          element: <MembersGroupsSections />,
+        },
+        {
+          path: "/events",
+          element: <EventPage />,
         },
         {
           path: "/manage",
+          element: <LayoutComp />,
           children: [
             {
-              path: "jobs/:id",
-              element: <JobDetailsPage />,
+              path: "/manage",
+              element: (
+                <ProtectedRoute
+                  element={<ManageDashboardPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/dashboard",
+              element: (
+                <ProtectedRoute
+                  element={<ManageDashboardPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/event",
+              element: (
+                <ProtectedRoute
+                  element={<AdmEventPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/user",
+              element: (
+                <ProtectedRoute
+                  element={<AdmManageUserPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/jobs",
+              element: (
+                <ProtectedRoute
+                  element={<AdmJobsPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage",
+              children: [
+                {
+                  path: "jobs/:id",
+                  element: <JobDetailsPage />,
+                },
+              ],
+            },
+            {
+              path: "/manage/members",
+              element: (
+                <ProtectedRoute
+                  element={<AdmMembersPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
             },
           ],
-        },
-        {
-          path: "/manage/members",
-          element: (
-            <ProtectedRoute
-              element={<AdmMembersPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
-        },
-        {
-          path: "/manage/members/profilePage",
-          element: (
-            <ProtectedRoute
-              element={<ProfilePage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
         },
       ],
     },
