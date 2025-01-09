@@ -4,7 +4,8 @@ import { Button } from "@/lib/ui/button";
 import { TFilterField } from "../../members/filter-bar/filterBarTypes";
 import FilterBar from "../../members/filter-bar/FilterBar";
 import { useMemberContext } from "./context/MemberProvider";
-import { FC } from "react";
+import { FC, useState } from "react";
+import ModalAdd from "./modal/ModalAdd";
 
 const filterFields: TFilterField[] = [
   {
@@ -56,16 +57,17 @@ const MemberBody: FC<{ data: TUser }> = ({ data }) => {
         <span>{data.email}</span>
       </td>
       <td>
+        <span>{data.department}</span>
+      </td>
+      <td>
         <span>{data.shift}</span>
       </td>
       <td>
         <span>{data.session || "--"}</span>
       </td>
+
       <td>
         <span>{data.status || "--"}</span>
-      </td>
-      <td>
-        <span>{data.department}</span>
       </td>
       <td>
         <div>
@@ -78,13 +80,13 @@ const MemberBody: FC<{ data: TUser }> = ({ data }) => {
 const MembersGroupsSections = () => {
   const memberContext = useMemberContext();
   const memberData = memberContext?.memberData || [];
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div className=" mx-auto p-4 mt-4 rounded-xl h-full">
+    <div className="  rounded-xl h-full">
       <div className=" flex w-full items-center justify-between">
         <h1 className="text-xl font-bold text-secondary ">
           {memberData.length > 0 ? memberData[memberData.length - 1].id : "N/A"}
-          &nbsp; Users
+          &nbsp; Members
         </h1>
 
         <div className="min-w-[500px] max-w-[700px] w-full">
@@ -94,6 +96,16 @@ const MembersGroupsSections = () => {
           />
         </div>
         <div className="flex items-center gap-5 m-5">
+          <Button
+            title="Invite"
+            variant="secondary"
+            className="text-white"
+            onClick={() => setIsModalOpen(true)}
+          >
+            + Add Member
+          </Button>
+
+          {isModalOpen && <ModalAdd closeModal={() => setIsModalOpen(false)} />}
           <Button title="Invite" variant="secondary" className=" text-white">
             Invite
           </Button>
@@ -105,10 +117,10 @@ const MembersGroupsSections = () => {
             <th className="w-[100px]">ID</th>
             <th className="w-[220px] text-left">Name</th>
             <th className="w-[220px] text-left">Email</th>
+            <th className="w-[220px] text-left"> Department</th>
             <th className="w-[220px] text-left">Shift</th>
             <th className="w-[220px] text-left">Session</th>
             <th className="w-[220px] text-left">Status</th>
-            <th className="w-[220px] text-left"> Department</th>
             <th>#</th>
           </tr>
         </thead>

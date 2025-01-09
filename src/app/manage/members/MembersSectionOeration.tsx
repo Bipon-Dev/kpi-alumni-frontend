@@ -11,3 +11,12 @@ export const getMember = async () => {
     throw error;
   }
 };
+export const addMember = async (addMemberData: any) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/member`, addMemberData);
+    return response.data;
+  } catch (error) {
+    console.error("Error adding new member:", error);
+    throw error;
+  }
+};
