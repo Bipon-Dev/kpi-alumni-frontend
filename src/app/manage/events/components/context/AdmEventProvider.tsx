@@ -1,4 +1,3 @@
-// import { useAuth2 } from "@/bik-lib/context/auth/Auth2Provider";
 import {
     createContext,
     FC,
@@ -16,14 +15,12 @@ type TAdmEventContext = {
     loading: boolean;
     refetch: () => void;
 };
-
 const AdmEventContext = createContext<TAdmEventContext>({
     data: [],
     setData: () => { },
     loading: false,
     refetch: () => { },
 });
-
 export const useAdmEvent = () => {
     const context = useContext(AdmEventContext);
     return context;

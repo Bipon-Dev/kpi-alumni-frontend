@@ -146,9 +146,9 @@ export const RouteHandler = () => {
     })();
   }, [setUserInfo, verifyLogin]);
 
-  // if (loading) {
-  //   return <LoadingPage />;
-  // }
+  if (loading) {
+    return <LoadingPage />;
+  }
   return (
     <>
       <RouterProvider

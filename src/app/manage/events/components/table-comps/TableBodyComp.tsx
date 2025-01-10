@@ -3,8 +3,14 @@ import React from "react";
 import { dummyEventData } from "./tableDummyData";
 import { EllipsisVertical } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from "@/lib/ui/dropdown-menu";
+import { useAdmEvent } from "../context/AdmEventProvider";
 
 const TableBodyComp: React.FC = () => {
+
+    const { data } = useAdmEvent();
+
+    console.log(data, "eventTable")
+
     return (
         <TableBody>
             {dummyEventData.map((event, index) => (
