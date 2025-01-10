@@ -9,8 +9,10 @@ import {
   CardTitle,
 } from "@/lib/ui/card";
 import { CalendarIcon, MapPinIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const EventCard = ({
+  id,
   title,
   date,
   location,
@@ -39,7 +41,9 @@ const EventCard = ({
         <p className="text-sm text-muted-foreground">{description}</p>
       </CardContent> */}
       <CardFooter>
-        <Button className="text-white">Learn More</Button>
+        <Link to={`/events/${id}`}>
+          <Button className="text-white">Learn More</Button>
+        </Link>
       </CardFooter>
     </Card>
   );

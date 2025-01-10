@@ -21,6 +21,7 @@ import JobDetailsPage from "./app/manage/jobs/components/table-comps/JobDetailsP
 import ClientLayout from "./lib/layout/ClientLayout";
 import HomePage from "./app/pages/home";
 import EventPage from "./app/pages/Event";
+import SingleEvent from "./app/pages/Event/components/SingleEvent/SingleEvent";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter(
         {
           path: "/events",
           element: <EventPage />,
+        },
+        {
+          path: "/events/:id",
+          element: <SingleEvent />,
         },
         {
           path: "/manage",
