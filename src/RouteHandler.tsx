@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./app/home";
+
 import LoginPage from "@/app/login/LoginPage";
 import ProtectedRoute from "./lib/auth/protectRoute";
 import ManageDashboardPage from "./app/manage/dashboard/ManageDashboardPage";
@@ -12,13 +12,15 @@ import LayoutComp from "./lib/layout/LayoutComp";
 import AdmEventPage from "./app/manage/events/AdmEventPage";
 import MembersPage from "./app/members/MembersPage";
 import MembersGroupsSections from "./app/members/MembersGroupSection";
-import EventPage from "./app/events/EventPage";
+
 import AdmMembersPage from "./app/manage/members/AdmMembersPage";
 import AdmJobsPage from "./app/manage/jobs/AdmJobsPage";
 import AdmManageUserPage from "./app/manage/users/AdmManageUserPage";
 import useAuthStore from "./lib/stores/authStore";
 import JobDetailsPage from "./app/manage/jobs/components/table-comps/JobDetailsPage";
 import ClientLayout from "./lib/layout/ClientLayout";
+import HomePage from "./app/pages/home";
+import EventPage from "./app/pages/Event";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
