@@ -4,6 +4,10 @@ export type EventCardProps = {
   location: string;
   description: string;
   imageUrl: string;
+  attendees: number;
+  id: number;
+  organizer: string;
+  time: string;
 };
 
 export interface NewsItemProps {
