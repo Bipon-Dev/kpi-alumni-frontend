@@ -8,7 +8,7 @@ const TableBodyComp: React.FC = () => {
     return (
         <TableBody>
             {dummyEventData.map((event, index) => (
-                <TableRow key={index} className="h-[100px] even:bg-primary-50 !border-b-0">
+                <TableRow key={index} className="h-[100px] even:bg-secondary-50 !border-b-0">
                     <TableHead>
                         <div className="h-[90px] w-[200px] my-1 bg-red-400 "></div>
                     </TableHead>
@@ -21,7 +21,7 @@ const TableBodyComp: React.FC = () => {
                     <TableHead >
                         <div className="flex justify-end">
                             <DropdownMenu>
-                                <DropdownMenuTrigger className="border border-primary rounded-[5px]">
+                                <DropdownMenuTrigger className="border border-secondary rounded-[5px]">
                                     <EllipsisVertical />
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent>
