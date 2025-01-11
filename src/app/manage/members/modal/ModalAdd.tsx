@@ -33,12 +33,13 @@ const ModalBody: FC<{
       name: payload.name,
       email: payload.email,
       shift: payload.shift,
-      department: payload.department || "CSE",
+      department: payload.department || "--",
       session: payload.session,
     })
       .then(({ message, error }) => {
         if (!error) {
           closeModal();
+          window.location.reload();
         }
         setMessage(message);
       })

@@ -20,3 +20,21 @@ export const addMember = async (addMemberData: any) => {
     throw error;
   }
 };
+export const updateMember = async (
+  payload: {
+    name: string;
+    email: string;
+    shift: string;
+    department: string;
+    session: string;
+  },
+  id: string
+) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/member/${id}`, payload);
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating member with id ${id}:`, error);
+    throw error;
+  }
+};

@@ -6,6 +6,8 @@ import FilterBar from "../../members/filter-bar/FilterBar";
 import { useMemberContext } from "./context/MemberProvider";
 import { FC, useState } from "react";
 import ModalAdd from "./modal/ModalAdd";
+import { InstOption } from "./components/inst-option/InstOption";
+import ModalEdit from "./modal/ModalEdit";
 
 const filterFields: TFilterField[] = [
   {
@@ -46,12 +48,14 @@ interface TUser {
   department: string;
 }
 const MemberBody: FC<{ data: TUser }> = ({ data }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <tr>
       <td>{data.id}</td>
       <td>
         <img src={data.photo} alt="" />
-        <Link to="/">{data.name}</Link>
+
+        <Link to={`/manage/members/profilePage/${data.id}`}>{data.name}</Link>
       </td>
       <td>
         <span>{data.email}</span>
@@ -67,12 +71,21 @@ const MemberBody: FC<{ data: TUser }> = ({ data }) => {
       </td>
 
       <td>
-        <span>{data.status || "--"}</span>
+        <span className="text-green-500">{data.status || "Active"}</span>
       </td>
-      <td>
-        <div>
-          <MembersEditBtnComp />
-        </div>
+      <td className="float-right">
+        <InstOption>
+          <button type="button" onClick={() => setIsModalOpen(true)}>
+            Update Profile
+          </button>
+
+          <button type="button" onClick={() => setIsModalOpen(true)}>
+            Update Status
+          </button>
+        </InstOption>
+        {isModalOpen && (
+          <ModalEdit closeModal={() => setIsModalOpen(false)} data={data} />
+        )}
       </td>
     </tr>
   );
