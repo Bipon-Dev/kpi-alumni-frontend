@@ -9,7 +9,7 @@ const TableHeaderComp: React.FC = () => {
                 <TableHead className="w-[100px] text-primary bg-secondary-100 font-medium text-left">Event ID</TableHead>
                 <TableHead className="w-[200px] text-primary bg-secondary-100 font-medium text-left">Title</TableHead>
                 <TableHead className="w-[500px] text-primary bg-secondary-100 font-medium text-justify">Description</TableHead>
-                <TableHead className="w-[151px] text-primary bg-secondary-100 font-medium text-left">Event Time</TableHead>
+                {/* <TableHead className="w-[151px]  text-left">Event Time</TableHead> */}
                 <TableHead className="w-[200px] text-primary bg-secondary-100 font-medium text-left">Location/Link</TableHead>
                 <TableHead className="w-[100px] text-primary bg-secondary-100 font-medium text-left">Status</TableHead>
                 <TableHead className="w-[80px] text-primary bg-secondary-100 font-medium text-right rounded-se-[15px]">Action</TableHead>

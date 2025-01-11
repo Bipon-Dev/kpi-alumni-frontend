@@ -12,11 +12,11 @@ interface TProps {
 const defaultFormData = {
     photoUrl: "",
     title: "",
-    eventTime: "",
+    eventTime: 0,
     location: "",
     eventOrganizer: "",
     description: "",
-    status: "active"
+    status: 1
 }
 
 const ModalBody: React.FC<TProps> = ({ closeModel }) => {

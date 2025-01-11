@@ -8,10 +8,11 @@ import {
     useState,
 } from "react";
 import { getEvents } from "../AdmEventOperation";
+import { TEventType } from "../AdmEventTypes";
 
 type TAdmEventContext = {
-    data: string[];
-    setData: (data: string[]) => void;
+    data: TEventType[];
+    setData: (data: TEventType[]) => void;
     loading: boolean;
     refetch: () => void;
 };
@@ -30,10 +31,10 @@ type TProps = {
     children: ReactNode;
 };
 
-const Provider: FC<TProps> = ({ children }) => {
+const AdmEventProvider: FC<TProps> = ({ children }) => {
     // reload -2 = no reload, -1 = reload, -1 = default
     const [reloadKey, setReloadKey] = useState<number>(-1);
-    const [data, setData] = useState<string[]>([]);
+    const [data, setData] = useState<TEventType[]>([]);
 
     //   const {authInfo} = useAuth2();
 
@@ -42,7 +43,7 @@ const Provider: FC<TProps> = ({ children }) => {
             const fetchData = async () => {
                 try {
                     const eventData = await getEvents();
-                    setData(eventData);
+                    setData(eventData.data);
                 }
                 catch (error) {
                     console.log("Failed to fetch events:", error);
@@ -69,4 +70,4 @@ const Provider: FC<TProps> = ({ children }) => {
     return <AdmEventContext.Provider value={value}>{children}</AdmEventContext.Provider>;
 };
 
-export default Provider;
+export default AdmEventProvider;

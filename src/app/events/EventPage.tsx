@@ -1,10 +1,11 @@
+import AdmEventProvider from "../manage/events/components/context/AdmEventProvider"
 import EventPageHeaderSection from "./components/EventPageHeaderSection"
 
 const EventPage = () => {
     return (
-        <div>
+        <AdmEventProvider>
             <EventPageHeaderSection />
-        </div>
+        </AdmEventProvider>
     )
 }
 
