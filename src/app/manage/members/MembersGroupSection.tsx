@@ -45,6 +45,8 @@ interface TUser {
   shift: string;
   session: string;
   status: string;
+  roll: number;
+  registration: number;
   department: string;
 }
 const MemberBody: FC<{ data: TUser }> = ({ data }) => {
@@ -69,7 +71,12 @@ const MemberBody: FC<{ data: TUser }> = ({ data }) => {
       <td>
         <span>{data.session || "--"}</span>
       </td>
-
+      <td>
+        <span>{data.roll || "--"}</span>
+      </td>
+      <td>
+        <span>{data.registration || "--"}</span>
+      </td>
       <td>
         <span className="text-green-500">{data.status || "Active"}</span>
       </td>
@@ -133,6 +140,8 @@ const MembersGroupsSections = () => {
             <th className="w-[220px] text-left"> Department</th>
             <th className="w-[220px] text-left">Shift</th>
             <th className="w-[220px] text-left">Session</th>
+            <th className="w-[220px] text-left">Roll</th>
+            <th className="w-[220px] text-left">Reg NO.</th>
             <th className="w-[220px] text-left">Status</th>
             <th>#</th>
           </tr>

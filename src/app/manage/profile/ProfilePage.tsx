@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 interface ProfileData {
@@ -52,9 +52,9 @@ const ProfilePage: React.FC = () => {
             alt="Profile Picture"
           />
           <div>
-            <h1 className="text-2xl font-bold">{id?.name}</h1>
+            <h1 className="text-2xl font-bold">{id?.name || "--"}</h1>
             <p className="text-gray-600">Software Engineer</p>
-            <p className="text-gray-600">{id?.email}</p>
+            <p className="text-gray-600">{id?.email || "--"}</p>
           </div>
         </div>
         <div className="mt-6">
