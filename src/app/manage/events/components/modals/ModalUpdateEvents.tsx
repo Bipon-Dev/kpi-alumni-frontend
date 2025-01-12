@@ -4,24 +4,35 @@ import { Dialog, DialogBody, DialogContent, DialogHeader, DialogTitle } from "@/
 import { Input } from "@/lib/ui/input"
 import { useState } from "react"
 import { useAdmEvent } from "../context/AdmEventProvider"
-import { createEvent } from "../AdmEventOperation"
+import { updateEvent } from "../AdmEventOperation"
+import { TEventType } from "../AdmEventTypes"
 
 interface TProps {
     closeModel: () => void
+    modalData: TEventType
 }
-const defaultFormData = {
-    photoUrl: "",
-    title: "",
-    eventTime: 0,
-    location: "",
-    organizer: "",
-    description: "",
-    status: 1
+type TUpdateEventPayload = {
+    photoUrl: string
+    title: string
+    eventTime: number
+    location: string
+    organizer: string
+    description: string
+    status: string
 }
 
-const ModalBody: React.FC<TProps> = ({ closeModel }) => {
+const ModalBody: React.FC<TProps> = ({ closeModel, modalData }) => {
+    const defaultFormData: TUpdateEventPayload = {
+        photoUrl: modalData?.photoUrl || "",
+        title: modalData?.title || "",
+        eventTime: modalData?.eventTime || 0,
+        location: modalData?.location || "",
+        organizer: modalData?.organizer || "",
+        description: modalData?.description || "",
+        status: modalData?.status || ""
+    }
 
-    const [formData, setFormData] = useState<any>(defaultFormData)
+    const [formData, setFormData] = useState<TUpdateEventPayload>(defaultFormData)
     const { refetch } = useAdmEvent();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +45,7 @@ const ModalBody: React.FC<TProps> = ({ closeModel }) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         try {
-            await createEvent(formData)
+            await updateEvent(modalData.id, formData)
             refetch()
         } catch (error) {
             console.error("Error creating event:", error)
@@ -91,34 +102,23 @@ const ModalBody: React.FC<TProps> = ({ closeModel }) => {
                 />
             </div>
             <div className="flex items-center justify-end gap-2">
-                <Button
-                    type="button"
-                    className=" w-[100px] text-white bg-error"
-                    onClick={closeModel}>
-                    Cancel
-                </Button>
-                <Button
-                    type="submit"
-                    className="w-[100px] text-white bg-secondary">
-                    Add Event
-                </Button>
+                <Button type="button" className=" w-[100px] text-white bg-error" onClick={closeModel}>Cancel</Button>
+                <Button type="submit" className="w-[100px] text-white bg-secondary">Add Event</Button>
             </div>
         </form >
     )
 }
 
-const ModalAddEvent = () => {
-
-    const { closeModel, modalName } = useModelStore()
-
+const ModalUpdateEvents = () => {
+    const { closeModel, modalName, modalData } = useModelStore()
     return (
-        <Dialog open={modalName === "add-event"} onOpenChange={closeModel}>
+        <Dialog open={modalName === "edit-event"} onOpenChange={closeModel}>
             <DialogContent aria-describedby={undefined}>
                 <DialogHeader >
                     <DialogTitle className="text-2xl font-medium text-primary">Add Event</DialogTitle>
                 </DialogHeader>
                 <DialogBody>
-                    <ModalBody closeModel={closeModel} />
+                    <ModalBody closeModel={closeModel} modalData={modalData} />
                 </DialogBody>
             </DialogContent>
         </Dialog>
@@ -126,4 +126,4 @@ const ModalAddEvent = () => {
     )
 }
 
-export default ModalAddEvent
+export default ModalUpdateEvents

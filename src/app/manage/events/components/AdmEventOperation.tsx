@@ -2,7 +2,6 @@ import axios from "axios";
 
 
 const BASE_URL = "http://localhost:5050/api/v1/event";
-
 export const getEvents = async () => {
     try {
         const response = await axios.get(BASE_URL);
@@ -32,9 +31,9 @@ export const createEvent = async (event: any) => {
     }
 };
 
-export const updateEvent = async (event: any) => {
+export const updateEvent = async (id: any, event: any) => {
     try {
-        const response = await axios.put(`${BASE_URL}/${event.id}`, event);
+        const response = await axios.put(`${BASE_URL}/edit/${id}`, event);
         return response.data; // Assuming the response has a `data` field for job DTOs
     } catch (error) {
         console.error("Error updating Event:", error);

@@ -4,9 +4,11 @@ import React from "react";
 import { EllipsisVertical } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from "@/lib/ui/dropdown-menu";
 import { useAdmEvent } from "../context/AdmEventProvider";
+import useModelStore from "@/lib/stores/useModelStore";
 
 const TableBodyComp: React.FC = () => {
     const { data } = useAdmEvent();
+    const { openModel } = useModelStore();
 
     return (
         <TableBody>
@@ -17,7 +19,7 @@ const TableBodyComp: React.FC = () => {
                     </TableCell>
                     <TableCell>{event.id}</TableCell>
                     <TableCell>{event.title}</TableCell>
-                    <TableCell>{event.description}</TableCell>
+                    <TableCell className="">{event.description}</TableCell>
                     {/* <TableCell>{event}</TableCell> */}
                     <TableCell>{event.location}</TableCell>
                     <TableCell>{event.status}</TableCell>
@@ -30,7 +32,9 @@ const TableBodyComp: React.FC = () => {
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent>
                                     <DropdownMenuLabel>
-                                        <button>Edit</button>
+                                        <button
+                                            onClick={() => openModel("edit-event", event)}
+                                        >Edit</button>
                                     </DropdownMenuLabel>
                                     <DropdownMenuLabel>
                                         <button
