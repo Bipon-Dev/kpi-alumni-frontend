@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 import { getMember } from "../MembersSectionOeration";
+import ModalAdd from "../modal/ModalAdd";
 interface TMenbers {
   id: number;
   name: string;
@@ -69,7 +70,10 @@ const MemberProvider: FC<TProps> = ({ children }) => {
   }, [memberData, reloadKey]);
 
   return (
-    <MemberContext.Provider value={value}>{children}</MemberContext.Provider>
+    <MemberContext.Provider value={value}>
+      {children}
+      {/* <ModalAdd /> */}
+    </MemberContext.Provider>
   );
 };
 

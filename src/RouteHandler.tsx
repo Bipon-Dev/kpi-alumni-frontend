@@ -125,7 +125,7 @@ const router = createBrowserRouter(
               ),
             },
             {
-              path: "/manage/members/profilePage",
+              path: "/manage/members/profilePage/:id",
               element: (
                 <ProtectedRoute
                   element={<ProfilePage />}

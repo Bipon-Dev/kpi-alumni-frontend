@@ -1,19 +1,60 @@
-import { FC } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const ProfilePage: FC = () => {
+interface ProfileData {
+  id: string;
+  name: string;
+  photo: string;
+  jobTitle: string;
+  email: string;
+}
+
+const ProfilePage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const [data, setData] = useState<ProfileData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(
+          `http://localhost:5050/api/v1/member/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const result: ProfileData = await response.json();
+        setData(result);
+      } catch (err) {
+        setError("An unknown error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+
   return (
-    <div className="container mx-auto p-4">
+    // id?.map((id) => (
+    <div className="container mx-auto p-4" key={id}>
       <div className="bg-white shadow-md rounded-lg p-6">
         <div className="flex items-center space-x-4">
           <img
             className="w-24 h-24 rounded-full"
-            src="https://randomuser.me/api/portraits/women/2.jpg"
+            src={data?.photo || "https://via.placeholder.com/150"}
             alt="Profile Picture"
           />
           <div>
-            <h1 className="text-2xl font-bold">John Doe</h1>
+            <h1 className="text-2xl font-bold">{id?.name || "--"}</h1>
             <p className="text-gray-600">Software Engineer</p>
-            <p className="text-gray-600">john.doe@example.com</p>
+            <p className="text-gray-600">{id?.email || "--"}</p>
           </div>
         </div>
         <div className="mt-6">

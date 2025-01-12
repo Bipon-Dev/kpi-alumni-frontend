@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { Button } from "@/lib/ui/button";
 import { Input } from "@/lib/ui/input";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/lib/ui/dialog";
+
 import { sendInvitation } from "../table-comps/jobsApi"; // API service for invitation
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/lib/ui/dialog";
 
 interface ModalInviteJobProps {
   closeModal: () => void;
@@ -55,7 +61,8 @@ const ModalInviteJob: React.FC<ModalInviteJobProps> = ({ closeModal, job }) => {
         {/* Input Section */}
         <div className="space-y-2">
           <p className="text-sm text-gray-600">
-            Invite a candidate to apply for the job: <span className="font-medium">{job.title}</span>.
+            Invite a candidate to apply for the job:{" "}
+            <span className="font-medium">{job.title}</span>.
           </p>
           <Input
             type="email"
