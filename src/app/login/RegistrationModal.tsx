@@ -1,7 +1,13 @@
 import useRegistrationStore from "@/lib/stores/registrationStore";
 import useModelStore from "@/lib/stores/useModelStore";
 import { Button } from "@/lib/ui/button";
-import { Dialog, DialogBody, DialogContent, DialogHeader, DialogTitle } from "@/lib/ui/dialog";
+import {
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/lib/ui/dialog";
 import { Input } from "@/lib/ui/input";
 import { getApiUrl } from "@/utils/env";
 import axios from "axios";
@@ -32,8 +38,10 @@ const RegistrationForm = () => {
     event.preventDefault();
     setLoading(true);
     try {
-      const { data }: { data: any } = await axios.post(`${getApiUrl()}/api/v1/registration`, formData);
-
+      const { data }: { data: any } = await axios.post(
+        `${getApiUrl()}/api/v1/registration`,
+        formData
+      );
       if (data.error !== 0) {
         toast.error(data.message);
       } else {
@@ -55,7 +63,11 @@ const RegistrationForm = () => {
     <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
       <div className="border flex gap-2 rounded-xl p-2 py-2">
         <div className="w-16 aspect-[1]  rounded-full overflow-hidden">
-          <img src={firebaseUser?.photoURL || ""} alt={firebaseUser?.displayName || "User"} className="w-full" />
+          <img
+            src={firebaseUser?.photoURL || ""}
+            alt={firebaseUser?.displayName || "User"}
+            className="w-full"
+          />
         </div>
         <div className="flex flex-col justify-center">
           <h6 className="font-medium text-xl">{firebaseUser?.displayName}</h6>
@@ -106,10 +118,19 @@ const RegistrationForm = () => {
         className="focus-visible:ring-0"
       />
       <div className="flex justify-end gap-2">
-        <Button type="button" onClick={handleCancel} disabled={loading} className="bg-gray-300">
+        <Button
+          type="button"
+          onClick={handleCancel}
+          disabled={loading}
+          className="bg-gray-300"
+        >
           Cancel
         </Button>
-        <Button type="submit" className="bg-secondary text-white" disabled={loading}>
+        <Button
+          type="submit"
+          className="bg-secondary text-white"
+          disabled={loading}
+        >
           Submit
         </Button>
       </div>
@@ -121,7 +142,10 @@ const RegistrationModal: FC = (): ReactElement => {
   const { modalName, closeModel } = useModelStore();
 
   return (
-    <Dialog onOpenChange={closeModel} open={modalName === "PromptForRegistration"}>
+    <Dialog
+      onOpenChange={closeModel}
+      open={modalName === "PromptForRegistration"}
+    >
       <DialogContent onInteractOutside={(ev) => ev.preventDefault()}>
         <DialogHeader>
           <DialogTitle>Create New Account your account</DialogTitle>

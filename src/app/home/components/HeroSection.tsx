@@ -5,7 +5,7 @@ const HeroSection = () => {
     <>
       <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden">
         <img
-          src="https://scontent.fdac96-1.fna.fbcdn.net/v/t39.30808-6/335218633_257768409912800_4539131409283963816_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=104&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFAkgwVYXsiA-Ht05d8zLd-m3-kfr1Y4t6bf6R-vVji3vFckRXwN296AWuqYLvFxDRoEYqkIWkYYF_hw_jUhQlG&_nc_ohc=DNAqDfo2EbUQ7kNvgHJe-yd&_nc_zt=23&_nc_ht=scontent.fdac96-1.fna&_nc_gid=Ajbh1grQMEuQCX2FHelY_ia&oh=00_AYD485bGGztpEZO96mpjPnXRmAkDs0-wDnq7PDHZYBfvig&oe=6768B989"
+          src="/src/assets/images/banner.jpg"
           alt="Khulna Polytechnic Institute Campus"
           className="filter brightness-75 w-full md:object-cover bg-contain h-full"
         />
