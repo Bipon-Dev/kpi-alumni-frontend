@@ -10,13 +10,12 @@ interface TProps {
     closeModel: () => void
 }
 const defaultFormData = {
-    photoUrl: "",
     title: "",
-    eventTime: 0,
+    eventTime: "",
     location: "",
     organizer: "",
     description: "",
-    status: 1
+    status: "active"
 }
 
 const ModalBody: React.FC<TProps> = ({ closeModel }) => {
@@ -45,16 +44,7 @@ const ModalBody: React.FC<TProps> = ({ closeModel }) => {
 
 
     return (
-        <form className="flex flex-col gap-3" onSubmit={handleSubmit} >
-            <div className="flex flex-col gap-1">
-                <label htmlFor="picture" className="text-base font-medium text-primary">Add Picture</label>
-                <Input
-                    id="picture"
-                    type="file"
-                    onChange={handleChange}
-                    name="photoUrl"
-                />
-            </div >
+        <form className="flex flex-col gap-3 mt-1" onSubmit={handleSubmit} >
             <div className="flex gap-2">
                 <Input
                     placeholder="Title"

@@ -5,6 +5,7 @@ import { EllipsisVertical } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from "@/lib/ui/dropdown-menu";
 import { useAdmEvent } from "../context/AdmEventProvider";
 import useModelStore from "@/lib/stores/useModelStore";
+import { getDate, getTime } from "@/app/shared/utils/time";
 
 const TableBodyComp: React.FC = () => {
     const { data } = useAdmEvent();
@@ -13,15 +14,16 @@ const TableBodyComp: React.FC = () => {
     return (
         <TableBody>
             {data.map((event, index) => (
-                <TableRow key={index} className="h-[100px] even:bg-secondary-50 !border-b-0">
-                    <TableCell>
-                        <div className="h-[90px] w-[200px] my-1 bg-red-400 "></div>
-                    </TableCell>
+                <TableRow key={index} className="even:bg-secondary-50 !border-b-0">
                     <TableCell>{event.id}</TableCell>
-                    <TableCell>{event.title}</TableCell>
+                    <TableCell >{event.title}</TableCell>
                     <TableCell className="">{event.description}</TableCell>
-                    {/* <TableCell>{event}</TableCell> */}
-                    <TableCell>{event.location}</TableCell>
+                    <TableCell>{event.organizer}</TableCell>
+                    <TableCell className="!pb-1 !pt-2.5 line-clamp-1">{event.location}</TableCell>
+                    <TableCell className="text-center">
+                        {getTime(event.eventTime)}
+                        <br />
+                        {getDate(event.eventTime)}</TableCell>
                     <TableCell>{event.status}</TableCell>
                     <TableCell >
                         <div className="flex justify-end">
@@ -34,17 +36,21 @@ const TableBodyComp: React.FC = () => {
                                     <DropdownMenuLabel>
                                         <button
                                             onClick={() => openModel("edit-event", event)}
+                                            className="w-full"
                                         >Edit</button>
                                     </DropdownMenuLabel>
                                     <DropdownMenuLabel>
                                         <button
                                             onClick={() => window.location.href = `/manage/event/${event.id}/info`}
+                                            className="w-full"
                                         >
                                             Details
                                         </button>
                                     </DropdownMenuLabel>
                                     <DropdownMenuLabel>
-                                        <button>Delete</button>
+                                        <button
+                                            className="w-full"
+                                        >Delete</button>
                                     </DropdownMenuLabel>
                                 </DropdownMenuContent>
                             </DropdownMenu>

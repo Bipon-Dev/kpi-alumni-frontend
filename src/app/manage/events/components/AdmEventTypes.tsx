@@ -1,4 +1,3 @@
-
 export type TEventType = {
     id: number;
     userId: number;
@@ -8,8 +7,8 @@ export type TEventType = {
     deletedAt: number;
     title: string;
     description: string;
-    organizer: string;
-    eventTime: number;
     location: string;
     photoUrl: string;
+    eventTime: number;
+    organizer: string;
 };
