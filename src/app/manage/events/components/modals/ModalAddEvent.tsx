@@ -3,8 +3,8 @@ import { Button } from "@/lib/ui/button"
 import { Dialog, DialogBody, DialogContent, DialogHeader, DialogTitle } from "@/lib/ui/dialog"
 import { Input } from "@/lib/ui/input"
 import { useState } from "react"
-import { createEvent } from "../AdmEventOperation"
 import { useAdmEvent } from "../context/AdmEventProvider"
+import { createEvent } from "../AdmEventOperation"
 
 interface TProps {
     closeModel: () => void
@@ -12,44 +12,39 @@ interface TProps {
 const defaultFormData = {
     title: "",
     eventTime: "",
-    description: "",
     location: "",
-    photoUrl: "",
-    organization: ""
+    organizer: "",
+    description: "",
+    status: "active"
 }
 
 const ModalBody: React.FC<TProps> = ({ closeModel }) => {
 
-    const [formData, setFormData] = useState(defaultFormData)
+    const [formData, setFormData] = useState<any>(defaultFormData)
     const { refetch } = useAdmEvent();
 
-
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
+        setFormData((prev: any) => ({
+            ...prev,
             [e.target.name]: e.target.value
-        })
+        }))
     }
 
-    const handleSubmit = (e: { preventDefault: () => void }) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        createEvent(formData)
-        refetch()
+        try {
+            await createEvent(formData)
+            refetch()
+        } catch (error) {
+            console.error("Error creating event:", error)
+            return
+        }
         closeModel()
     }
 
+
     return (
-        <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-1">
-                <label htmlFor="picture" className="text-base font-medium text-primary">Add Picture</label>
-                <Input
-                    id="picture"
-                    type="file"
-                    onChange={handleChange}
-                    name="photoUrl"
-                />
-            </div>
+        <form className="flex flex-col gap-3 mt-1" onSubmit={handleSubmit} >
             <div className="flex gap-2">
                 <Input
                     placeholder="Title"
@@ -72,9 +67,9 @@ const ModalBody: React.FC<TProps> = ({ closeModel }) => {
                     value={formData.location} />
                 <Input
                     placeholder="Organizer"
-                    name="organization"
+                    name="organizer"
                     onChange={handleChange}
-                    value={formData.organization} />
+                    value={formData.organizer} />
             </div>
             <div className="flex flex-col gap-1">
                 <label htmlFor="description" className="text-base font-medium text-primary">Description</label>
@@ -86,10 +81,19 @@ const ModalBody: React.FC<TProps> = ({ closeModel }) => {
                 />
             </div>
             <div className="flex items-center justify-end gap-2">
-                <Button type="button" className=" w-[100px] text-white bg-error" onClick={closeModel}>Cancel</Button>
-                <Button type="submit" className="w-[100px] text-white bg-secondary">Add Event</Button>
+                <Button
+                    type="button"
+                    className=" w-[100px] text-white bg-error"
+                    onClick={closeModel}>
+                    Cancel
+                </Button>
+                <Button
+                    type="submit"
+                    className="w-[100px] text-white bg-secondary">
+                    Add Event
+                </Button>
             </div>
-        </form>
+        </form >
     )
 }
 
@@ -99,8 +103,8 @@ const ModalAddEvent = () => {
 
     return (
         <Dialog open={modalName === "add-event"} onOpenChange={closeModel}>
-            <DialogContent>
-                <DialogHeader>
+            <DialogContent aria-describedby={undefined}>
+                <DialogHeader >
                     <DialogTitle className="text-2xl font-medium text-primary">Add Event</DialogTitle>
                 </DialogHeader>
                 <DialogBody>
