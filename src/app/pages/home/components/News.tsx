@@ -16,7 +16,7 @@ const News = () => {
           ))}
         </div>
       </div>
-      <div className="text-center mt-8 mb-12">
+      <div className="text-center mt-8 mb-12 text-white">
         <Link to="/news">
           <Button size="lg">View All News and Notices</Button>
         </Link>

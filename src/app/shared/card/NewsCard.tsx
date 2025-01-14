@@ -28,7 +28,7 @@ const NewsCard = ({ id, title, date, category, summary }: NewsItemProps) => {
       <div className="px-6 pb-4">
         <Link
           to={`/news/${id}`}
-          className="text-sm font-medium text-primary hover:underline"
+          className="text-sm font-medium text-primary hover:underline "
         >
           Read more
         </Link>
