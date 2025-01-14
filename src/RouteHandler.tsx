@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import HomePage from "./app/home";
 import LoginPage from "@/app/login/LoginPage";
 import ProtectedRoute from "./lib/auth/protectRoute";
 import ManageDashboardPage from "./app/manage/dashboard/ManageDashboardPage";
@@ -20,9 +20,6 @@ import useAuthStore from "./lib/stores/authStore";
 import JobDetailsPage from "./app/manage/jobs/components/table-comps/JobDetailsPage";
 import ClientLayout from "./lib/layout/ClientLayout";
 import ProfilePage from "./app/manage/profile/ProfilePage";
-import HomePage from "./app/pages/home";
-
-import SingleEvent from "./app/pages/Event/components/SingleEvent/SingleEvent";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
@@ -59,10 +56,6 @@ const router = createBrowserRouter(
         {
           path: "/events",
           element: <EventPage />,
-        },
-        {
-          path: "/events/:id",
-          element: <SingleEvent />,
         },
         {
           path: "/manage",
