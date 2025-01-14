@@ -1,3 +1,4 @@
+import { Button } from "@/lib/ui/button";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -174,20 +175,39 @@ const ProfilePage: React.FC = () => {
     // </div>
 
     <div className=" bg-white shadow-md rounded-lg overflow-hidden grid grid-cols-1 md:grid-cols-3">
-      {/* Header Section */}
-      <div className="bg-gray-200 h-28 relative flex items-center justify-start col-span-1 md:col-span-3 ">
+      <div
+        className="h-28 bg-slate-400 relative flex items-center justify-start col-span-1 md:col-span-3 bg-cover bg-center"
+        style={{
+          backgroundImage: `url("../../../../assets/images/banner.jpg")`,
+        }}
+      >
         <img
-          src={data?.data?.profilePhoto || "https://via.placeholder.com/150"}
-          className="w-20 h-20 bg-gray-400 rounded-full absolute top-16 left-7 border-4 border-white"
-        ></img>
+          src={data?.photo || "https://via.placeholder.com/150"}
+          className="w-30 h-30 bg-gray-400 rounded-full absolute top-12 left-7 border-4 border-white"
+        />
       </div>
 
-      {/* Main Content Section */}
-      <div className="px-6 pt-16 pb-6 col-span-2">
-        <div className="text-center md:text-left">
-          <h2 className="text-xl font-medium">{data?.data?.name || "--"}</h2>
-          <p className="text-gray-500">{data?.data?.}</p>
-          <p className="text-gray-500">{data?.data?.organization || "--"}</p>
+      <div className="px-6 pt-6 pb-6 col-span-2">
+        <div className="flex justify-between items-center">
+          <div className="text-center md:text-left pt-5">
+            <h2 className="text-xl font-medium">{data?.data?.name || "--"}</h2>
+            <p className="text-gray-500">{data?.data?.jobTitle || "--"}</p>
+            <p className="text-gray-500">{data?.data?.email || "--"}</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Button variant="secondary" className=" text-white">
+              Edit
+            </Button>
+            <Button variant="secondary" className=" text-white">
+              Invite
+            </Button>
+            <Button variant="secondary" className=" text-white">
+              CV
+            </Button>
+            <Button variant="secondary" className=" text-white">
+              Message
+            </Button>
+          </div>
         </div>
 
         {/* Bio Section */}
@@ -218,7 +238,7 @@ const ProfilePage: React.FC = () => {
             ].map((skill, index) => (
               <span
                 key={index}
-                className="bg-orange-100 text-orange-600 px-3 py-1 text-sm rounded-full"
+                className="bg-secondary-100 text-secondary-700 px-3 py-1 text-sm rounded-full"
               >
                 {skill}
               </span>
@@ -230,9 +250,9 @@ const ProfilePage: React.FC = () => {
         <div className="mt-6">
           <h3 className="font-semibold text-lg">Work Experience</h3>
           <div className="mt-2">
-            <p className="font-medium">UI/UX Designer</p>
-            <p className="text-gray-500">Arman Studio</p>
-            <p className="text-gray-500">2020 - Present</p>
+            <p className="font-medium">{data?.data?.posission || "--"}</p>
+            <p className="text-gray-500">{data?.data?.company || "--"}</p>
+            <p className="text-gray-500">{data?.data?.workTime || "--"}</p>
           </div>
         </div>
       </div>
@@ -240,20 +260,22 @@ const ProfilePage: React.FC = () => {
       {/* Sidebar Section */}
       <div className="bg-gray-100 p-6 border-t md:border-l md:border-t-0">
         <div className="text-center">
-          <p className="text-xl font-bold text-orange-500">$30,000 - $45,000</p>
+          <p className="text-xl font-bold text-secondary-700">
+            {data?.data?.askingMoney || "--"}
+          </p>
           <p className="text-sm text-gray-500">Avg Salary</p>
         </div>
 
         <div className="mt-4 space-y-2">
-          <p className="text-sm text-gray-600">sarahalexzou@gmail.com</p>
-          <p className="text-sm text-gray-600">
-            Modern House Suites No. 187, Toronto, CA
+          <p className="text-sm text-gray-600">{data?.data?.email || "--"}</p>
+          <p className="text-sm text-gray-600">{data?.data?.address || "--"}</p>
+          <p className="text-sm text-gray-600">{data?.data?.phone || "--"}</p>
+          <p className="text-sm text-secondary">
+            {data?.data?.portfolio || "--"}
           </p>
-          <p className="text-sm text-gray-600">+12 3456 7890</p>
-          <p className="text-sm text-blue-500">https://sarahzou.com</p>
         </div>
 
-        <button className="w-full mt-6 bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">
+        <button className="w-full mt-6 bg-secondary text-white py-2 rounded-lg transition">
           Connect
         </button>
       </div>

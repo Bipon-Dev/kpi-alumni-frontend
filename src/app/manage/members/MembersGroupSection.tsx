@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { MembersEditBtnComp } from "../../members/MembersEditBtnComp";
 import { Button } from "@/lib/ui/button";
 import { TFilterField } from "../../members/filter-bar/filterBarTypes";
 import FilterBar from "../../members/filter-bar/FilterBar";
@@ -150,6 +149,17 @@ const MembersGroupsSections = () => {
           {memberData.map((item) => (
             <MemberBody key={item?.id} data={item} />
           ))}
+          {memberData.length === 0 && (
+            <tr>
+              <td
+                colSpan={10}
+                rowSpan={7}
+                className="text-center !text-[32px] text-primary-200 relative top-16"
+              >
+                No data found !
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
