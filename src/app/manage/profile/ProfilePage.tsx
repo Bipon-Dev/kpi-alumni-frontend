@@ -43,219 +43,111 @@ const ProfilePage: React.FC = () => {
 
   return (
     // id?.map((id) => (
-    // <div className="" key={id}>
-    //   <div className="flex justify-between items-center bg-white shadow-lg rounded-lg p-6">
-    //     <div>
-    //       <div className="flex items-center space-x-4">
-    //         <img
-    //           className="w-24 h-24 rounded-full bg-primary-200 items-center"
-    //           src={data?.data?.photo || "https://via.placeholder.com/150"}
-    //           alt="Profile"
-    //         />
-    //         <div>
-    //           <h1 className="text-2xl font-bold">{data?.data?.name || "--"}</h1>
-    //           <p className="text-gray-600">Software Engineer</p>
-    //           <p className="text-gray-600">{data?.data?.email || "--"}</p>
-    //         </div>
-    //       </div>
-    //       <div className="mt-6">
-    //         <h2 className="text-xl font-semibold">About Me</h2>
-    //         <p className="text-gray-700 mt-2">
-    //           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-    //           nec odio. Praesent libero. Sed cursus ante dapibus diam.
-    //         </p>
-    //       </div>
-    //       <div className="mt-6">
-    //         <h2 className="text-xl font-semibold">Skills</h2>
-    //         <p className="text-gray-700 mt-2">
-    //           JavaScript, TypeScript, React, Node.js
-    //         </p>
-    //       </div>
-    //     </div>
-    //     <div className="mt-6 grid gap-5">
-    //       <button className="bg-secondary text-white px-4 py-2 rounded">
-    //         Edit Profile
-    //       </button>
-    //       <button className="bg-secondary text-white px-4 py-2 rounded">
-    //         CV Bank
-    //       </button>
-    //       <button className="px-4 py-2 bg-secondary text-white rounded ">
-    //         Send Message
-    //       </button>
-    //     </div>
-    //   </div>
-
-    //   <div className="font-sans leading-normal tracking-normal  items-center bg-white shadow-lg rounded-lg p-6 mt-9 ">
-    //     {" "}
-    //     <span className=" text-xl">Member Information</span>
-    //     <div className="flex justify-between ">
-    //       <div className=" w-full py-6">
-    //         <h2 className="text-lg font-medium text-gray-600 border-b pb-2">
-    //           Contact
-    //         </h2>
-    //         <ul className="mt-4 space-y-2">
-    //           <li>
-    //             <span>Email:</span>{" "}
-    //             <span className="text-primary-200">
-    //               {data?.data?.email || "--"}
-    //             </span>
-    //           </li>
-    //           <li>
-    //             <span>Phone:</span>{" "}
-    //             <span className="text-primary-200">
-    //               {data?.data?.phone || "--"}
-    //             </span>
-    //           </li>
-    //           <li>
-    //             <span>Location:</span>{" "}
-    //             <span className="text-primary-200">
-    //               {data?.data?.location || "--"}
-    //             </span>
-    //           </li>
-    //           <li>
-    //             <span>Social Links: </span>
-    //             <a href="#" className="text-indigo-500 hover:underline">
-    //               LinkedIn
-    //             </a>{" "}
-    //             |
-    //             <a href="#" className="text-indigo-500 hover:underline">
-    //               Facebook
-    //             </a>
-    //           </li>
-    //         </ul>
-    //       </div>
-
-    //       <div className=" w-full py-6">
-    //         <h2 className="text-lg font-medium text-gray-600 border-b pb-2">
-    //           Professional Details
-    //         </h2>
-    //         <ul className="mt-4 space-y-2">
-    //           <li>
-    //             <span>Current Job Title:</span>{" "}
-    //             <span className="text-primary-200">Software Engineer</span>
-    //           </li>
-    //           <li>
-    //             <span>Company:</span>{" "}
-    //             <span className="text-primary-200">Tech Solutions Inc.</span>
-    //           </li>
-    //           <li>
-    //             <span>Experience:</span>{" "}
-    //             <span className="text-primary-200">8 years</span>
-    //           </li>
-    //           <li>
-    //             <span>Skills:</span>{" "}
-    //             <span className="text-primary-200">
-    //               JavaScript, React, Tailwind CSS, Node.js
-    //             </span>
-    //           </li>
-    //         </ul>
-    //       </div>
-
-    //       <div className=" w-full py-6">
-    //         <h2 className="text-lg font-medium text-gray-600 border-b pb-2">
-    //           Alumni Activities
-    //         </h2>
-    //         <ul className="mt-4 space-y-2">
-    //           <li>
-    //             <span>Role:</span>{" "}
-    //             <span className="text-primary-200">Mentor</span>
-    //           </li>
-    //           <li>
-    //             <span>Events Attended:</span>{" "}
-    //             <span className="text-primary-200">
-    //               Annual Meetup 2023, Hackathon 2022
-    //             </span>
-    //           </li>
-    //         </ul>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div className=" bg-white shadow-lg rounded-lg p-6 mt-9">Activity</div>
-    // </div>
-
-    <div className=" bg-white shadow-md rounded-lg overflow-hidden grid grid-cols-1 md:grid-cols-3">
-      {/* Header Section */}
-      <div className="bg-gray-200 h-28 relative flex items-center justify-start col-span-1 md:col-span-3 ">
-        <img
-          src={data?.data?.profilePhoto || "https://via.placeholder.com/150"}
-          className="w-20 h-20 bg-gray-400 rounded-full absolute top-16 left-7 border-4 border-white"
-        ></img>
-      </div>
-
-      {/* Main Content Section */}
-      <div className="px-6 pt-16 pb-6 col-span-2">
-        <div className="text-center md:text-left">
-          <h2 className="text-xl font-medium">{data?.data?.name || "--"}</h2>
-          <p className="text-gray-500">{data?.data?.}</p>
-          <p className="text-gray-500">{data?.data?.organization || "--"}</p>
-        </div>
-
-        {/* Bio Section */}
-        <div className="mt-6">
-          <h3 className="font-semibold text-lg">Bio</h3>
-          <p className="text-gray-600 mt-2 text-sm">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-        </div>
-
-        {/* Skills Section */}
-        <div className="mt-6">
-          <h3 className="font-semibold text-lg">Skills</h3>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {[
-              "User Interface",
-              "Web Design",
-              "Mobile App Design",
-              "Responsive Web Design",
-              "Figma",
-              "Business",
-              "Marketing",
-              "Campaign",
-              "Copy Writer",
-            ].map((skill, index) => (
-              <span
-                key={index}
-                className="bg-orange-100 text-orange-600 px-3 py-1 text-sm rounded-full"
-              >
-                {skill}
-              </span>
-            ))}
+    <div className="container mx-auto p-4" key={id}>
+      <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="flex items-center space-x-4">
+          <img
+            className="w-24 h-24 rounded-full"
+            src={data?.photo || "https://via.placeholder.com/150"}
+            alt="Profile Picture"
+          />
+          <div>
+            <h1 className="text-2xl font-bold">{id?.name || "--"}</h1>
+            <p className="text-gray-600">Software Engineer</p>
+            <p className="text-gray-600">{id?.email || "--"}</p>
           </div>
         </div>
-
-        {/* Work Experience Section */}
         <div className="mt-6">
-          <h3 className="font-semibold text-lg">Work Experience</h3>
-          <div className="mt-2">
-            <p className="font-medium">UI/UX Designer</p>
-            <p className="text-gray-500">Arman Studio</p>
-            <p className="text-gray-500">2020 - Present</p>
+          <h2 className="text-xl font-semibold">About Me</h2>
+          <p className="text-gray-700 mt-2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+            odio. Praesent libero. Sed cursus ante dapibus diam.
+          </p>
+        </div>
+        <div className="mt-6">
+          <h2 className="text-xl font-semibold">Skills</h2>
+          <p className="text-gray-700 mt-2">
+            JavaScript, TypeScript, React, Node.js
+          </p>
+        </div>
+        <div className="mt-6">
+          <button className="bg-secondary text-white px-4 py-2 rounded">
+            Edit Profile
+          </button>
+        </div>
+        <div className="font-sans leading-normal tracking-normal  items-center ">
+          <div className="flex justify-between ">
+            {/* Profile Details */}
+            <div className=" w-full py-6">
+              <h2 className="text-lg font-semibold text-gray-600 border-b pb-2">
+                Contact Information
+              </h2>
+              <ul className="mt-4 space-y-2">
+                <li>
+                  <strong>Email:</strong> john.doe@example.com
+                </li>
+                <li>
+                  <strong>Phone:</strong> +123 456 7890
+                </li>
+                <li>
+                  <strong>Location:</strong> New York, USA
+                </li>
+                <li>
+                  <strong>Social Links:</strong>
+                  <a href="#" className="text-indigo-500 hover:underline">
+                    LinkedIn
+                  </a>{" "}
+                  |
+                  <a href="#" className="text-indigo-500 hover:underline">
+                    Facebook
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className=" w-full py-6">
+              <h2 className="text-lg font-semibold text-gray-600 border-b pb-2">
+                Professional Details
+              </h2>
+              <ul className="mt-4 space-y-2">
+                <li>
+                  <strong>Current Job Title:</strong> Software Engineer
+                </li>
+                <li>
+                  <strong>Company:</strong> Tech Solutions Inc.
+                </li>
+                <li>
+                  <strong>Experience:</strong> 8 years
+                </li>
+                <li>
+                  <strong>Skills:</strong> JavaScript, React, Tailwind CSS,
+                  Node.js
+                </li>
+              </ul>
+            </div>
+
+            <div className=" w-full py-6">
+              <h2 className="text-lg font-semibold text-gray-600 border-b pb-2">
+                Alumni Activities
+              </h2>
+              <ul className="mt-4 space-y-2">
+                <li>
+                  <strong>Role:</strong> Mentor
+                </li>
+                <li>
+                  <strong>Events Attended:</strong> Annual Meetup 2023,
+                  Hackathon 2022
+                </li>
+              </ul>
+            </div>
+          </div>
+          {/* Call to Action */}
+          <div className=" py-6 text-center">
+            <button className="px-4 py-2 bg-secondary text-white rounded hover:bg-indigo-600">
+              Send Message
+            </button>
           </div>
         </div>
-      </div>
-
-      {/* Sidebar Section */}
-      <div className="bg-gray-100 p-6 border-t md:border-l md:border-t-0">
-        <div className="text-center">
-          <p className="text-xl font-bold text-orange-500">$30,000 - $45,000</p>
-          <p className="text-sm text-gray-500">Avg Salary</p>
-        </div>
-
-        <div className="mt-4 space-y-2">
-          <p className="text-sm text-gray-600">sarahalexzou@gmail.com</p>
-          <p className="text-sm text-gray-600">
-            Modern House Suites No. 187, Toronto, CA
-          </p>
-          <p className="text-sm text-gray-600">+12 3456 7890</p>
-          <p className="text-sm text-blue-500">https://sarahzou.com</p>
-        </div>
-
-        <button className="w-full mt-6 bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">
-          Connect
-        </button>
       </div>
     </div>
   );
