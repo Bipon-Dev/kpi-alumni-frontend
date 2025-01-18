@@ -7,7 +7,6 @@ import {
 } from "@/lib/ui/dialog";
 import { FC, useState } from "react";
 import { updateMember } from "../MembersSectionOeration";
-import { AnimateTextArea } from "@/lib/ui/inputFilds";
 import {
   Select,
   SelectContent,
@@ -16,6 +15,7 @@ import {
   SelectValue,
 } from "@/lib/ui/select";
 import { Button } from "@/lib/ui/button";
+import { AnimateInputField } from "@/lib/ui/inputFilds";
 
 interface ModalEditProps {
   closeModal: () => void;
@@ -67,7 +67,7 @@ const ModalBody: FC<{
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-3">
       <div className=" flex justify-between w-full items-center">
-        <AnimateTextArea
+        <AnimateInputField
           formData={formData}
           name="name"
           label={data?.name}
@@ -88,7 +88,7 @@ const ModalBody: FC<{
           </SelectContent>
         </Select>
       </div>
-      <AnimateTextArea
+      <AnimateInputField
         formData={formData}
         name="email"
         label={data?.email}
@@ -98,7 +98,7 @@ const ModalBody: FC<{
       />
 
       <div className="flex justify-between w-full gap-2">
-        <AnimateTextArea
+        <AnimateInputField
           formData={formData}
           name="shift"
           label={data?.shift}
@@ -106,7 +106,7 @@ const ModalBody: FC<{
           className="h-[50px] !w-full"
           onChange={(e) => setFormData({ ...formData, shift: e.target.value })}
         />
-        <AnimateTextArea
+        <AnimateInputField
           formData={formData}
           name="session"
           label={data?.session}

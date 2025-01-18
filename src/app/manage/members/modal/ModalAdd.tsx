@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/lib/ui/button";
 import {
@@ -16,9 +17,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/lib/ui/select";
-import { AnimateTextArea } from "@/lib/ui/inputFilds";
+import { AnimateInputField } from "@/lib/ui/inputFilds";
 
 export const technology = ["CSE", "EEE", "ME", "CE", "TE", "Arch", "ChemE"];
+export const shift = ["1st", "2nd"];
 const ModalBody: FC<{
   closeModal: () => void;
 }> = ({ closeModal }) => {
@@ -59,18 +61,20 @@ const ModalBody: FC<{
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-3">
-      <div className=" flex justify-between w-full items-center">
-        <AnimateTextArea
+      <div className=" flex justify-between w-full items-center gap-2">
+        <AnimateInputField
           formData={formData}
           name="name"
           label="Your Name..."
           type="text"
           className="h-[50px] !w-full"
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          onChange={(e: any) =>
+            setFormData({ ...formData, name: e.target.value })
+          }
         />
         <Select value={formData.department} onValueChange={handleStatusChange}>
           <SelectTrigger className="w-1/2 focus:ring-0 focus:ring-offset-0 h-[50px] text-sm font-medium text-primary-700">
-            <SelectValue placeholder="Select Currency" />
+            <SelectValue placeholder="Select Department" />
           </SelectTrigger>
           <SelectContent className="text-sm font-medium text-primary-700">
             {technology.map((option: any) => (
@@ -81,31 +85,47 @@ const ModalBody: FC<{
           </SelectContent>
         </Select>
       </div>
-      <AnimateTextArea
+      <AnimateInputField
         formData={formData}
         name="email"
         label="Your Email..."
         type="email"
         className="h-[50px] !w-full"
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        onChange={(e: any) =>
+          setFormData({ ...formData, email: e.target.value })
+        }
       />
 
       <div className="flex justify-between w-full gap-2">
-        <AnimateTextArea
+        <AnimateInputField
           formData={formData}
           name="shift"
           label="Your Shift..."
           type="text"
           className="h-[50px] !w-full"
-          onChange={(e) => setFormData({ ...formData, shift: e.target.value })}
+          onChange={(e: any) =>
+            setFormData({ ...formData, shift: e.target.value })
+          }
         />
-        <AnimateTextArea
+        <Select value={formData.department} onValueChange={handleStatusChange}>
+          <SelectTrigger className="w-1/2 focus:ring-0 focus:ring-offset-0 h-[50px] text-sm font-medium text-primary-700">
+            <SelectValue placeholder="Select Shift" />
+          </SelectTrigger>
+          <SelectContent className="text-sm font-medium text-primary-700">
+            {technology.map((option: any) => (
+              <SelectItem key={option} value={option}>
+                {option}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <AnimateInputField
           formData={formData}
           name="session"
           label=" Your Session..."
           type="text"
           className="h-[50px] !w-full"
-          onChange={(e) =>
+          onChange={(e: any) =>
             setFormData({ ...formData, session: e.target.value })
           }
         />
