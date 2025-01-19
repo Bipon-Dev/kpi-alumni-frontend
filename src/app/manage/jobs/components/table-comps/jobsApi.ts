@@ -8,7 +8,9 @@ export const getJobs = async () => {
   try {
     const response = await axios.get(BASE_URL);
     return response.data.data; // Assuming the response has a `data` field for job DTOs
+    console.log(response.data,"getttttt");
   } catch (error) {
+
     console.error("Error fetching jobs:", error);
     throw error;
   }
@@ -36,8 +38,23 @@ export const deleteJob = async (id: number) => {
       headers: { "Content-Type": "application/json" },
     });
     return response.data.data;
-    //console.log("job: ", response.data);
+    console.log("job: ", response.data);
   };
+
+  export const statusChange = async (jobId: number, updateJobStatusDto: { status: string; reason: string }) => {
+    const response = await axios.patch(`http://localhost:5050/api/v1/job/status/${jobId}`, updateJobStatusDto);
+  
+    return response.data.data;
+    
+  };
+  
+
+ 
+
+  
+  
+  
+  
 
 
   
