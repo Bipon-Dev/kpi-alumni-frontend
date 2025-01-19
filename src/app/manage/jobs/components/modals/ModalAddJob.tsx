@@ -76,7 +76,7 @@ const ModalAddJob: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
 
   return (
     <Dialog open={true} onOpenChange={closeModal}>
-      <DialogContent>
+      <DialogContent className="sm:max-w-[525px]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-medium text-primary">
             Add Job
@@ -84,8 +84,9 @@ const ModalAddJob: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
         </DialogHeader>
         {error && <div className="text-red-500">{error}</div>}
 
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-4 mb-4 px-4">
           <Input
+          
             type="number"
             placeholder="Enter Company ID"
             value={companyId || ""}
@@ -108,21 +109,30 @@ const ModalAddJob: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
           </div>
         )}
 
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4 px-4" onSubmit={handleSubmit}>
+
+       
+        
           <Input
+          className="col-span-2"
             name="title"
             placeholder="Job Title"
             value={formData.title}
             onChange={handleInputChange}
             required
           />
+         
+
+          
           <Input
+          className="col-span-3"
             name="category"
             placeholder="Category"
             value={formData.category}
             onChange={handleInputChange}
             required
           />
+          
           <div className="flex gap-2">
             <select
               name="jobType"
@@ -200,12 +210,12 @@ const ModalAddJob: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
           <div className="flex justify-end gap-2">
             <Button
               type="button"
-              className="w-[100px] text-white bg-error"
+              className="w-[100px] text-white bg-error mb-4"
               onClick={closeModal}
             >
               Cancel
             </Button>
-            <Button type="submit" className="w-[100px] text-white bg-secondary">
+            <Button type="submit" className="w-[100px] text-white bg-secondary mb-4">
               Create
             </Button>
           </div>

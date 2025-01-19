@@ -126,7 +126,7 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria;refreshJobs: () =
             <TableHead>{job.salaryType}</TableHead>
             <TableHead>{job.experience}</TableHead>
             <TableHead>{job.location}</TableHead>
-            <TableHead>{job.joinDate}</TableHead>
+            {/* <TableHead>{job.joinDate}</TableHead> */}
             <TableHead>{job.deadline}</TableHead>
             <TableHead>{job.reference}</TableHead>
             <TableHead>{job.aboutJob}</TableHead>

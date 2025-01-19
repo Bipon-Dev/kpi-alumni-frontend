@@ -108,17 +108,17 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
 
   return (
     <Dialog open={true} onOpenChange={closeModal}>
-      <DialogContent>
+      <DialogContent className="sm:max-w-[560px]">
         <DialogHeader>
           <DialogTitle>Update Job</DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-4">
+        <div className="space-y-4 px-4 ">
           {error && <p className="text-red-500">{error}</p>}
           {successMessage && <p className="text-green-500">{successMessage}</p>}
 
           {/* Form Fields */}
-          <label>
+          <label className="block my-4">
             Title:
             <Input
               type="text"
@@ -127,7 +127,7 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
               onChange={handleChange}
             />
           </label>
-          <label>
+          <label className="block my-4">
             Category:
             <Input
               type="text"
@@ -136,14 +136,14 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
               onChange={handleChange}
             />
           </label>
-          <label>
+          <label className="block my-4">
             Job Type:
             <select name="jobType" value={formData.jobType} onChange={handleChange}>
               <option value="FullTime">Full-Time</option>
               <option value="PartTime">Part-Time</option>
             </select>
           </label>
-          <label>
+          <label className="block my-4">
             Salary:
             <Input
               type="number"
@@ -152,14 +152,14 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
               onChange={handleChange}
             />
           </label>
-          <label>
+          <label className="block my-4">
             Salary Type:
             <select name="salaryType" value={formData.salaryType} onChange={handleChange}>
               <option value="Monthly">Monthly</option>
               <option value="Annually">Annually</option>
             </select>
           </label>
-          <label>
+          <label className="block my-4">
             Experience:
             <Input
               type="number"
@@ -168,7 +168,7 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
               onChange={handleChange}
             />
           </label>
-          <label>
+          <label className="block my-4">
             Location:
             <Input
               type="text"
@@ -176,8 +176,8 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
               value={formData.location}
               onChange={handleChange}
             />
-          </label>
-          <label>
+          </label >
+          {/* <label className="block my-4">
             Join Date:
             <Input
               type="date"
@@ -185,8 +185,8 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
               value={formData.joinDate}
               onChange={handleChange}
             />
-          </label>
-          <label>
+          </label > */}
+          <label className="block my-4">
             Deadline:
             <Input
               type="date"
@@ -195,7 +195,7 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
               onChange={handleChange}
             />
           </label>
-          <label>
+          <label className="block my-4">
             Reference:
             <Input
               type="text"
@@ -204,7 +204,7 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
               onChange={handleChange}
             />
           </label>
-          <label>
+          <label className="block my-4">
             About Job:
             <textarea
               name="aboutJob"
@@ -217,8 +217,8 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
         </div>
 
         <div className="flex justify-end space-x-2 mt-4">
-          <Button className="w-[100px] text-white bg-secondary" onClick={handleSubmit}>Update</Button>
-          <Button className="w-[100px] text-white bg-error" onClick={closeModal}>
+          <Button className="w-[100px] text-white bg-secondary mb-4" onClick={handleSubmit}>Update</Button>
+          <Button className="w-[100px] text-white bg-error mb-6" onClick={closeModal}>
             Cancel
           </Button>
         </div>

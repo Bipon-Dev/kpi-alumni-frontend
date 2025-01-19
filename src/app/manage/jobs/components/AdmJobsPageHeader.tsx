@@ -19,7 +19,7 @@ const AdmJobsPageHeader: React.FC<{ onSearch: (criteria: SearchCriteria) => void
             className="px-3 py-2 text-white rounded-md bg-secondary w-[125px] hover:bg-secondary-700"
             onClick={() => setIsModalOpen(true)}
           >
-            Add Job
+            + Add Job
           </button>
         </div>
       </div>
