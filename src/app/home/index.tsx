@@ -1,8 +1,13 @@
+import Events from "./components/Events";
+import HeroSection from "./components/HeroSection";
+import News from "./components/News";
+
 const HomePage = () => {
   return (
     <div className="home-Page">
-      <h1>Home Page</h1>
-      <p>Welcome to the home page!</p>
+      <HeroSection />
+      <Events />
+      <News />
     </div>
   );
 };

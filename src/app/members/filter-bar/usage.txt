@@ -1,0 +1,20 @@
+import FilterBar from "@/bik-lib/features/filter-bar/FilterBar";
+
+
+const filterFields: TFilterField[] = [
+  {
+    label: "Name",
+    name: "name",
+    type: "text",
+    placeholder: "Ex: John Doe",
+  }
+];
+
+()=>{
+    return (
+          <FilterBar
+            fields={filterFields}
+            onSearch={(val: Record<string, any>) => console.log(val)}
+          />
+    )
+}

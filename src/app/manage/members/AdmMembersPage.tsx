@@ -1,13 +1,17 @@
-import AdmMembersPageHeader from "./components/AdmMembersPageHeader"
-import AdmMembersPageTableSection from "./components/AdmMembersPageTableSection"
+import MemberProvider from "./context/MemberProvider";
+import { FC } from "react";
+import MembersGroupsSections from "./MembersGroupSection";
 
-const AdmMembersPage = () => {
-    return (
-        <div>
-            <AdmMembersPageHeader />
-            <AdmMembersPageTableSection />
-        </div>
-    )
-}
+const AdmMembersPage: FC = () => {
+  return (
+    <div>
+      {/* <AdmMembersPageHeader />
+      <AdmMembersPageTableSection /> */}
+      <MemberProvider>
+        <MembersGroupsSections />
+      </MemberProvider>
+    </div>
+  );
+};
 
-export default AdmMembersPage
+export default AdmMembersPage;

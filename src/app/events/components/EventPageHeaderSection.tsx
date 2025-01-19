@@ -1,4 +1,4 @@
-import { dummyEventData } from "@/app/manage/events/components/table-comps/tableDummyData"
+import { useAdmEvent } from "@/app/manage/events/components/context/AdmEventProvider";
 import React from "react"
 
 interface TCardProps {
@@ -22,21 +22,22 @@ const CardItems: React.FC<TCardProps> = ({ title }) => {
 }
 
 const EventPageHeaderSection = () => {
+    const { data } = useAdmEvent();
     return (
         <div>
             <div>SearchBox</div>
             <div>
                 {
-                    dummyEventData.map((event) => {
+                    data.map((event) => {
                         return (
                             <CardItems
-                                key={event.eventId}
-                                banner=""
-                                description=""
-                                eventDateTime=""
-                                eventId=""
-                                eventStatus=""
-                                location=""
+                                key={event.id}
+                                banner={event.photoUrl}
+                                description={event.description}
+                                eventDateTime={event.createdAt.toString()}
+                                eventId={event.id.toString()}
+                                eventStatus={event.status.toString()}
+                                location={event.location}
                                 title={event.title}
                             />
                         );

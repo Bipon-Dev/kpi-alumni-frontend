@@ -10,6 +10,7 @@ import { getApiUrl } from "@/utils/env";
 interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
+  loginMessage: string;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   userInfo: any;
   setUserInfo: (userInfo: any) => void;
@@ -27,25 +28,25 @@ const useAuthStore = create<AuthState>((set) => ({
   user: null,
   loading: false,
   isAuthenticated: false,
+  loginMessage: "",
   setIsAuthenticated: (isAuthenticated) => {
     set({ isAuthenticated });
   },
   //--Set User Info
   userInfo: {},
-  setUserInfo: (userInfo) => {
-    set({ userInfo });
+  setUserInfo: (data) => {
+    set({ userInfo: data });
   },
   //--Verify login
   verifyLogin: async () => {
-    set({ loading: true });
+    set({ loading: true, isAuthenticated: false });
     const headers = {
       "content-type": "application/json",
-      "refresh-token": `${localStorage.getItem("refresh-token")}`,
-      "user-uid": `${localStorage.getItem("user-uid")}`,
+      authorization: `Bearer ${localStorage.getItem("Authorization")}`,
     };
 
     try {
-      const { data }: { data: any } = await axios.get(`${getApiUrl()}/api/v1/login/verify`, { headers });
+      const { data }: { data: any } = await axios.get(`${getApiUrl()}/api/v1/auth`, { headers });
 
       if (data.error !== 0) {
         set({ isAuthenticated: false, loading: false });
@@ -54,8 +55,6 @@ const useAuthStore = create<AuthState>((set) => ({
       set({ userInfo: data, loading: false, isAuthenticated: true });
     } catch (ex: any) {
       throw ex;
-    } finally {
-      set({ loading: false });
     }
   },
   //--Login with Google
@@ -77,7 +76,7 @@ const useAuthStore = create<AuthState>((set) => ({
             "user-uid": `${user.uid}`,
           };
           axios
-            .post(`${getApiUrl()}/api/v1/login/check-user-info`, {}, { headers })
+            .post(`${getApiUrl()}/api/v1/auth`, {}, { headers })
             .then(({ data }) => {
               if (data.error === 0) {
                 localStorage.setItem("refresh-token", user.refreshToken);

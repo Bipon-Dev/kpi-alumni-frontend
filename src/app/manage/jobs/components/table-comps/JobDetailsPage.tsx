@@ -27,7 +27,9 @@ const JobDetailsPage: React.FC = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5050/api/v1/job/${id}`);
+        const response = await axios.get(
+          `http://localhost:5050/api/v1/job/${id}`
+        );
         setJobDetails(response.data.data); // Adjust based on API response structure
         console.log("job Detail:", response.data);
       } catch (error) {
@@ -41,9 +43,9 @@ const JobDetailsPage: React.FC = () => {
     fetchJobDetails();
   }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   if (!jobDetails) {
     return <div>Job not found.</div>;
@@ -52,15 +54,31 @@ const JobDetailsPage: React.FC = () => {
   return (
     <div className="p-6 flex justify-center items-center">
       <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-6 border border-gray-300">
-        <h1 className="text-3xl font-semibold text-center mb-4">{jobDetails.title}</h1>
+        <h1 className="text-3xl font-semibold text-center mb-4">
+          {jobDetails.title}
+        </h1>
         <div className="space-y-4">
-          <p><strong>Company:</strong> {jobDetails.companyName}</p>
-          <p><strong>Category:</strong> {jobDetails.category}</p>
-          <p><strong>Salary:</strong> {jobDetails.salary} </p>
-          <p><strong>Experience:</strong> {jobDetails.experience} years</p>
-          <p><strong>Location:</strong> {jobDetails.location}</p>
-          <p><strong>Deadline:</strong> {jobDetails.deadline}</p>
-          <p><strong>Description:</strong> {jobDetails.aboutJob}</p>
+          <p>
+            <strong>Company:</strong> {jobDetails.companyName}
+          </p>
+          <p>
+            <strong>Category:</strong> {jobDetails.category}
+          </p>
+          <p>
+            <strong>Salary:</strong> {jobDetails.salary}{" "}
+          </p>
+          <p>
+            <strong>Experience:</strong> {jobDetails.experience} years
+          </p>
+          <p>
+            <strong>Location:</strong> {jobDetails.location}
+          </p>
+          <p>
+            <strong>Deadline:</strong> {jobDetails.deadline}
+          </p>
+          <p>
+            <strong>Description:</strong> {jobDetails.aboutJob}
+          </p>
         </div>
 
         {/* Apply Now Button */}

@@ -1,0 +1,3 @@
+.event-table {
+  @apply text-primary bg-secondary-100 font-medium;
+}
