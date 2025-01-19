@@ -6,6 +6,9 @@ import { getJobs, deleteJob,searchJobs } from "./jobsApi"; // Import the API ser
 import ModalUpdateJob from "../modals/ModalUpdateJob";
 import { SearchCriteria } from "./Search";
 import ModalInviteJob from "../modals/ModalInviteJob";
+import ModalStatusJob from "../modals/ModalStatusJob";
+
+
 
 interface JobDto {
   id: number;
@@ -23,14 +26,17 @@ interface JobDto {
   reference: string;
   aboutJob: string;
   skillNames: string[];
+  status:string;
+  statusReason:string;
   jobLink:string;
 }
 
-const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCriteria }) => {
+const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria;refreshJobs: () => void; }> = ({ searchCriteria,refreshJobs}) => {
   const [jobs, setJobs] = useState<JobDto[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
+  const [isStatusModalOpen, setStatusModalOpen]=useState(false);
 
   // Fetch jobs from backend
   useEffect(() => {
@@ -90,7 +96,19 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
   const handleInvite = (job: JobDto) => {
     setSelectedJob(job);
     setIsInviteModalOpen(true);
-    //console.log("Invite Modal Triggered for Job:", job);
+    
+  };
+
+  //status change
+  const handleStatus=(job:JobDto)=>{
+    setSelectedJob(job);
+    setStatusModalOpen(true);
+
+  }
+
+  const closeStatusModal = () => {
+    setSelectedJob(null);
+    setStatusModalOpen(false);
   };
 
   return (
@@ -113,7 +131,14 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
             <TableHead>{job.reference}</TableHead>
             <TableHead>{job.aboutJob}</TableHead>
             <TableHead>{job.skillNames.join(", ")}</TableHead>
-            <TableHead>{job.jobLink}</TableHead>
+            <TableHead>  <span
+          className={`font-medium ${
+            job.status === "Active" ? "text-green-600" : "text-red-600"
+          }`}
+        >
+          {job.status}
+        </span></TableHead>
+            {/* <TableHead>{job.jobLink}</TableHead> */}
             <TableHead>
               <DropdownMenu>
                 <DropdownMenuTrigger>
@@ -123,9 +148,12 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
                   <DropdownMenuLabel onClick={() => handleEdit(job)}>Edit Job</DropdownMenuLabel>
                   <DropdownMenuLabel onClick={() => handleDelete(job.id)}>Delete Job</DropdownMenuLabel>
                   <DropdownMenuLabel onClick={() => handleInvite(job)}>Invite</DropdownMenuLabel>
+                  <DropdownMenuLabel onClick={() => handleStatus(job)}>Status</DropdownMenuLabel>
+
                 </DropdownMenuContent>
               </DropdownMenu>
             </TableHead>
+
           </TableRow>
         ))}
       </TableBody>
@@ -139,6 +167,14 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
      {isInviteModalOpen && selectedJob && (
         <ModalInviteJob
          closeModal={() => setIsInviteModalOpen(false)} job={selectedJob} />
+      )}
+
+        {isStatusModalOpen && selectedJob && (
+          <ModalStatusJob
+          closeModal={closeStatusModal}
+          job={selectedJob}
+          onStatusUpdated={refreshJobs}
+        />
       )}
     </>
   );
