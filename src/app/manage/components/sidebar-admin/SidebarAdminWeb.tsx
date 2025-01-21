@@ -94,7 +94,7 @@ const SidebarAdminWeb: React.FC = () => {
         </li>
         <li className="mb-1 min-w-60">
           <Link
-            to="/manage/institute"
+            to="/manage/teachers"
             className="group/link hover:text-white w-full flex justify-center items-center gap-2 py-[7px] px-2.5 bg-white hover:bg-secondary text-primary-700 hover:text-white-100 rounded-md transition relative z-20"
           >
             <div className="flex flex-row items-center w-full gap-4">
