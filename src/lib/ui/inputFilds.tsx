@@ -31,7 +31,7 @@ export const AnimateInputField: FC<
 > = ({
   label,
   type = "text",
-  placeholder = "",
+
   autoComplete = "off",
   calculate = false,
   name,
@@ -41,8 +41,6 @@ export const AnimateInputField: FC<
   className = "",
   disabled = false,
   passwordType,
-  loading,
-  valid,
   show,
   required,
   unit,

@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Button } from "@/lib/ui/button";
 import {
   Dialog,
@@ -27,7 +27,7 @@ const ModalBody: FC<{
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<any>({});
   const [message, setMessage] = useState<string | null>(null);
-
+  console.log(loading, message);
   const updateStatus = (payload: any) => {
     setLoading(true);
     setMessage("Updating...");

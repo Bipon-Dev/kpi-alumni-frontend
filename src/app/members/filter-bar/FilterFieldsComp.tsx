@@ -1,11 +1,6 @@
 import { Button } from "@/lib/ui/button";
 import { FC } from "react";
 
-interface IFieldOption {
-  label: string;
-  value: string;
-}
-
 interface IFilterField {
   name: string;
   label: string;
@@ -27,7 +22,7 @@ type TProps = {
 
 const FilterFieldsComp: FC<TProps> = ({
   fields,
-  filters,
+  // filters,
   handleInputChange,
   handleSearch,
 }) => {
@@ -38,16 +33,15 @@ const FilterFieldsComp: FC<TProps> = ({
           <div className="w-60 text-base font-medium text-primary">
             {field.label}
           </div>
-          {field.type === "text" && (
-            <input
-              label={field.label}
-              name={field.name}
-              placeholder={field.placeholder}
-              formData={filters}
-              onChange={handleInputChange}
-              className="w-full"
-            />
-          )}
+          {/* {field.type === "text" && (
+            // <input
+            //   name={field.name}
+            //   placeholder={field.placeholder}
+            //   formData={filters}
+            //   onChange={handleInputChange}
+            //   className="w-full"
+            // />
+          )} */}
           {field.type === "select" && (
             <select
               className="w-full border border-gray-300 rounded-lg p-2"

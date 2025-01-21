@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/lib/ui/button";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProfileCard from "./ProfileEditSection";
 
 interface ProfileData {
   id: string;
@@ -23,7 +23,7 @@ const ProfilePage: React.FC = () => {
   const [data, setData] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  console.log(loading, error);
   useEffect(() => {
     const fetchData = async () => {
       try {

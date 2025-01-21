@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   Dialog,
   DialogBody,
@@ -17,11 +18,8 @@ import {
 import { Button } from "@/lib/ui/button";
 import { AnimateInputField } from "@/lib/ui/inputFilds";
 
-interface ModalEditProps {
-  closeModal: () => void;
-  data: any;
-}
 export const technology = ["CSE", "EEE", "ME", "CE", "TE", "Arch", "ChemE"];
+
 const ModalBody: FC<{
   closeModal: () => void;
   data: any;
@@ -29,8 +27,8 @@ const ModalBody: FC<{
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<any>({});
   const [message, setMessage] = useState<string | null>(null);
-
-  const updateStatus = (payload: any) => {
+  console.log(loading, message);
+  const updateStatus = () => {
     setLoading(true);
     setMessage("Updating...");
     updateMember(
@@ -59,7 +57,7 @@ const ModalBody: FC<{
   };
   const handleSubmit = (ev: any) => {
     ev.preventDefault();
-    updateStatus(formData);
+    updateStatus();
   };
   const handleStatusChange = (value: string) => {
     setFormData((prev: any) => ({ ...prev, department: value }));
