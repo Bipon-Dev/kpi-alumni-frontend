@@ -1,44 +1,99 @@
 import useModelStore from "@/lib/stores/useModelStore"
 import { Button } from "@/lib/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/lib/ui/dialog"
+import { Dialog, DialogBody, DialogContent, DialogHeader, DialogTitle } from "@/lib/ui/dialog"
 import { Input } from "@/lib/ui/input"
+import { useState } from "react"
+import { useAdmEvent } from "../context/AdmEventProvider"
+import { createEvent } from "../AdmEventOperation"
 
 interface TProps {
     closeModel: () => void
 }
+const defaultFormData = {
+    title: "",
+    eventTime: "",
+    location: "",
+    organizer: "",
+    description: "",
+    status: "active"
+}
 
 const ModalBody: React.FC<TProps> = ({ closeModel }) => {
 
-    const handleSubmit = (e: { preventDefault: () => void }) => {
+    const [formData, setFormData] = useState<any>(defaultFormData)
+    const { refetch } = useAdmEvent();
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData((prev: any) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        console.log("Working...")
+        try {
+            await createEvent(formData)
+            refetch()
+        } catch (error) {
+            console.error("Error creating event:", error)
+            return
+        }
         closeModel()
     }
 
+
     return (
-        <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-1">
-                <label htmlFor="picture" className="text-base font-medium text-primary">Add Picture</label>
-                <Input id="picture" type="file" />
-            </div>
+        <form className="flex flex-col gap-3 mt-1" onSubmit={handleSubmit} >
             <div className="flex gap-2">
-                <Input placeholder="Title" />
+                <Input
+                    placeholder="Title"
+                    name="title"
+                    onChange={handleChange}
+                    value={formData.title} />
                 {/* to do :  add day picker , day js  or same  kind feature for adding date . */}
-                <Input placeholder="Event Time" />
+                <Input
+                    placeholder="Event Time"
+                    name="eventTime"
+                    onChange={handleChange}
+                    value={formData.eventTime}
+                />
             </div>
             <div className="flex gap-2">
-                <Input placeholder="Add Location" />
-                <Input placeholder="Organizer" />
+                <Input
+                    placeholder="Add Location"
+                    name="location"
+                    onChange={handleChange}
+                    value={formData.location} />
+                <Input
+                    placeholder="Organizer"
+                    name="organizer"
+                    onChange={handleChange}
+                    value={formData.organizer} />
             </div>
             <div className="flex flex-col gap-1">
                 <label htmlFor="description" className="text-base font-medium text-primary">Description</label>
-                <Input className="w-full h-[100px] placeholder:" />
+                <Input
+                    className="w-full h-[100px] "
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                />
             </div>
             <div className="flex items-center justify-end gap-2">
-                <Button type="button" className=" w-[100px] text-white bg-error" onClick={closeModel}>Cancel</Button>
-                <Button type="submit" className="w-[100px] text-white bg-secondary">Add Event</Button>
+                <Button
+                    type="button"
+                    className=" w-[100px] text-white bg-error"
+                    onClick={closeModel}>
+                    Cancel
+                </Button>
+                <Button
+                    type="submit"
+                    className="w-[100px] text-white bg-secondary">
+                    Add Event
+                </Button>
             </div>
-        </form>
+        </form >
     )
 }
 
@@ -48,12 +103,13 @@ const ModalAddEvent = () => {
 
     return (
         <Dialog open={modalName === "add-event"} onOpenChange={closeModel}>
-            <DialogContent>
-                <DialogHeader>
+            <DialogContent aria-describedby={undefined}>
+                <DialogHeader >
                     <DialogTitle className="text-2xl font-medium text-primary">Add Event</DialogTitle>
                 </DialogHeader>
-                <DialogDescription></DialogDescription>
-                <ModalBody closeModel={closeModel} />
+                <DialogBody>
+                    <ModalBody closeModel={closeModel} />
+                </DialogBody>
             </DialogContent>
         </Dialog>
 

@@ -1,12 +1,10 @@
 import { create } from "zustand";
-
 interface IModelControl {
   modalName: string;
   modalData: any;
   openModel: (name: string, data?: any) => void;
   closeModel: () => void;
 }
-
 const useModelStore = create<IModelControl>((set) => ({
   modalName: "",
   modalData: null,
