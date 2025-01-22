@@ -22,7 +22,7 @@ const IndexEventsListComp: FC = () => {
 const IndexEventsHead: FC = () => {
   return (
     <div className=" flex flex-col justify-between m-5">
-      <span className="text-3xl font-medium underline">Events</span>
+      <span className="text-2xl font-normal underline">Events</span>
       <div>
         {[1, 2, 3, 4].map((item) => (
           <IndexEventsListComp key={item} />

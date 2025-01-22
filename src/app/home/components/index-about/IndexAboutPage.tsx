@@ -4,7 +4,7 @@ import mainPhoto from "@/assets/images/kpi-main-photo.jpeg";
 const IndexAboutHeadComp: FC = () => {
   return (
     <div className=" flex flex-col justify-between m-5">
-      <span className="text-3xl font-medium underline">About Our Alumni</span>
+      <span className="text-2xl font-normal underline">About Our Alumni</span>
       <div className="pt-7">
         <img src={mainPhoto} alt="" className="w-92 !h-28 bg-cover" />
       </div>

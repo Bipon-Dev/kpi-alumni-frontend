@@ -45,13 +45,15 @@ const AcademicLifePage: FC = () => {
       </div>
       <div className="w-90">
         <span className="text-2xl font-normal underline">Newsletter</span>
-        <div>
+        <div className=" border border-primary-200 flex  justify-between items-center rounded-md">
           <input
-            type="text"
-            className="outline-none p-4"
+            type="email"
+            className="outline-none pl-5 "
             placeholder="Your mail..."
           />
-          <Button variant="secondary">Send</Button>
+          <Button variant="secondary" className=" text-white">
+            Send
+          </Button>
         </div>
         <p className="text-xs  pt-4">
           Ut tincidunt, quam in tincidunt vestibulum, turpis ipsum porttitor

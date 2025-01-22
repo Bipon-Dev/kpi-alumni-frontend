@@ -15,7 +15,7 @@ const IndexNewsListComp: FC = () => {
 const IndexNewsHeadComp: FC = () => {
   return (
     <div className=" flex flex-col justify-between m-5">
-      <span className="text-3xl font-medium underline">News</span>
+      <span className="text-2xl font-normal underline">News</span>
       <div>
         {[1, 2, 3].map((item) => (
           <IndexNewsListComp key={item} />
