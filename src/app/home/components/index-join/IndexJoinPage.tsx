@@ -1,6 +1,7 @@
 import { Button } from "@/lib/ui/button";
 import { Input } from "@/lib/ui/input";
 import { FC } from "react";
+import mainPhoto from "@/assets/images/kpi-main-photo.jpeg";
 const IndexJoinInputComp: FC = () => {
   return (
     <div className="flex flex-col gap-2">
@@ -26,9 +27,9 @@ const IndexJoinInputComp: FC = () => {
 };
 const IndexJoinComp: FC = () => {
   return (
-    <div className="flex gap-5 items-center justify-center p-5">
+    <div className="flex gap-13 items-center justify-center p-5">
       <img
-        src="@/assets/images/kpi-main-photo.jpeg"
+        src={mainPhoto}
         alt="banner"
         className="w-[555px] h-[320px] bg-cover"
       />

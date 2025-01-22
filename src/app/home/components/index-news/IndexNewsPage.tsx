@@ -21,7 +21,7 @@ const IndexNewsHeadComp: FC = () => {
           <IndexNewsListComp key={item} />
         ))}
       </div>
-      <Button variant="link" className="flex justify-start max-w-24 ">
+      <Button variant="link" className="flex justify-start max-w-24 pt-10">
         All News
       </Button>
     </div>
