@@ -2,7 +2,6 @@ import { EventCardProps } from "@/lib/types/data";
 import { Button } from "@/lib/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -14,7 +13,7 @@ const EventCard = ({
   title,
   date,
   location,
-  description,
+
   imageUrl,
 }: EventCardProps) => {
   return (

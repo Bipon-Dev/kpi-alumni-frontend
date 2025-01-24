@@ -1,5 +1,3 @@
-import React from "react";
-
 const MembersListComp = () => {
   return (
     <ul className="divide-y divide-slate-100">
