@@ -10,10 +10,10 @@ import {
   useState,
 } from "react";
 import { getMember } from "../MembersSectionOeration";
-
+import ModalAdd from "../modal/ModalAdd";
 interface TMenbers {
   id: number;
-  fullName: string;
+  name: string;
   email: string;
   phone: string;
   address: string;
@@ -22,9 +22,6 @@ interface TMenbers {
   status: string;
   department: string;
   photo: string;
-  roll: number;
-  registration: number;
-  institute: string;
 }
 type TContext = {
   memberData: TMenbers[];
@@ -42,10 +39,12 @@ export const useMemberContext = () => {
 type TProps = {
   children: ReactNode;
 };
+
 const MemberProvider: FC<TProps> = ({ children }) => {
   // reload -2 = no reload, -1 = reload, -1 = default
   const [reloadKey, setReloadKey] = useState<number>(-1);
   const [memberData, setMemberData] = useState<TMenbers[]>([]);
+
   useEffect(() => {
     if (reloadKey !== -2) {
       getMember()
@@ -77,4 +76,5 @@ const MemberProvider: FC<TProps> = ({ children }) => {
     </MemberContext.Provider>
   );
 };
+
 export default MemberProvider;

@@ -45,95 +45,95 @@ const router = createBrowserRouter(
           path: "/signup",
           element: <SignupPage />,
         },
-      ],
-    },
-    {
-      path: "/members",
-      element: <MembersPage />,
-    },
-    {
-      path: "/MembersGroupSection",
-      element: <MembersGroupsSections />,
-    },
-    {
-      path: "/events",
-      element: <EventPage />,
-    },
-    {
-      path: "/manage",
-      element: <LayoutComp />,
-      children: [
         {
-          path: "/manage",
-          element: (
-            <ProtectedRoute
-              element={<ManageDashboardPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
+          path: "/members",
+          element: <MembersPage />,
         },
         {
-          path: "/manage/dashboard",
-          element: (
-            <ProtectedRoute
-              element={<ManageDashboardPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
+          path: "/MembersGroupSection",
+          element: <MembersGroupsSections />,
         },
         {
-          path: "/manage/event",
-          element: (
-            <ProtectedRoute
-              element={<AdmEventPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
-        },
-        {
-          path: "/manage/user",
-          element: (
-            <ProtectedRoute
-              element={<AdmManageUserPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
-        },
-        {
-          path: "/manage/jobs",
-          element: (
-            <ProtectedRoute
-              element={<AdmJobsPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
+          path: "/events",
+          element: <EventPage />,
         },
         {
           path: "/manage",
+          element: <LayoutComp />,
           children: [
             {
-              path: "jobs/:id",
-              element: <JobDetailsPage />,
+              path: "/manage",
+              element: (
+                <ProtectedRoute
+                  element={<ManageDashboardPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/dashboard",
+              element: (
+                <ProtectedRoute
+                  element={<ManageDashboardPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/event",
+              element: (
+                <ProtectedRoute
+                  element={<AdmEventPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/user",
+              element: (
+                <ProtectedRoute
+                  element={<AdmManageUserPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/jobs",
+              element: (
+                <ProtectedRoute
+                  element={<AdmJobsPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage",
+              children: [
+                {
+                  path: "jobs/:id",
+                  element: <JobDetailsPage />,
+                },
+              ],
+            },
+            {
+              path: "/manage/members",
+              element: (
+                <ProtectedRoute
+                  element={<AdmMembersPage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
+            },
+            {
+              path: "/manage/members/profilePage/:id",
+              element: (
+                <ProtectedRoute
+                  element={<ProfilePage />}
+                  isAuthenticated={isAuthenticated}
+                />
+              ),
             },
           ],
-        },
-        {
-          path: "/manage/members",
-          element: (
-            <ProtectedRoute
-              element={<AdmMembersPage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
-        },
-        {
-          path: "/manage/members/profilePage/:id",
-          element: (
-            <ProtectedRoute
-              element={<ProfilePage />}
-              isAuthenticated={isAuthenticated}
-            />
-          ),
         },
       ],
     },

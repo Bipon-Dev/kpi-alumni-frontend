@@ -1,12 +1,5 @@
 import { cn } from "@/utils/cn";
-import {
-  Briefcase,
-  Building2,
-  CalendarDays,
-  LayoutDashboard,
-  UserRound,
-  UsersRound,
-} from "lucide-react";
+import { Briefcase, Building2, CalendarDays, LayoutDashboard, UserRound, UsersRound } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -21,9 +14,7 @@ const SidebarAdminWeb: React.FC = () => {
           >
             <div className="flex flex-row items-center w-full gap-4">
               <span>{<LayoutDashboard size={20} />}</span>
-              <span className="text-base font-normal capitalize menu-title">
-                Dashboard
-              </span>
+              <span className="text-base font-normal capitalize menu-title">Dashboard</span>
             </div>
           </Link>
         </li>
@@ -34,9 +25,7 @@ const SidebarAdminWeb: React.FC = () => {
           >
             <div className="flex flex-row items-center w-full gap-4">
               <span>{<CalendarDays size={20} />}</span>
-              <span className="text-base font-normal capitalize menu-title">
-                Event
-              </span>
+              <span className="text-base font-normal capitalize menu-title">Event</span>
             </div>
           </Link>
         </li>
@@ -47,9 +36,7 @@ const SidebarAdminWeb: React.FC = () => {
           >
             <div className="flex flex-row items-center w-full gap-4">
               <span>{<UserRound size={20} />}</span>
-              <span className="text-base font-normal capitalize menu-title">
-                User
-              </span>
+              <span className="text-base font-normal capitalize menu-title">User</span>
             </div>
           </Link>
         </li>
@@ -60,9 +47,7 @@ const SidebarAdminWeb: React.FC = () => {
           >
             <div className="flex flex-row items-center w-full gap-4">
               <span>{<Briefcase size={20} />}</span>
-              <span className="text-base font-normal capitalize menu-title">
-                Jobs
-              </span>
+              <span className="text-base font-normal capitalize menu-title">Jobs</span>
             </div>
           </Link>
         </li>
@@ -73,9 +58,7 @@ const SidebarAdminWeb: React.FC = () => {
           >
             <div className="flex flex-row items-center w-full gap-4">
               <span>{<UsersRound size={20} />}</span>
-              <span className="text-base font-normal capitalize menu-title">
-                Members
-              </span>
+              <span className="text-base font-normal capitalize menu-title">Members</span>
             </div>
           </Link>
         </li>
@@ -86,22 +69,7 @@ const SidebarAdminWeb: React.FC = () => {
           >
             <div className="flex flex-row items-center w-full gap-4">
               <span>{<Building2 size={20} />}</span>
-              <span className="text-base font-normal capitalize menu-title">
-                Institute
-              </span>
-            </div>
-          </Link>
-        </li>
-        <li className="mb-1 min-w-60">
-          <Link
-            to="/manage/teachers"
-            className="group/link hover:text-white w-full flex justify-center items-center gap-2 py-[7px] px-2.5 bg-white hover:bg-secondary text-primary-700 hover:text-white-100 rounded-md transition relative z-20"
-          >
-            <div className="flex flex-row items-center w-full gap-4">
-              <span>{<Building2 size={20} />}</span>
-              <span className="text-base font-normal capitalize menu-title">
-                Teachers
-              </span>
+              <span className="text-base font-normal capitalize menu-title">Institute</span>
             </div>
           </Link>
         </li>

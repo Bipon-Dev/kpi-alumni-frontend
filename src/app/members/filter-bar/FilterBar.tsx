@@ -2,7 +2,7 @@ import { TFilterField } from "./filterBarTypes";
 import { FC, useEffect, useRef, useState } from "react";
 
 import iconFilter from "./icons/icon-filter.svg";
-// import FilterFieldsComp from "./FilterFieldsComp";
+import FilterFieldsComp from "./FilterFieldsComp";
 import { cn } from "@/utils/cn";
 
 type TFilterBarProps = {
@@ -10,13 +10,13 @@ type TFilterBarProps = {
   onSearch: (filters: Record<string, any>) => void;
 };
 
-const FilterBar: FC<TFilterBarProps> = () => {
+const FilterBar: FC<TFilterBarProps> = ({ fields, onSearch }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState<Record<string, any>>({});
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   const ref = useRef<HTMLDivElement>(null);
-  console.log(filters);
+
   const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = ev.target;
     if (name) {
@@ -24,9 +24,9 @@ const FilterBar: FC<TFilterBarProps> = () => {
     }
   };
 
-  // const handleSearch = () => {
-  //   onSearch(filters);
-  // };
+  const handleSearch = () => {
+    onSearch(filters);
+  };
 
   // outside click
   useEffect(() => {
@@ -96,12 +96,12 @@ const FilterBar: FC<TFilterBarProps> = () => {
           }
         )}
       >
-        {/* <FilterFieldsComp
+        <FilterFieldsComp
           fields={fields}
           filters={filters}
-          // handleInputChange={handleInputChange}
+          handleInputChange={handleInputChange}
           handleSearch={handleSearch}
-        /> */}
+        />
       </div>
     </div>
   );
