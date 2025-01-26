@@ -21,7 +21,9 @@ const AdmEventPageHeader: React.FC = () => {
                 <button
                     className="px-3 py-2 text-white rounded-md bg-secondary w-[125px] hover:bg-secondary-700 cursor-pointer"
                     disabled={loading}
-                    onClick={() => openModel("add-event")}>
+                    onClick={() =>
+                        console.log("okay")
+                    }>
                     Add Event
                 </button>
             </div>
