@@ -25,6 +25,7 @@ interface TMenbers {
   roll: number;
   registration: number;
   institute: string;
+  role: string;
 }
 type TContext = {
   memberData: TMenbers[];

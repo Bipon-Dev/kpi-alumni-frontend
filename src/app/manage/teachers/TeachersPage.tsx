@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/lib/ui/button";
-import { TFilterField } from "../../members/filter-bar/filterBarTypes";
-import FilterBar from "../../members/filter-bar/FilterBar";
-import { useMemberContext } from "./context/MemberProvider";
+"use client";
 import { FC, useState } from "react";
-import ModalAdd from "./modal/ModalAdd";
-import { InstOption } from "./components/inst-option/InstOption";
-import ModalEdit from "./modal/ModalEdit";
+import MemberProvider, {
+  useMemberContext,
+} from "../members/context/MemberProvider";
+import { Button } from "@/lib/ui/button";
+import ModalAdd from "../members/modal/ModalAdd";
+import FilterBar from "@/app/members/filter-bar/FilterBar";
+import ModalEdit from "../members/modal/ModalEdit";
+import { InstOption } from "../members/components/inst-option/InstOption";
+import { Link } from "react-router-dom";
+import { TFilterField } from "@/app/members/filter-bar/filterBarTypes";
 
 const filterFields: TFilterField[] = [
   {
@@ -54,7 +57,7 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       <td>
         <span>{data.shift}</span>
       </td>
-      <td>
+      {/* <td>
         <span>{data.session || "--"}</span>
       </td>
       <td>
@@ -62,7 +65,7 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       </td>
       <td>
         <span>{data.registration || "--"}</span>
-      </td>
+      </td> */}
       <td>
         <span className="text-green-500">{data.status || "Active"}</span>
       </td>
@@ -91,7 +94,7 @@ const MembersGroupsTopHeader: FC = () => {
     <div className=" flex w-full items-center justify-between">
       <h1 className="text-xl font-bold text-secondary ">
         {memberData.length > 0 ? memberData[memberData.length - 1].id : "N/A"}
-        &nbsp; Members
+        &nbsp; Teachers
       </h1>
 
       <div className="min-w-[500px] max-w-[700px] w-full">
@@ -100,21 +103,22 @@ const MembersGroupsTopHeader: FC = () => {
           onSearch={(val: Record<string, any>) => console.log(val)}
         />
       </div>
-      <div className="flex items-center gap-5 m-5">
+      {/* <div className="flex items-center gap-5 m-5">
         <Button
           title="Invite"
           variant="secondary"
           className="text-white"
           onClick={() => setIsModalOpen(true)}
         >
-          + Add Member
+          + Add Teacher
         </Button>
 
         {isModalOpen && <ModalAdd closeModal={() => setIsModalOpen(false)} />}
         <Button title="Invite" variant="secondary" className=" text-white">
           Invite
         </Button>
-      </div>
+      </div> */}
+      <div className="m-5"></div>
     </div>
   );
 };
@@ -124,33 +128,33 @@ const MembersGroupsHeaderComp: FC = () => {
     <thead>
       <tr>
         <th className="w-[100px]">ID</th>
-        <th className="w-[220px] text-left">Name</th>
-        <th className="w-[220px] text-left">Email</th>
-        <th className="w-[220px] text-left"> Department</th>
-        <th className="w-[220px] text-left">Shift</th>
-        <th className="w-[220px] text-left">Session</th>
+        <th className="w-[420px] text-left">Name</th>
+        <th className="w-[320px] text-left">Email</th>
+        <th className="w-[320px] text-left"> Department</th>
+        <th className="w-[320px] text-left">Shift</th>
+        {/* <th className="w-[220px] text-left">Session</th>
         <th className="w-[220px] text-left">Roll</th>
-        <th className="w-[220px] text-left">Reg NO.</th>
+        <th className="w-[220px] text-left">Reg NO.</th> */}
         <th className="w-[220px] text-left">Status</th>
         <th>#</th>
       </tr>
     </thead>
   );
 };
-
-const MembersGroupsSections = () => {
+const TeachersTable: FC = () => {
   const memberContext = useMemberContext();
   const memberData = memberContext?.memberData || [];
-  console.log(memberData, "memberData");
   return (
     <div className="  rounded-xl h-full">
       <MembersGroupsTopHeader />
       <table className="table-container">
         <MembersGroupsHeaderComp />
         <tbody>
-          {memberData.map((item) => (
-            <MemberBody key={item?.id} data={item} />
-          ))}
+          {memberData
+            .filter((item) => item.role === "teacher")
+            .map((item) => (
+              <MemberBody key={item.id} data={item} />
+            ))}
           {memberData.length === 0 && (
             <tr>
               <td
@@ -168,4 +172,12 @@ const MembersGroupsSections = () => {
   );
 };
 
-export default MembersGroupsSections;
+const TeachersPage = () => {
+  return (
+    <MemberProvider>
+      <TeachersTable />
+    </MemberProvider>
+  );
+};
+
+export default TeachersPage;

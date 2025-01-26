@@ -20,6 +20,7 @@ import useAuthStore from "./lib/stores/authStore";
 import JobDetailsPage from "./app/manage/jobs/components/table-comps/JobDetailsPage";
 import ClientLayout from "./lib/layout/ClientLayout";
 import ProfilePage from "./app/manage/profile/ProfilePage";
+import TeachersPage from "./app/manage/teachers/TeachersPage";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
@@ -122,6 +123,15 @@ const router = createBrowserRouter(
           element: (
             <ProtectedRoute
               element={<AdmMembersPage />}
+              isAuthenticated={isAuthenticated}
+            />
+          ),
+        },
+        {
+          path: "/manage/teachers",
+          element: (
+            <ProtectedRoute
+              element={<TeachersPage />}
               isAuthenticated={isAuthenticated}
             />
           ),

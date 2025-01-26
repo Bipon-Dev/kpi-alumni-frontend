@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5050/api/v1";
+const BASE_URL = "http://localhost:5050/api";
 
 export const getMember = async () => {
   try {
-    // const response = await axios.get(`${BASE_URL}/UserProfile`);
-    const response = await axios.get(`${BASE_URL}/member`);
-    return response.data;
+    const response = await axios.get(`${BASE_URL}/UserProfile`);
+    // const response = await axios.get(`${BASE_URL}/member`);
+    return response.data.data;
   } catch (error) {
     console.error(`Error fetching member with id :`, error);
     throw error;
@@ -15,7 +15,7 @@ export const getMember = async () => {
 
 export const addMember = async (addMemberData: any) => {
   try {
-    const response = await axios.post(`${BASE_URL}/member`, addMemberData);
+    const response = await axios.post(`${BASE_URL}/v1/member`, addMemberData);
     return response.data;
   } catch (error) {
     console.error("Error adding new member:", error);
@@ -33,7 +33,7 @@ export const updateMember = async (
   id: string
 ) => {
   try {
-    const response = await axios.put(`${BASE_URL}/member/${id}`, payload);
+    const response = await axios.put(`${BASE_URL}/v1/member/${id}`, payload);
     return response.data;
   } catch (error) {
     console.error(`Error updating member with id ${id}:`, error);
