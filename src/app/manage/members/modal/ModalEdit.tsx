@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import {
   Dialog,
   DialogBody,
@@ -8,6 +7,7 @@ import {
 } from "@/lib/ui/dialog";
 import { FC, useState } from "react";
 import { updateMember } from "../MembersSectionOeration";
+import { AnimateTextArea } from "@/lib/ui/inputFilds";
 import {
   Select,
   SelectContent,
@@ -16,10 +16,12 @@ import {
   SelectValue,
 } from "@/lib/ui/select";
 import { Button } from "@/lib/ui/button";
-import { AnimateInputField } from "@/lib/ui/inputFilds";
 
+interface ModalEditProps {
+  closeModal: () => void;
+  data: any;
+}
 export const technology = ["CSE", "EEE", "ME", "CE", "TE", "Arch", "ChemE"];
-
 const ModalBody: FC<{
   closeModal: () => void;
   data: any;
@@ -27,8 +29,8 @@ const ModalBody: FC<{
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<any>({});
   const [message, setMessage] = useState<string | null>(null);
-  console.log(loading, message);
-  const updateStatus = () => {
+
+  const updateStatus = (payload: any) => {
     setLoading(true);
     setMessage("Updating...");
     updateMember(
@@ -57,7 +59,7 @@ const ModalBody: FC<{
   };
   const handleSubmit = (ev: any) => {
     ev.preventDefault();
-    updateStatus();
+    updateStatus(formData);
   };
   const handleStatusChange = (value: string) => {
     setFormData((prev: any) => ({ ...prev, department: value }));
@@ -65,7 +67,7 @@ const ModalBody: FC<{
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-3">
       <div className=" flex justify-between w-full items-center">
-        <AnimateInputField
+        <AnimateTextArea
           formData={formData}
           name="name"
           label={data?.name}
@@ -86,7 +88,7 @@ const ModalBody: FC<{
           </SelectContent>
         </Select>
       </div>
-      <AnimateInputField
+      <AnimateTextArea
         formData={formData}
         name="email"
         label={data?.email}
@@ -96,7 +98,7 @@ const ModalBody: FC<{
       />
 
       <div className="flex justify-between w-full gap-2">
-        <AnimateInputField
+        <AnimateTextArea
           formData={formData}
           name="shift"
           label={data?.shift}
@@ -104,7 +106,7 @@ const ModalBody: FC<{
           className="h-[50px] !w-full"
           onChange={(e) => setFormData({ ...formData, shift: e.target.value })}
         />
-        <AnimateInputField
+        <AnimateTextArea
           formData={formData}
           name="session"
           label={data?.session}

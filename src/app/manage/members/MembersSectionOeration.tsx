@@ -7,12 +7,13 @@ export const getMember = async () => {
     const response = await axios.get(`${BASE_URL}/UserProfile`);
     // const response = await axios.get(`${BASE_URL}/member`);
     return response.data.data;
+    const response = await axios.get(`${BASE_URL}/member`);
+    return response.data;
   } catch (error) {
     console.error(`Error fetching member with id :`, error);
     throw error;
   }
 };
-
 export const addMember = async (addMemberData: any) => {
   try {
     const response = await axios.post(`${BASE_URL}/v1/member`, addMemberData);

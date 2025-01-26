@@ -1,5 +1,4 @@
-/* eslint-disable react-refresh/only-export-components */
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/lib/ui/button";
 import {
   Dialog,
@@ -17,17 +16,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/lib/ui/select";
-import { AnimateInputField } from "@/lib/ui/inputFilds";
+import { AnimateTextArea } from "@/lib/ui/inputFilds";
 
 export const technology = ["CSE", "EEE", "ME", "CE", "TE", "Arch", "ChemE"];
-export const shift = ["1st", "2nd"];
 const ModalBody: FC<{
   closeModal: () => void;
 }> = ({ closeModal }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<any>({});
   const [message, setMessage] = useState<string | null>(null);
-  console.log(loading, message);
+
   const updateStatus = (payload: any) => {
     setLoading(true);
     setMessage("Updating...");
@@ -61,20 +59,18 @@ const ModalBody: FC<{
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-3">
-      <div className=" flex justify-between w-full items-center gap-2">
-        <AnimateInputField
+      <div className=" flex justify-between w-full items-center">
+        <AnimateTextArea
           formData={formData}
           name="name"
           label="Your Name..."
           type="text"
           className="h-[50px] !w-full"
-          onChange={(e: any) =>
-            setFormData({ ...formData, name: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         />
         <Select value={formData.department} onValueChange={handleStatusChange}>
           <SelectTrigger className="w-1/2 focus:ring-0 focus:ring-offset-0 h-[50px] text-sm font-medium text-primary-700">
-            <SelectValue placeholder="Select Department" />
+            <SelectValue placeholder="Select Currency" />
           </SelectTrigger>
           <SelectContent className="text-sm font-medium text-primary-700">
             {technology.map((option: any) => (
@@ -85,47 +81,31 @@ const ModalBody: FC<{
           </SelectContent>
         </Select>
       </div>
-      <AnimateInputField
+      <AnimateTextArea
         formData={formData}
         name="email"
         label="Your Email..."
         type="email"
         className="h-[50px] !w-full"
-        onChange={(e: any) =>
-          setFormData({ ...formData, email: e.target.value })
-        }
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
       />
 
       <div className="flex justify-between w-full gap-2">
-        <AnimateInputField
+        <AnimateTextArea
           formData={formData}
           name="shift"
           label="Your Shift..."
           type="text"
           className="h-[50px] !w-full"
-          onChange={(e: any) =>
-            setFormData({ ...formData, shift: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, shift: e.target.value })}
         />
-        <Select value={formData.department} onValueChange={handleStatusChange}>
-          <SelectTrigger className="w-1/2 focus:ring-0 focus:ring-offset-0 h-[50px] text-sm font-medium text-primary-700">
-            <SelectValue placeholder="Select Shift" />
-          </SelectTrigger>
-          <SelectContent className="text-sm font-medium text-primary-700">
-            {technology.map((option: any) => (
-              <SelectItem key={option} value={option}>
-                {option}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <AnimateInputField
+        <AnimateTextArea
           formData={formData}
           name="session"
           label=" Your Session..."
           type="text"
           className="h-[50px] !w-full"
-          onChange={(e: any) =>
+          onChange={(e) =>
             setFormData({ ...formData, session: e.target.value })
           }
         />

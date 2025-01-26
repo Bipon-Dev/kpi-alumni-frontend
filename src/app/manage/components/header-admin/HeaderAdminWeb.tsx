@@ -1,33 +1,4 @@
-import { ChevronRight } from "lucide-react";
-import React, { ReactElement } from "react";
-
-const HeaderAdminWebComp: React.FC = (): ReactElement => {
-  const pathAr = location.pathname.split("/");
-  return (
-    <div className="hidden flex-row items-center gap-x-2 text-2xl font-medium capitalize text-primary lg:flex">
-      {pathAr.map((path, index) => {
-        if (
-          path === "" ||
-          path === "/" ||
-          path === null ||
-          path === undefined
-        ) {
-          return null;
-        }
-        if (Number(path)) {
-          return null;
-        }
-
-        return (
-          <React.Fragment key={path.toString()}>
-            {index > 1 && <ChevronRight />}
-            <span>{path}</span>
-          </React.Fragment>
-        );
-      })}
-    </div>
-  );
-};
+import React from "react";
 
 const HeaderAdminWeb: React.FC = (): React.ReactElement => {
   return (
@@ -45,6 +16,7 @@ const HeaderAdminWeb: React.FC = (): React.ReactElement => {
       {/* <ProfileManage auth={authInfo} loginUrl={loginUrl} logout={logOut} /> */}
     </div>
   );
+ // return <div className="web-header h-18 w-full overflow-x-hidden border-b border-b-primary-100">Header Admin Web</div>;
 };
 
 export default HeaderAdminWeb;

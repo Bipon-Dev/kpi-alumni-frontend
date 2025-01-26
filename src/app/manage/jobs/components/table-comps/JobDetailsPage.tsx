@@ -23,7 +23,7 @@ const JobDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [jobDetails, setJobDetails] = useState<JobDetails | null>(null);
   const [loading, setLoading] = useState(true);
-  console.log(loading);
+
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
