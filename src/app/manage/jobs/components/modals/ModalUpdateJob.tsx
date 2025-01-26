@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/lib/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/lib/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/lib/ui/dialog";
 import { Input } from "@/lib/ui/input";
 import axios from "axios";
 
@@ -18,7 +23,10 @@ interface JobUpdateData {
   aboutJob: string;
 }
 
-const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ closeModal, jobId }) => {
+const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({
+  closeModal,
+  jobId,
+}) => {
   const [formData, setFormData] = useState<JobUpdateData>({
     title: "",
     category: "",
@@ -40,25 +48,30 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5050/api/v1/job/${jobId}`);
+        const response = await axios.get(
+          `http://localhost:5050/api/v1/job/${jobId}`
+        );
         const data = response.data.data;
         //console.log("API Response:", response.data);
-       
 
         // Ensure correct data mapping
         setFormData({
-            title: data.title || "",
-            category: data.category || "",
-            jobType: data.jobType || "FullTime", 
-            salary: data.salary || 0,
-            salaryType: data.salaryType || "Monthly", 
-            experience: data.experience || 0,
-            location: data.location || "",
-            joinDate: data.joinDate ? new Date(data.joinDate).toISOString().split("T")[0] : "",
-            deadline: data.deadline ? new Date(data.deadline).toISOString().split("T")[0] : "",
-            reference: data.reference || "",
-            aboutJob: data.aboutJob || "",
-          });
+          title: data.title || "",
+          category: data.category || "",
+          jobType: data.jobType || "FullTime",
+          salary: data.salary || 0,
+          salaryType: data.salaryType || "Monthly",
+          experience: data.experience || 0,
+          location: data.location || "",
+          joinDate: data.joinDate
+            ? new Date(data.joinDate).toISOString().split("T")[0]
+            : "",
+          deadline: data.deadline
+            ? new Date(data.deadline).toISOString().split("T")[0]
+            : "",
+          reference: data.reference || "",
+          aboutJob: data.aboutJob || "",
+        });
         setError(null);
       } catch (err) {
         console.error("Error fetching job details:", err);
@@ -70,7 +83,11 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
   }, [jobId]);
 
   // Handle input changes
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -82,7 +99,7 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
   const handleSubmit = async () => {
     try {
       const updatedFields = Object.fromEntries(
-        Object.entries(formData).filter(([key, value]) => value !== "" && value !== 0)
+        Object.entries(formData).filter(([value]) => value !== "")
       );
 
       if (Object.keys(updatedFields).length === 0) {
@@ -90,8 +107,7 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
         return;
       }
 
-      const response = await axios.put(`http://localhost:5050/api/v1/job/${jobId}`, updatedFields);
-     // console.log("Job updated successfully:", response.data);
+      // console.log("Job updated successfully:", response.data);
 
       setSuccessMessage("Job updated successfully.");
       setError(null);
@@ -138,7 +154,11 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
           </label>
           <label>
             Job Type:
-            <select name="jobType" value={formData.jobType} onChange={handleChange}>
+            <select
+              name="jobType"
+              value={formData.jobType}
+              onChange={handleChange}
+            >
               <option value="FullTime">Full-Time</option>
               <option value="PartTime">Part-Time</option>
             </select>
@@ -154,7 +174,11 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
           </label>
           <label>
             Salary Type:
-            <select name="salaryType" value={formData.salaryType} onChange={handleChange}>
+            <select
+              name="salaryType"
+              value={formData.salaryType}
+              onChange={handleChange}
+            >
               <option value="Monthly">Monthly</option>
               <option value="Annually">Annually</option>
             </select>
@@ -217,8 +241,16 @@ const ModalUpdateJob: React.FC<{ closeModal: () => void; jobId: number }> = ({ c
         </div>
 
         <div className="flex justify-end space-x-2 mt-4">
-          <Button className="w-[100px] text-white bg-secondary" onClick={handleSubmit}>Update</Button>
-          <Button className="w-[100px] text-white bg-error" onClick={closeModal}>
+          <Button
+            className="w-[100px] text-white bg-secondary"
+            onClick={handleSubmit}
+          >
+            Update
+          </Button>
+          <Button
+            className="w-[100px] text-white bg-error"
+            onClick={closeModal}
+          >
             Cancel
           </Button>
         </div>
