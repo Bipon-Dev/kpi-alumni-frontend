@@ -1,5 +1,5 @@
 import React from "react";
-import MembersGroupsSections from "../manage/members/MembersGroupSection";
+
 import MembersListSection from "./MembersListSection";
 
 const MembersPage: React.FC = () => {
