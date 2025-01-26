@@ -9,7 +9,7 @@ import TestinomialsPage from "./components/testinomials/TestinomialsPage";
 
 const HomePage = () => {
   return (
-    <div className="home-Page">
+    <div className="home-Page pt-[50px] scrollbar-hide">
       {/* <HeroSection />
       <Events />
       <News /> */}

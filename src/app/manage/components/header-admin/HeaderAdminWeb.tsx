@@ -1,6 +1,5 @@
 import { ChevronRight } from "lucide-react";
 import React, { ReactElement } from "react";
-import Avatar from "react-avatar";
 
 const HeaderAdminWebComp: React.FC = (): ReactElement => {
   const pathAr = location.pathname.split("/");
