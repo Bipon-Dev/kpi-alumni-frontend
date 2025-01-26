@@ -131,6 +131,36 @@ const MembersGroupsSections = () => {
           </Button>
         </div>
       </div>
+    </div>
+  );
+};
+
+const MembersGroupsHeaderComp: FC = () => {
+  return (
+    <thead>
+      <tr>
+        <th className="w-[100px]">ID</th>
+        <th className="w-[220px] text-left">Name</th>
+        <th className="w-[220px] text-left">Email</th>
+        <th className="w-[220px] text-left"> Department</th>
+        <th className="w-[220px] text-left">Shift</th>
+        <th className="w-[220px] text-left">Session</th>
+        <th className="w-[220px] text-left">Roll</th>
+        <th className="w-[220px] text-left">Reg NO.</th>
+        <th className="w-[220px] text-left">Status</th>
+        <th>#</th>
+      </tr>
+    </thead>
+  );
+};
+
+const MembersGroupsSections = () => {
+  const memberContext = useMemberContext();
+  const memberData = memberContext?.memberData || [];
+  console.log(memberData, "memberData");
+  return (
+    <div className="  rounded-xl h-full">
+      <MembersGroupsTopHeader />
       <table className="table-container">
         <thead>
           <tr>

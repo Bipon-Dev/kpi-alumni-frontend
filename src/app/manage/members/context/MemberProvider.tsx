@@ -22,6 +22,10 @@ interface TMenbers {
   status: string;
   department: string;
   photo: string;
+  roll: number;
+  registration: number;
+  institute: string;
+  role: string;
 }
 type TContext = {
   memberData: TMenbers[];

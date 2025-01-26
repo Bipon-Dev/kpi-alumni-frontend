@@ -4,7 +4,9 @@ import News from "./components/News";
 
 const HomePage = () => {
   return (
-    <div className="home-Page">
+
+    <div className="home-Page pt-[50px] scrollbar-hide">
+      {/* <HeroSection />
       <HeroSection />
       <Events />
       <News />
