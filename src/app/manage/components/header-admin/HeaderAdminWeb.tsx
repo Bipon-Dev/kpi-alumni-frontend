@@ -38,7 +38,7 @@ const HeaderAdminWeb: React.FC = (): React.ReactElement => {
           <HeaderAdminWebComp />
         </div>
         <div className="  border-secondary border-2 rounded-full size-12 items-center justify-center flex ">
-          x
+          {/* <Avatar googleId="118096717852922241760" size="100" round={true} /> */}
         </div>
       </div>
 

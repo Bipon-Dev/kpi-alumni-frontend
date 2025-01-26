@@ -3,7 +3,7 @@ import {
   FaHome,
   FaRegNewspaper,
   FaCalendarAlt,
-  FaUserPlus,
+  FaTasks,
   FaEnvelope,
 } from "react-icons/fa";
 
@@ -24,8 +24,8 @@ export const navItems: NavItem[] = [
   },
   {
     id: 2,
-    label: "Alumni Stories",
-    path: "/stories",
+    label: "Gallery",
+    path: "/gallery",
     icon: FaRegNewspaper,
     children: [
       {
@@ -60,9 +60,9 @@ export const navItems: NavItem[] = [
   },
   {
     id: 8,
-    label: "Join Us",
-    path: "/join",
-    icon: FaUserPlus,
+    label: "Job",
+    path: "/job",
+    icon: FaTasks,
   },
   {
     id: 9,

@@ -98,7 +98,7 @@ const SidebarAdminWeb: React.FC = () => {
             className="group/link hover:text-white w-full flex justify-center items-center gap-2 py-[7px] px-2.5 bg-white hover:bg-secondary text-primary-700 hover:text-white-100 rounded-md transition relative z-20"
           >
             <div className="flex flex-row items-center w-full gap-4">
-              <span>{<Building2 size={20} />}</span>
+              <span>{<UsersRound size={20} />}</span>
               <span className="text-base font-normal capitalize menu-title">
                 Teachers
               </span>

@@ -16,10 +16,8 @@ const NavLink = ({
       to={item.path}
       className={`${
         isChild ? "pl-8" : ""
-      } flex items-center px-4 py-2 text-sm font-medium rounded-md ${
-        isActive
-          ? "bg-primary text-white"
-          : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+      } flex items-center px-3 py-2 text-sm font-medium rounded-md ${
+        isActive ? "bg-primary-200 text-primary" : "text-primary  "
       }`}
     >
       {item.icon && (
