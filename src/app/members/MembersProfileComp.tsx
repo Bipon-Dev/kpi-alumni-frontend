@@ -1,7 +1,3 @@
-"use client";
-import { Button } from "@/lib/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/lib/ui/dialog";
-
 const MembersProfileComp = () => {
   return (
     <div>
