@@ -4,14 +4,16 @@ import TableHeaderComp from "./table-comps/TableHeaderComp";
 import TableBodyComp from "./table-comps/TableBodyComp";
 
 const AdmEventPageTableSection: React.FC = () => {
-    return (
-        <div className="mt-3">
-            <Table>
-                <TableHeaderComp />
-                <TableBodyComp />
-            </Table>
-        </div>
-    );
+  //   const { loading } = useAdmEvent();
+
+  return (
+    <div className="mt-3">
+      <Table>
+        <TableHeaderComp />
+        <TableBodyComp />
+      </Table>
+    </div>
+  );
 };
 
 export default AdmEventPageTableSection;
