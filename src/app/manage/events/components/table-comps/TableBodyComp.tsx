@@ -17,6 +17,8 @@ const TableBodyComp: React.FC = () => {
   const { data, refetch } = useAdmEvent();
   const { openModel } = useModelStore();
 
+  const events = data.events;
+
   const handleDelete = (id: number) => {
     deleteEvent(id);
     refetch();
@@ -24,7 +26,7 @@ const TableBodyComp: React.FC = () => {
 
   return (
     <TableBody>
-      {data.map((event, index) => (
+      {events.map((event, index) => (
         <TableRow key={index} className="even:bg-secondary-50 !border-b-0">
           <TableCell>{event.id}</TableCell>
           <TableCell>{event.title}</TableCell>

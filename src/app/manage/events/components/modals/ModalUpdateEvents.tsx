@@ -45,7 +45,9 @@ const ModalBody: React.FC<TProps> = ({ closeModel, modalData }) => {
 
   const [formData, setFormData] =
     useState<TUpdateEventPayload>(defaultFormData);
-  const { refetch } = useAdmEvent();
+  const { refetch, data } = useAdmEvent();
+
+  const statusOptions = data.eventStatus;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev: any) => ({
@@ -108,13 +110,11 @@ const ModalBody: React.FC<TProps> = ({ closeModel, modalData }) => {
           onChange={handleChange}
           label="Status"
           name="status"
-          options={[
-            { id: 1, title: "Upcoming", value: "upcoming" },
-            { id: 2, title: "Ongoing", value: "ongoing" },
-            { id: 3, title: "Postponed", value: "postponed" },
-            { id: 4, title: "cancelled", value: "Cancelled" },
-            { id: 5, title: "Finished", value: "finished" },
-          ]}
+          options={statusOptions.map((status, index) => ({
+            id: index,
+            title: status,
+            value: status,
+          }))}
         />
       </div>
       <div className="flex flex-col gap-1">
@@ -134,7 +134,7 @@ const ModalBody: React.FC<TProps> = ({ closeModel, modalData }) => {
           Cancel
         </Button>
         <Button type="submit" className="w-[100px] text-white bg-secondary">
-          Add Event
+          Update
         </Button>
       </div>
     </form>
