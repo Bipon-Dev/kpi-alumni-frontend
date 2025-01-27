@@ -1,14 +1,15 @@
 export type TEventType = {
-    id: number;
-    userId: number;
-    status: string;
-    createdAt: number;
-    updatedAt: number;
-    deletedAt: number;
-    title: string;
-    description: string;
-    location: string;
-    photoUrl: string;
-    eventTime: number;
-    organizer: string;
+  id: number;
+  title: string;
+  organizer: string;
+  status: string;
+  creatorId: number;
+  createdAt: number;
+  updatedAt: number;
+  deletedAt: number;
+  description: string;
+  dateStart: number;
+  dateEnd: number;
+  location: string;
+  photoUrl: string;
 };
