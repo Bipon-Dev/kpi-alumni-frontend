@@ -2,6 +2,7 @@
 import { Button } from "@/lib/ui/button";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ProfileCard from "@/assets/images/banner.jpg";
 
 interface ProfileData {
   id: string;
@@ -23,7 +24,7 @@ const ProfilePage: React.FC = () => {
   const [data, setData] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  console.log(loading, error);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,44 +52,23 @@ const ProfilePage: React.FC = () => {
   }, [id]);
 
   return (
-    <div className=" bg-white shadow-md rounded-lg overflow-hidden grid grid-cols-1 md:grid-cols-3">
-      <div
-        className="h-28 bg-slate-400 relative flex items-center justify-start col-span-1 md:col-span-3 bg-cover bg-center"
-        style={{
-          backgroundImage: `url("../../../../assets/images/banner.jpg")`,
-        }}
-      >
+    <div className=" shadow-md rounded-lg flex justify-between gap-5">
+      <div className=" w-full bg-white ">
         <img
-          src={data?.data?.photo || "https://via.placeholder.com/150"}
-          className="w-30 h-30 bg-gray-400 rounded-full absolute top-12 left-7 border-4 border-white"
+          alt="profile"
+          src={ProfileCard}
+          className="w-60 h-60 m-9 rounded-full border-4 border-primary "
         />
-      </div>
-
-      <div className="px-6 pt-6 pb-6 col-span-2">
-        <div className="flex justify-between items-center">
-          <div className="text-center md:text-left pt-5">
-            <h2 className="text-xl font-medium">
-              {data?.data.fullName || "--"}
-            </h2>
-            <p className="text-gray-500">{data?.data.jobTitle || "--"}</p>
+        <div className="flex justify-between items-center ml-9">
+          <div className="text-center md:text-left ">
+            <h2 className="text-xl font-medium">{data?.data.name || "--"}</h2>
+            <p className="text-gray-500">{data?.data.role || "--"}</p>
             <p className="text-gray-500">{data?.data.primaryEmail || "--"}</p>
           </div>
-          <div className="flex flex-col gap-2">
-            <Button variant="secondary" className=" text-white">
-              Edit
-            </Button>
-            <Button variant="secondary" className=" text-white">
-              Invite
-            </Button>
-            <Button variant="secondary" className=" text-white">
-              CV
-            </Button>
-            <Button variant="secondary" className=" text-white">
-              Message
-            </Button>
-          </div>
         </div>
+      </div>
 
+      <div className="px-6 pt-6 pb-6 ">
         {/* Bio Section */}
         <div className="mt-6">
           <h3 className="font-semibold text-lg">Bio</h3>
@@ -137,25 +117,21 @@ const ProfilePage: React.FC = () => {
       </div>
 
       {/* Sidebar Section */}
-      <div className="bg-gray-100 p-6 border-t md:border-l md:border-t-0">
-        <div className="text-center">
-          <p className="text-xl font-bold text-secondary-700">
-            {data?.data.askingMoney || "--"}
-          </p>
-          <p className="text-sm text-gray-500">Avg Salary</p>
+      <div className="bg-gray-200  min-w-[300px] p-6 floart-right">
+        <div className="flex flex-col gap-2">
+          <Button variant="secondary" className=" text-white">
+            Edit
+          </Button>
+          <Button variant="secondary" className=" text-white">
+            Invite
+          </Button>
+          <Button variant="secondary" className=" text-white">
+            CV
+          </Button>
+          <Button variant="secondary" className=" text-white">
+            Message
+          </Button>
         </div>
-
-        <div className="mt-4 space-y-2">
-          <p className="text-sm text-gray-600">
-            {data?.data.primaryEmail || "--"}
-          </p>
-          <p className="text-sm text-gray-600">{data?.data.address || "--"}</p>
-          <p className="text-sm text-gray-600">{data?.data.phone || "--"}</p>
-          <p className="text-sm text-secondary">
-            {data?.data.portfolio || "--"}
-          </p>
-        </div>
-
         <button className="w-full mt-6 bg-secondary text-white py-2 rounded-lg transition">
           Connect
         </button>
