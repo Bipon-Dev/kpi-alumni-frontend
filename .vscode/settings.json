@@ -11,5 +11,14 @@
   "editor.wordWrapColumn": 100,
   "editor.lineHeight": 2,
   "editor.fontFamily": "Consolas, 'Courier New', monospace",
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "task.allowAutomaticTasks": true,
+  "debug.openDebug": "neverOpen",
+  "terminal.integrated.inheritEnv": false,
+  "tasks": {
+    "label": "lint on open",
+    "type": "shell",
+    "command": "npm run lint",
+    "runOn": "folderOpen"
+  }
 }
