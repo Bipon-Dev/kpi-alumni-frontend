@@ -43,10 +43,12 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       <td>{data.id}</td>
       <td>
         <img src={data.photo} alt="" />
-        <Link to={`/manage/members/profilePage/${data.id}`}>{data.name}</Link>
+        <Link to={`/manage/members/profilePage/${data.id}`}>
+          {data.fullName}
+        </Link>
       </td>
       <td>
-        <span>{data.email}</span>
+        <span>{data.primaryEmail}</span>
       </td>
       <td>
         <span>{data.department}</span>
@@ -62,6 +64,9 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       </td>
       <td>
         <span>{data.registration || "--"}</span>
+      </td>
+      <td>
+        <span>{data.role || "--"}</span>
       </td>
       <td>
         <span className="text-green-500">{data.status || "Active"}</span>
@@ -84,15 +89,12 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
   );
 };
 const MembersGroupsTopHeader: FC = () => {
-  const memberContext = useMemberContext();
-  const memberData = memberContext?.memberData || [];
+  // const memberContext = useMemberContext();
+  // const memberData = memberContext?.memberData || [];
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className=" flex w-full items-center justify-between">
-      <h1 className="text-xl font-bold text-secondary ">
-        {memberData.length > 0 ? memberData[memberData.length - 1].id : "N/A"}
-        &nbsp; Members
-      </h1>
+      <h1 className="text-xl font-bold text-secondary ">* Members</h1>
 
       <div className="min-w-[500px] max-w-[700px] w-full">
         <FilterBar
@@ -131,6 +133,7 @@ const MembersGroupsHeaderComp: FC = () => {
         <th className="w-[220px] text-left">Session</th>
         <th className="w-[220px] text-left">Roll</th>
         <th className="w-[220px] text-left">Reg NO.</th>
+        <th className="w-[220px] text-left">Role</th>
         <th className="w-[220px] text-left">Status</th>
         <th>#</th>
       </tr>
@@ -141,17 +144,19 @@ const MembersGroupsHeaderComp: FC = () => {
 const MembersGroupsSections = () => {
   const memberContext = useMemberContext();
   const memberData = memberContext?.memberData || [];
-  console.log(memberData, "memberData");
+
   return (
-    <div className="  rounded-xl h-full">
+    <div className="rounded-xl h-full">
       <MembersGroupsTopHeader />
       <table className="table-container">
         <MembersGroupsHeaderComp />
         <tbody>
-          {memberData.map((item) => (
-            <MemberBody key={item?.id} data={item} />
-          ))}
-          {memberData.length === 0 && (
+          {memberData
+            .filter((item) => item.role === "member")
+            .map((item) => (
+              <MemberBody key={item?.id} data={item} />
+            ))}
+          {memberData.filter((item) => item.role === "member").length === 0 && (
             <tr>
               <td
                 colSpan={10}

@@ -21,9 +21,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.vscode
 
 # Environment
-.env
 
 yarn.lock
+config.bat

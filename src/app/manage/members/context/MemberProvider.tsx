@@ -46,12 +46,13 @@ type TProps = {
 const MemberProvider: FC<TProps> = ({ children }) => {
   // reload -2 = no reload, -1 = reload, -1 = default
   const [reloadKey, setReloadKey] = useState<number>(-1);
-  const [memberData, setMemberData] = useState<TMenbers[]>([]);
+  const [memberData, setMemberData] = useState<any[]>([]);
   useEffect(() => {
     if (reloadKey !== -2) {
       getMember()
         .then(({ data }) => {
           setMemberData(data);
+          console.log(data, "data");
         })
         .catch((err: Error) => {
           console.log(err.message);
