@@ -57,6 +57,9 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       <td>
         <span>{data.shift}</span>
       </td>
+      <td>
+        <span>{data.role}</span>
+      </td>
       {/* <td>
         <span>{data.session || "--"}</span>
       </td>
@@ -87,15 +90,10 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
   );
 };
 const MembersGroupsTopHeader: FC = () => {
-  const memberContext = useMemberContext();
-  const memberData = memberContext?.memberData || [];
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className=" flex w-full items-center justify-between">
-      <h1 className="text-xl font-bold text-secondary ">
-        {memberData.length > 0 ? memberData[memberData.length - 1].id : "N/A"}
-        &nbsp; Teachers
-      </h1>
+      <h1 className="text-xl font-bold text-secondary "># Teachers</h1>
 
       <div className="min-w-[500px] max-w-[700px] w-full">
         <FilterBar
@@ -132,6 +130,7 @@ const MembersGroupsHeaderComp: FC = () => {
         <th className="w-[320px] text-left">Email</th>
         <th className="w-[320px] text-left"> Department</th>
         <th className="w-[320px] text-left">Shift</th>
+        <th className="w-[220px] text-left">Role</th>
         {/* <th className="w-[220px] text-left">Session</th>
         <th className="w-[220px] text-left">Roll</th>
         <th className="w-[220px] text-left">Reg NO.</th> */}
@@ -155,7 +154,8 @@ const TeachersTable: FC = () => {
             .map((item) => (
               <MemberBody key={item.id} data={item} />
             ))}
-          {memberData.length === 0 && (
+          {memberData.filter((item) => item.role === "teacher").length ===
+            0 && (
             <tr>
               <td
                 colSpan={10}

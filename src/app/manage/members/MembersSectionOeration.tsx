@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5050/api";
+const BASE_URL = "http://localhost:5050";
 
 export const getMember = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/UserProfile`);
-    // const response = await axios.get(`${BASE_URL}/member`);
-    return response.data.data;
+    const response = await axios.get(`${BASE_URL}/api/UserProfile`);
+    // const response = await axios.get(`${BASE_URL}/v1/member`);
+    return response;
   } catch (error) {
     console.error(`Error fetching member with id :`, error);
     throw error;
