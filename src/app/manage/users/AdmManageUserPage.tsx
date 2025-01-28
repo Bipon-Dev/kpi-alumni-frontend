@@ -142,7 +142,7 @@ const UserTable: FC = () => {
 };
 const AdmManageUserPage: React.FC = () => {
   return (
-    <div>
+    <div className="bg-white p-5 h-screen ">
       <MemberProvider>
         <UserTable />
       </MemberProvider>
