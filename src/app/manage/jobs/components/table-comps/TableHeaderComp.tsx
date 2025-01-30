@@ -19,8 +19,6 @@ const TableHeaderComp: React.FC = () => {
                 {/* <TableHead className="w-[220px] text-primary bg-primary-100 font-medium text-left">Join Date</TableHead> */}
                 <TableHead className="w-[170px] text-primary bg-primary-100 font-medium text-left">Deadline</TableHead>
                 <TableHead className="w-[90px] text-primary bg-primary-100 font-medium text-left">Reference</TableHead>
-                <TableHead className="w-[400px] text-primary bg-primary-100 font-medium text-left">About Job</TableHead>
-                <TableHead className="w-[200px] text-primary bg-primary-100 font-medium text-left">Required Skill</TableHead>
                 <TableHead className="w-[150px] text-primary bg-primary-100 font-medium text-left">Status</TableHead>
                 {/* <TableHead className="w-[80px] text-primary bg-primary-100 font-medium text-left">Job Link</TableHead> */}
                 <TableHead className="w-[65px] text-primary bg-primary-100 font-medium text-left rounded-r-[15px]">Action</TableHead>
