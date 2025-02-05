@@ -46,10 +46,12 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       <td>{data.id}</td>
       <td>
         <img src={data.photo} alt="" />
-        <Link to={`/manage/members/profilePage/${data.id}`}>{data.name}</Link>
+        <Link to={`/manage/members/profilePage/${data.id}`}>
+          {data.fullName}
+        </Link>
       </td>
       <td>
-        <span>{data.email}</span>
+        <span>{data.primaryEmail}</span>
       </td>
       <td>
         <span>{data.department}</span>
@@ -92,7 +94,7 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
 const MembersGroupsTopHeader: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div className=" flex w-full items-center justify-between">
+    <div className=" flex w-full items-center justify-between pb-2">
       <h1 className="text-xl font-bold text-secondary "># Teachers</h1>
 
       <div className="min-w-[500px] max-w-[700px] w-full">
@@ -144,7 +146,7 @@ const TeachersTable: FC = () => {
   const memberContext = useMemberContext();
   const memberData = memberContext?.memberData || [];
   return (
-    <div className="  rounded-xl h-full">
+    <div className=" rounded-md h-full bg-white p-4">
       <MembersGroupsTopHeader />
       <table className="table-container">
         <MembersGroupsHeaderComp />

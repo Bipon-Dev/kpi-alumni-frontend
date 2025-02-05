@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/lib/ui/button";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProfileCard from "@/assets/images/banner.jpg";
+import ProfileToggleSection from "./ProfileToggleSection";
 
-interface ProfileData {
+type ProfileData = {
   id: string;
   name: string;
   photo: string;
   jobTitle: string;
-  email: string;
+  primaryEmail: string;
   position: string;
   company: string;
   workTime: string;
@@ -17,8 +18,134 @@ interface ProfileData {
   address: string;
   phone: string;
   portfolio: string;
-}
+};
+const ProfileInfoComp: FC<{ data: ProfileData }> = ({ data }) => {
+  return (
+    <div className=" w-full flex bg-white shadow-md rounded-md p-9">
+      <div className=" w-full ">
+        <img
+          alt="profile"
+          src="https://github.com/shadcn.png"
+          className="w-60 h-60 mb-5 rounded-full border-4 border-primary "
+        />
+        <div className="flex justify-between items-center ml-9">
+          <div className="text-center md:text-left">
+            <h2 className="text-xl font-medium text-secondary ">
+              {/* {data?.data.name || "--"} */}
+              Anindo Roy Apu
+            </h2>
+            <p className="text-gray-500">
+              {/* {data?.data.role || "--"} */}
+              Devoloper
+            </p>
+            <p className="text-gray-500">
+              {data?.primaryEmail || "anindoroy112@gmail.com"}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className=" flex flex-col gap-4">
+        <ProfileToggleSection />
+        <ProfileToggleSection />
+      </div>
 
+      <div className=" w-full border-l-2 pl-5">
+        <div className=" w-full flex">
+          <div className=" text-primary-700 w-50">Email:</div>
+          <span className=" ">anindoroy112@gmail.com</span>
+        </div>
+        <div>
+          <span>Phone:</span>
+          <span>01533780593</span>
+        </div>
+        <div>
+          <span>Blood Group:</span>
+          <span>B+</span>
+        </div>
+        <div>
+          <span>Present Address:</span>
+          <span>Fulbari Gate, KUET Road, Khulna-9202</span>
+        </div>
+        <div>
+          <span>Permanent Address:</span>
+          <span>Gobra Bazar, Narial sadar, Narail-7501</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProfileActionComp: FC = () => {
+  return (
+    <div className="bg-gray-200 shadow-md rounded-md  min-w-[300px] p-6 flex flex-col justify-between">
+      <div className="flex flex-col gap-4">
+        <Button
+          variant="secondary"
+          className=" bg-secondary text-white py-2 rounded-lg"
+        >
+          Edit Profile
+        </Button>
+        <Button
+          variant="secondary"
+          className=" bg-secondary text-white py-2 rounded-lg"
+        >
+          Invite to Join
+        </Button>
+        <Button
+          variant="secondary"
+          className=" bg-secondary text-white py-2 rounded-lg"
+        >
+          Upload CV
+        </Button>
+        <Button
+          variant="secondary"
+          className=" bg-secondary text-white py-2 rounded-lg"
+        >
+          Message
+        </Button>
+      </div>
+    </div>
+  );
+};
+const ProfileDetailsComp: FC<{ data: ProfileData }> = ({ data }) => {
+  return (
+    <div className="w-full p-6 flex gap-2 bg-white shadow-md rounded-md">
+      <div className=" w-full border-r-2 pr-5">
+        <h3 className="font-semibold text-lg">Bio</h3>
+        <p className="text-gray-600 mt-2 text-sm">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </p>
+      </div>
+
+      <div className=" w-full border-l-2 pl-5">
+        <h3 className="font-semibold text-lg">Skills</h3>
+        <div className="flex flex-wrap gap-2 mt-2">
+          {[
+            "User Interface",
+            "Web Design",
+            "Mobile App Design",
+            "Responsive Web Design",
+            "Figma",
+            "Business",
+            "Marketing",
+            "Campaign",
+            "Copy Writer",
+          ].map((skill, index) => (
+            <span
+              key={index}
+              className="bg-secondary-100 text-secondary-700 px-3 py-1 text-sm rounded-full"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 const ProfilePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>();
@@ -52,91 +179,21 @@ const ProfilePage: React.FC = () => {
   }, [id]);
 
   return (
-    <div className=" shadow-md rounded-lg flex justify-between gap-5">
-      <div className=" w-full bg-white ">
-        <img
-          alt="profile"
-          src={ProfileCard}
-          className="w-60 h-60 m-9 rounded-full border-4 border-primary "
-        />
-        <div className="flex justify-between items-center ml-9">
-          <div className="text-center md:text-left ">
-            <h2 className="text-xl font-medium">{data?.data.name || "--"}</h2>
-            <p className="text-gray-500">{data?.data.role || "--"}</p>
-            <p className="text-gray-500">{data?.data.primaryEmail || "--"}</p>
-          </div>
+    <div className=" rounded-xl flex flex-col gap-6 ">
+      <div className="flex justify-between gap-5">
+        <ProfileInfoComp data={data} />
+
+        <ProfileActionComp />
+      </div>
+      <ProfileDetailsComp data={data} />
+      <div className=" bg-white shadow-md rounded-md p-6">
+        <h3 className="font-semibold text-lg">Work Experience</h3>
+        <div className="mt-2">
+          <p className="font-medium">{data?.position || "--"}</p>
+          <p className="text-gray-500">{data?.company || "--"}</p>
+          <p className="text-gray-500">{data?.workTime || "--"}</p>
         </div>
       </div>
-
-      <div className="px-6 pt-6 pb-6 ">
-        {/* Bio Section */}
-        <div className="mt-6">
-          <h3 className="font-semibold text-lg">Bio</h3>
-          <p className="text-gray-600 mt-2 text-sm">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-        </div>
-
-        {/* Skills Section */}
-        <div className="mt-6">
-          <h3 className="font-semibold text-lg">Skills</h3>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {[
-              "User Interface",
-              "Web Design",
-              "Mobile App Design",
-              "Responsive Web Design",
-              "Figma",
-              "Business",
-              "Marketing",
-              "Campaign",
-              "Copy Writer",
-            ].map((skill, index) => (
-              <span
-                key={index}
-                className="bg-secondary-100 text-secondary-700 px-3 py-1 text-sm rounded-full"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Work Experience Section */}
-        <div className="mt-6">
-          <h3 className="font-semibold text-lg">Work Experience</h3>
-          <div className="mt-2">
-            <p className="font-medium">{data?.data.position || "--"}</p>
-            <p className="text-gray-500">{data?.data.company || "--"}</p>
-            <p className="text-gray-500">{data?.data.workTime || "--"}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Sidebar Section */}
-      <div className="bg-gray-200  min-w-[300px] p-6 floart-right">
-        <div className="flex flex-col gap-2">
-          <Button variant="secondary" className=" text-white">
-            Edit
-          </Button>
-          <Button variant="secondary" className=" text-white">
-            Invite
-          </Button>
-          <Button variant="secondary" className=" text-white">
-            CV
-          </Button>
-          <Button variant="secondary" className=" text-white">
-            Message
-          </Button>
-        </div>
-        <button className="w-full mt-6 bg-secondary text-white py-2 rounded-lg transition">
-          Connect
-        </button>
-      </div>
-      {/* <ProfileCard /> */}
     </div>
   );
 };

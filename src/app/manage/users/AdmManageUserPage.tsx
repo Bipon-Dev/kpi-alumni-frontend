@@ -35,7 +35,7 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       </td>
       <td>
         <span>{data.registration || "--"}</span>
-      </td>{" "}
+      </td>
       <td>
         <span>{data.role || "--"}</span>
       </td>
@@ -142,7 +142,7 @@ const UserTable: FC = () => {
 };
 const AdmManageUserPage: React.FC = () => {
   return (
-    <div className="bg-white p-5 h-screen ">
+    <div className="bg-white p-5 h-full rounded-md scrollbar-hide">
       <MemberProvider>
         <UserTable />
       </MemberProvider>

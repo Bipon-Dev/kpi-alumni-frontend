@@ -43,7 +43,10 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       <td>{data.id}</td>
       <td>
         <img src={data.photo} alt="" />
-        <Link to={`/manage/members/profilePage/${data.id}`}>
+        <Link
+          to={`/manage/members/profilePage/${data.id}`}
+          className="text-secondary font-medium"
+        >
           {data.fullName}
         </Link>
       </td>
@@ -102,7 +105,7 @@ const MembersGroupsTopHeader: FC = () => {
           onSearch={(val: Record<string, any>) => console.log(val)}
         />
       </div>
-      <div className="flex items-center gap-5 m-5">
+      <div className="flex items-center gap-2 my-3">
         <Button
           title="Invite"
           variant="secondary"
@@ -146,7 +149,7 @@ const MembersGroupsSections = () => {
   const memberData = memberContext?.memberData || [];
 
   return (
-    <div className="rounded-xl h-full">
+    <div className="rounded-xl ">
       <MembersGroupsTopHeader />
       <table className="table-container">
         <MembersGroupsHeaderComp />
