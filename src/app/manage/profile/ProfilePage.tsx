@@ -20,12 +20,12 @@ type ProfileData = {
 };
 const ProfileInfoComp: FC<{ data: ProfileData }> = ({ data }) => {
   return (
-    <div className=" w-full flex bg-gradient-to-b from-gray-50 to-gray-200 shadow-md rounded-md p-9">
+    <div className=" w-full flex bg-gradient-to-b from-gray-50 to-gray-200 shadow-md rounded-md p-6">
       <div className=" w-full ">
         <img
           alt="profile"
           src="https://github.com/shadcn.png"
-          className="w-60 h-60 mb-5 rounded-full border-4 border-primary "
+          className="w-50 h-50 mb-2 rounded-full border-4 border-primary "
         />
         <div className="flex justify-between items-center ml-9">
           <div className="text-center md:text-left">
@@ -33,11 +33,11 @@ const ProfileInfoComp: FC<{ data: ProfileData }> = ({ data }) => {
               {/* {data?.data.name || "--"} */}
               Anindo Roy Apu
             </h2>
-            <p className="text-gray-500">
+            <p className="text-gray-500 text-sm">
               {/* {data?.data.role || "--"} */}
               Devoloper
             </p>
-            <p className="text-gray-500">
+            <p className="text-gray-500 text-sm">
               {data?.primaryEmail || "anindoroy112@gmail.com"}
             </p>
           </div>
@@ -56,6 +56,11 @@ const ProfileInfoComp: FC<{ data: ProfileData }> = ({ data }) => {
           <span className=" text-primary-700 w-42">Phone:</span>
           <span>01533780593</span>
         </div>
+        <div className=" w-full flex">
+          <span className=" text-primary-700 w-42">Gender:</span>
+          <span>Male</span>
+        </div>
+
         <div className=" w-full flex">
           <span className=" text-primary-700 w-42">Blood Group:</span>
           <span>B+</span>
@@ -137,25 +142,9 @@ const ProfileStudyComp: FC<{ data: ProfileData }> = ({ data }) => {
 
       <div className=" w-full border-l-2 pl-5">
         <h3 className="font-semibold text-lg">Portfolio</h3>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {[
-            "User Interface",
-            "Web Design",
-            "Mobile App Design",
-            "Responsive Web Design",
-            "Figma",
-            "Business",
-            "Marketing",
-            "Campaign",
-            "Copy Writer",
-          ].map((skill, index) => (
-            <span
-              key={index}
-              className="bg-secondary-100 text-secondary-700 px-3 py-1 text-sm rounded-full"
-            >
-              {skill}
-            </span>
-          ))}
+        <div className="flex flex-col underline text-sm flex-wrap gap-2 mt-2">
+          <span>{data?.portfolio || "EX: WWW.google.com"}</span>
+          <span>{data?.portfolio || "EX: WWW.google.com"}</span>
         </div>
       </div>
     </div>

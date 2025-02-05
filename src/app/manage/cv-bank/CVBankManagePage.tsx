@@ -29,7 +29,6 @@ const TableBody: FC<{ data: any }> = ({ data }) => {
       <td>
         <span>{data.department}</span>
       </td>
-
       <td>
         <span className="text-green-500">{data.status || "Active"}</span>
       </td>
