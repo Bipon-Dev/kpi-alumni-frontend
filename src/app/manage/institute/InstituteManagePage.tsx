@@ -83,7 +83,7 @@ const TableHeaderComp: FC = () => {
 };
 const ManageTable: FC = () => {
   return (
-    <div className=" bg-white h-screen rounded-xl">
+    <div className="  rounded-md h-full bg-white p-4">
       <TableTopHeader />
       <table className="table-container">
         <TableHeaderComp />

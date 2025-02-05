@@ -14,7 +14,10 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       <td>{data.id}</td>
       <td>
         <img src={data.photo} alt="" />
-        <Link to={`/manage/members/profilePage/${data.id}`}>
+        <Link
+          to={`/manage/members/profilePage/${data.id}`}
+          className="text-secondary font-medium"
+        >
           {data.fullName}
         </Link>
       </td>

@@ -10,7 +10,12 @@ const TableBody: FC<{ data: any }> = ({ data }) => {
       <td>{data.id}</td>
       <td>
         <img src={data.photo} alt="" />
-        <Link to={`/manage/members/profilePage/${data.id}`}>{data.name}</Link>
+        <Link
+          to={`/manage/members/profilePage/${data.id}`}
+          className="text-secondary font-medium"
+        >
+          {data.name}
+        </Link>
       </td>
       <td>
         <span>{data.email}</span>
