@@ -3,6 +3,7 @@ import ModalEdit from "../members/modal/ModalEdit";
 import { InstOption } from "../members/components/inst-option/InstOption";
 import { Link } from "react-router-dom";
 import CVBankProvider, { useCVBankContext } from "./context/CVBankProvider";
+import { Button } from "@/lib/ui/button";
 const TableBody: FC<{ data: any }> = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
@@ -53,7 +54,16 @@ const TableTopHeader: FC = () => {
   return (
     <div className=" flex w-full items-center justify-between">
       <h1 className="text-xl font-bold text-secondary "># CV Bank</h1>
-      <div className="m-5"></div>
+      <div className="m-5">
+        <Button
+          title="Invite"
+          variant="secondary"
+          className="text-white"
+          // onClick={() => setIsModalOpen(true)}
+        >
+          Download all CV
+        </Button>
+      </div>
     </div>
   );
 };

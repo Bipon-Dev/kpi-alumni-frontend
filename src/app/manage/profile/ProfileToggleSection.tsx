@@ -1,63 +1,37 @@
 import { FC, useState } from "react";
 
-const ProfileToggleBloodComp: FC = () => {
+const ToggleComp: FC<{ options: string[]; width: string }> = ({
+  options,
+  width,
+}) => {
   const [isToggled, setIsToggled] = useState(false);
   return (
     <div
-      className="mr-5 flex h-fit bg-gray-200 rounded-full p-1 w-65 cursor-pointer transition-transform duration-700 ease-in-out"
+      className={`mr-5 flex h-fit bg-gray-200 rounded-full p-1 w-${width} cursor-pointer transition-transform duration-700 ease-in-out `}
       onClick={() => setIsToggled(!isToggled)}
     >
-      <div className="flex text-nowrap bg-white rounded-full">
+      {options.map((option, index) => (
         <div
-          className={`px-4 py-2 font-medium rounded-full transition-all duration-300 ${
-            isToggled ? "bg-secondary text-white" : "bg-white text-secondary"
+          key={index}
+          className={`px-3 py-1 text-nowrap font-medium rounded-full transition-all duration-300 ${
+            isToggled === (index === 1)
+              ? "bg-secondary text-white"
+              : "bg-white text-secondary"
           }`}
         >
-          Ready Donate
+          {option}
         </div>
-        <span
-          className={` px-4 py-2 font-medium ${
-            isToggled ? " text-secondary bg-white" : "bg-secondary text-white"
-          } rounded-full transition-all duration-300`}
-        >
-          Donated
-        </span>
-      </div>
+      ))}
     </div>
   );
 };
 
-const ProfileToggleWorkComp: FC = () => {
-  const [isToggled, setIsToggled] = useState(false);
-  return (
-    <div
-      className="mr-5 flex justify-between h-fit bg-gray-200 rounded-full p-1 w-65 cursor-pointer transition-transform duration-700 ease-in-out"
-      onClick={() => setIsToggled(!isToggled)}
-    >
-      <div className="flex justify-between text-nowrap bg-white rounded-full">
-        <div
-          className={`px-4 py-2 font-medium rounded-full transition-all duration-300 ${
-            isToggled ? "bg-secondary text-white" : "bg-white text-secondary"
-          }`}
-        >
-          Open For Work
-        </div>
-        <span
-          className={` px-4 py-2 font-medium  ${
-            isToggled ? " text-secondary bg-white" : "bg-secondary text-white"
-          } rounded-full transition-all duration-300`}
-        >
-          Hiring
-        </span>
-      </div>
-    </div>
-  );
-};
 const ProfileToggleSection: FC = () => {
   return (
-    <div className=" flex flex-col gap-4 ">
-      <ProfileToggleWorkComp />
-      <ProfileToggleBloodComp />
+    <div className="flex flex-col gap-2 items-end">
+      <ToggleComp options={["Active", "Inactive"]} width="[170px]" />
+      <ToggleComp options={["Open For Work", "JOb Holder"]} width="57" />
+      <ToggleComp options={["Ready Donate", "Donated"]} width="65" />
     </div>
   );
 };
