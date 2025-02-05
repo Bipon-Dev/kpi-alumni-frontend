@@ -97,12 +97,12 @@ const MembersGroupsTopHeader: FC = () => {
     <div className=" flex w-full items-center justify-between pb-2">
       <h1 className="text-xl font-bold text-secondary "># Teachers</h1>
 
-      <div className="min-w-[500px] max-w-[700px] w-full">
+      {/* <div className="min-w-[500px] max-w-[700px] w-full">
         <FilterBar
           fields={filterFields}
           onSearch={(val: Record<string, any>) => console.log(val)}
         />
-      </div>
+      </div> */}
       {/* <div className="flex items-center gap-5 m-5">
         <Button
           title="Invite"
