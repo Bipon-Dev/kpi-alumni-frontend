@@ -35,7 +35,7 @@ const ProfileInfoComp: FC<{ data: ProfileData }> = ({ data }) => {
             </h2>
             <p className="text-gray-500 text-sm">
               {/* {data?.data.role || "--"} */}
-              Devoloper
+              Developer
             </p>
             <p className="text-gray-500 text-sm">
               {data?.primaryEmail || "anindoroy112@gmail.com"}
@@ -118,26 +118,30 @@ const ProfileActionComp: FC = () => {
     </div>
   );
 };
-const ProfileWorkComp: FC<{ data: ProfileData }> = ({ data }) => {
+const ProfileWorkComp: FC<{ data: any }> = ({ data }) => {
   return (
     <div className=" bg-white shadow-md rounded-md p-6">
       <h3 className="font-semibold text-lg">Work Experience</h3>
       <div className="mt-2">
-        <p className="font-medium">{data?.position || "--"}</p>
-        <p className="text-gray-500">{data?.company || "--"}</p>
-        <p className="text-gray-500">{data?.workTime || "--"}</p>
+        <p className="text-gray-500">{data?.position || "Developer"}</p>
+        <p className="text-gray-500">{data?.company || "Bikiran.com"}</p>
+        <p className="text-gray-500">{data?.workTime || "2023-Present"}</p>
       </div>
     </div>
   );
 };
-const ProfileStudyComp: FC<{ data: ProfileData }> = ({ data }) => {
+const ProfileStudyComp: FC<{ data: any }> = ({ data }) => {
   return (
     <div className="w-full p-6 flex gap-2 bg-white shadow-md rounded-md">
       <div className=" w-full border-r-2 pr-5">
         <h3 className="font-semibold text-lg">Education</h3>
-        <p className="font-medium">{data?.position || "--"}</p>
-        <p className="text-gray-500">{data?.company || "--"}</p>
-        <p className="text-gray-500">{data?.workTime || "--"}</p>
+        <p className="text-gray-500">
+          {data?.position || "Khulna Polytechnic Institute"}
+        </p>
+        <p className="text-gray-500">{data?.session || "20-21"}</p>
+        <p className="text-gray-500">
+          {data?.department || "Computer Technology"}
+        </p>
       </div>
 
       <div className=" w-full border-l-2 pl-5">
