@@ -8,16 +8,19 @@ import {
   useState,
 } from "react";
 import { getEvents } from "../AdmEventOperation";
-import { TEventType } from "../AdmEventTypes";
+import { TEventAdmData } from "../AdmEventTypes";
 
 type TAdmEventContext = {
-  data: TEventType[];
-  setData: (data: TEventType[]) => void;
+  data: TEventAdmData;
+  setData: (data: TEventAdmData) => void;
   loading: boolean;
   refetch: () => void;
 };
 const AdmEventContext = createContext<TAdmEventContext>({
-  data: [],
+  data: {
+    eventStatus: [],
+    events: [],
+  },
   setData: () => {},
   loading: false,
   refetch: () => {},
@@ -34,7 +37,10 @@ type TProps = {
 const AdmEventProvider: FC<TProps> = ({ children }) => {
   // reload -2 = no reload, -1 = reload, -1 = default
   const [reloadKey, setReloadKey] = useState<number>(-1);
-  const [data, setData] = useState<TEventType[]>([]);
+  const [data, setData] = useState<TEventAdmData>({
+    eventStatus: [],
+    events: [],
+  });
 
   useEffect(() => {
     if (reloadKey !== -2) {
@@ -55,14 +61,13 @@ const AdmEventProvider: FC<TProps> = ({ children }) => {
     const refetch = () => {
       setReloadKey(-1);
     };
-    console.log(reloadKey, "");
     return {
       data: data,
       setData: setData,
       loading: reloadKey === -1,
       refetch,
     };
-  }, [data]);
+  }, [data, reloadKey]);
 
   return (
     <AdmEventContext.Provider value={value}>
