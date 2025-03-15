@@ -62,7 +62,7 @@ const HeaderAdminWeb: React.FC = (): React.ReactElement => {
                   &times;
                 </span>
                 <p className=" text-nowrap  pb-3 text-ellipsis overflow-hidden">
-                  Anindo Roy apu Anindo Roy apu
+                  Elon Reeve Musk
                 </p>
               </div>
               <div>hello!</div>

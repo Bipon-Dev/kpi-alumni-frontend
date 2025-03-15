@@ -31,14 +31,14 @@ const ProfileInfoComp: FC<{ data: ProfileData }> = ({ data }) => {
           <div className="text-center md:text-left">
             <h2 className="text-xl font-medium text-secondary ">
               {/* {data?.data.name || "--"} */}
-              Anindo Roy Apu
+              Elon Reeve Musk
             </h2>
             <p className="text-gray-500 text-sm">
               {/* {data?.data.role || "--"} */}
               Developer
             </p>
             <p className="text-gray-500 text-sm">
-              {data?.primaryEmail || "anindoroy112@gmail.com"}
+              {data?.primaryEmail || "erm71@who.eop.gov"}
             </p>
           </div>
         </div>
@@ -50,11 +50,11 @@ const ProfileInfoComp: FC<{ data: ProfileData }> = ({ data }) => {
       <div className=" w-full border-l-2 pl-5">
         <div className=" w-full flex">
           <div className=" text-primary-700 w-42">Email:</div>
-          <span className=" ">anindoroy112@gmail.com</span>
+          <span className=" ">erm71@who.eop.gov</span>
         </div>
         <div className=" w-full flex">
           <span className=" text-primary-700 w-42">Phone:</span>
-          <span>01533780593</span>
+          <span>737-235-6956</span>
         </div>
         <div className=" w-full flex">
           <span className=" text-primary-700 w-42">Gender:</span>
