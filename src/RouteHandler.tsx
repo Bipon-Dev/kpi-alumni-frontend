@@ -24,6 +24,7 @@ import TeachersPage from "./app/manage/teachers/TeachersPage";
 import InstituteManagePage from "./app/manage/institute/InstituteManagePage";
 import CVBankManagePage from "./app/manage/cv-bank/CVBankManagePage";
 import BloodDonetionPage from "./app/manage/donate-blood/BloodDonetionPage";
+import GalleryPage from "./app/gallery/GalleryPage";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
@@ -40,6 +41,14 @@ const router = createBrowserRouter(
         {
           path: "/",
           element: <HomePage />,
+        },
+        {
+          path: "/events",
+          element: <EventPage />,
+        },
+        {
+          path: "/gallery",
+          element: <GalleryPage />,
         },
         {
           path: "/login",
@@ -59,10 +68,7 @@ const router = createBrowserRouter(
       path: "/MembersGroupSection",
       element: <MembersGroupsSections />,
     },
-    {
-      path: "/events",
-      element: <EventPage />,
-    },
+
     {
       path: "/manage",
       element: <LayoutComp />,
