@@ -3,7 +3,7 @@ import { galleryImg } from "./image/image";
 const GalleryPage = () => {
   return (
     <div
-      className="home-Page pt-[70px] scrollbar-hide bg-gray-200
+      className="home-Page pt-[70px] scrollbar-hide bg-gray-100
     "
     >
       <div className="text-center text-4xl  font-bold my-10 text-primary flex justify-center ">

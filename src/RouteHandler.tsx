@@ -25,6 +25,7 @@ import InstituteManagePage from "./app/manage/institute/InstituteManagePage";
 import CVBankManagePage from "./app/manage/cv-bank/CVBankManagePage";
 import BloodDonetionPage from "./app/manage/donate-blood/BloodDonetionPage";
 import GalleryPage from "./app/gallery/GalleryPage";
+import JobPage from "./app/job/JobPage";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter(
         {
           path: "/events",
           element: <EventPage />,
+        },
+        {
+          path: "/job",
+          element: <JobPage />,
         },
         {
           path: "/gallery",
