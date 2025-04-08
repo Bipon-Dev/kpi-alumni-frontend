@@ -2,7 +2,7 @@ import JobCardListSection from "./JobCardListSection";
 
 const JobPage = () => {
   return (
-    <div className="home-Page  pt-[70px] h-screen scrollbar-hide bg-gray-100">
+    <div className="home-Page  pt-[70px] h-screen scrollbar-hide ">
       <div className="text-center text-4xl  font-bold my-10 text-primary flex justify-center">
         <h1 className="border-b-4 pb-4 border-primary">
           Khulna Polytechnic Institute Alumni Job

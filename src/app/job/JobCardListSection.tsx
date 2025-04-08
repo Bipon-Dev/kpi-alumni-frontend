@@ -2,7 +2,7 @@ import jobBg from "@/assets/images/kpia-job-card.png";
 import { FC, useEffect, useState } from "react";
 import axios from "axios";
 const JobCardListBody: FC<{ data: any }> = ({ data }) => (
-  <div className="w-64 border h-100 p-4 rounded-lg shadow-lg">
+  <div className="w-64 border h-fit p-4 rounded-lg shadow-lg">
     <div className="text-start font-medium text-xl mb-4 line-clamp-1">
       {data?.title || "Khulna Polytechnic Institute Alumni Jobs"}
     </div>
@@ -38,7 +38,7 @@ const JobCardListSection = () => {
     fetchJobData();
   }, []);
   return (
-    <div className="flex flex-wrap justify-between gap-4">
+    <div className="flex flex-wrap justify-between gap-8">
       {jobData.map((job, index) => (
         <JobCardListBody key={index} data={job} />
       ))}
