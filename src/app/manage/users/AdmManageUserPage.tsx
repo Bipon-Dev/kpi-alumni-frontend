@@ -14,7 +14,10 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       <td>{data.id}</td>
       <td>
         <img src={data.photo} alt="" />
-        <Link to={`/manage/members/profilePage/${data.id}`}>
+        <Link
+          to={`/manage/members/profilePage/${data.id}`}
+          className="text-secondary font-medium"
+        >
           {data.fullName}
         </Link>
       </td>
@@ -35,7 +38,7 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
       </td>
       <td>
         <span>{data.registration || "--"}</span>
-      </td>{" "}
+      </td>
       <td>
         <span>{data.role || "--"}</span>
       </td>
@@ -142,7 +145,7 @@ const UserTable: FC = () => {
 };
 const AdmManageUserPage: React.FC = () => {
   return (
-    <div>
+    <div className="bg-white p-5 h-full rounded-md scrollbar-hide">
       <MemberProvider>
         <UserTable />
       </MemberProvider>
