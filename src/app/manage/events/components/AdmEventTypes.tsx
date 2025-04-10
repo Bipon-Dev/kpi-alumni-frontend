@@ -13,3 +13,8 @@ export type TEventType = {
   location: string;
   photoUrl: string;
 };
+
+export type TEventAdmData = {
+  eventStatus: string[];
+  events: TEventType[];
+};

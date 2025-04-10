@@ -21,6 +21,11 @@ import JobDetailsPage from "./app/manage/jobs/components/table-comps/JobDetailsP
 import ClientLayout from "./lib/layout/ClientLayout";
 import ProfilePage from "./app/manage/profile/ProfilePage";
 import TeachersPage from "./app/manage/teachers/TeachersPage";
+import InstituteManagePage from "./app/manage/institute/InstituteManagePage";
+import CVBankManagePage from "./app/manage/cv-bank/CVBankManagePage";
+import BloodDonetionPage from "./app/manage/donate-blood/BloodDonetionPage";
+import GalleryPage from "./app/gallery/GalleryPage";
+import JobPage from "./app/job/JobPage";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
@@ -37,6 +42,18 @@ const router = createBrowserRouter(
         {
           path: "/",
           element: <HomePage />,
+        },
+        {
+          path: "/events",
+          element: <EventPage />,
+        },
+        {
+          path: "/job",
+          element: <JobPage />,
+        },
+        {
+          path: "/gallery",
+          element: <GalleryPage />,
         },
         {
           path: "/login",
@@ -56,10 +73,7 @@ const router = createBrowserRouter(
       path: "/MembersGroupSection",
       element: <MembersGroupsSections />,
     },
-    {
-      path: "/events",
-      element: <EventPage />,
-    },
+
     {
       path: "/manage",
       element: <LayoutComp />,
@@ -132,6 +146,33 @@ const router = createBrowserRouter(
           element: (
             <ProtectedRoute
               element={<TeachersPage />}
+              isAuthenticated={isAuthenticated}
+            />
+          ),
+        },
+        {
+          path: "/manage/cv-bank",
+          element: (
+            <ProtectedRoute
+              element={<CVBankManagePage />}
+              isAuthenticated={isAuthenticated}
+            />
+          ),
+        },
+        {
+          path: "/manage/donate-blood",
+          element: (
+            <ProtectedRoute
+              element={<BloodDonetionPage />}
+              isAuthenticated={isAuthenticated}
+            />
+          ),
+        },
+        {
+          path: "/manage/institute",
+          element: (
+            <ProtectedRoute
+              element={<InstituteManagePage />}
               isAuthenticated={isAuthenticated}
             />
           ),
