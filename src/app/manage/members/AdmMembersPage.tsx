@@ -4,7 +4,7 @@ import MembersGroupsSections from "./MembersGroupSection";
 
 const AdmMembersPage: FC = () => {
   return (
-    <div>
+    <div className="p-4 h-full bg-white rounded-md">
       {/* <AdmMembersPageHeader />
       <AdmMembersPageTableSection /> */}
       <MemberProvider>
