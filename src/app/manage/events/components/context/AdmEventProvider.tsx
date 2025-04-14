@@ -18,7 +18,6 @@ type TAdmEventContext = {
 };
 const AdmEventContext = createContext<TAdmEventContext>({
   data: {
-    eventStatus: [],
     events: [],
   },
   setData: () => {},
@@ -37,8 +36,7 @@ type TProps = {
 const AdmEventProvider: FC<TProps> = ({ children }) => {
   // reload -2 = no reload, -1 = reload, -1 = default
   const [reloadKey, setReloadKey] = useState<number>(-1);
-  const [data, setData] = useState<TEventAdmData>({
-    eventStatus: [],
+  const [data, setData] = useState<any>({
     events: [],
   });
 
@@ -47,7 +45,7 @@ const AdmEventProvider: FC<TProps> = ({ children }) => {
       const fetchData = async () => {
         try {
           const eventData = await getEvents();
-          setData(eventData.data);
+          setData(eventData);
         } catch (error) {
           console.log("Failed to fetch events:", error);
         }

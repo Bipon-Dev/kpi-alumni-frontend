@@ -16,7 +16,6 @@ import { deleteEvent } from "../AdmEventOperation";
 const TableBodyComp: React.FC = () => {
   const { data, refetch } = useAdmEvent();
   const { openModel } = useModelStore();
-
   const events = data.events;
 
   const handleDelete = (id: number) => {
@@ -26,8 +25,8 @@ const TableBodyComp: React.FC = () => {
 
   return (
     <TableBody>
-      {events.map((event, index) => (
-        <TableRow key={index} className="even:bg-secondary-50 !border-b-0">
+      {events?.map((event: any) => (
+        <TableRow key={event.id} className="even:bg-secondary-50 !border-b-0">
           <TableCell>{event.id}</TableCell>
           <TableCell>{event.title}</TableCell>
           <TableCell className="">{event.description}</TableCell>

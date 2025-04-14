@@ -15,6 +15,6 @@ export type TEventType = {
 };
 
 export type TEventAdmData = {
-  eventStatus: string[];
+  // eventStatus: string[];
   events: TEventType[];
 };
