@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { TableBody, TableRow, TableHead } from "@/lib/ui/table";
+import { TableBody, TableRow, TableHead, TableCell } from "@/lib/ui/table";
 import { EllipsisVertical } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from "@/lib/ui/dropdown-menu";
-import { getJobs, deleteJob,searchJobs } from "./jobsApi"; // Import the API service
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/lib/ui/dropdown-menu";
+import { getJobs, deleteJob, searchJobs } from "./jobsApi"; // Import the API service
 import ModalUpdateJob from "../modals/ModalUpdateJob";
 import { SearchCriteria } from "./Search";
 import ModalInviteJob from "../modals/ModalInviteJob";
@@ -23,10 +28,12 @@ interface JobDto {
   reference: string;
   aboutJob: string;
   skillNames: string[];
-  jobLink:string;
+  jobLink: string;
 }
 
-const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCriteria }) => {
+const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({
+  searchCriteria,
+}) => {
   const [jobs, setJobs] = useState<JobDto[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState<JobDto | null>(null);
@@ -48,7 +55,9 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
 
   // Handle Delete
   const handleDelete = async (id: number) => {
-    const confirmDelete = window.confirm(`Are you sure you want to delete job with ID ${id}?`);
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete job with ID ${id}?`
+    );
     if (!confirmDelete) return;
 
     try {
@@ -66,7 +75,7 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
     setSelectedJob(job);
     setIsModalOpen(true);
   };
-// handle search
+  // handle search
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -86,7 +95,7 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
 
     fetchJobs();
   }, [searchCriteria]);
-//email invite
+  //email invite
   const handleInvite = (job: JobDto) => {
     setSelectedJob(job);
     setIsInviteModalOpen(true);
@@ -97,35 +106,42 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
     <>
       <TableBody>
         {jobs.map((job) => (
-          <TableRow key={job.id} className="h-[70px] even:bg-primary-50 !border-b-0">
-             
-            <TableHead>{job.id}</TableHead>
-            <TableHead>{job.title}</TableHead>
-            <TableHead>{job.companyName}</TableHead>
-            <TableHead>{job.category}</TableHead>
-            <TableHead>{job.jobType}</TableHead>
-            <TableHead>{job.salary}</TableHead>
-            <TableHead>{job.salaryType}</TableHead>
-            <TableHead>{job.experience}</TableHead>
-            <TableHead>{job.location}</TableHead>
-            <TableHead>{job.joinDate}</TableHead>
-            <TableHead>{job.deadline}</TableHead>
-            <TableHead>{job.reference}</TableHead>
-            <TableHead>{job.aboutJob}</TableHead>
-            <TableHead>{job.skillNames.join(", ")}</TableHead>
-            <TableHead>{job.jobLink}</TableHead>
-            <TableHead>
+          <TableRow
+            key={job.id}
+            className="h-[70px] even:bg-primary-50 !border-b-0"
+          >
+            <TableCell>{job.id}</TableCell>
+            <TableCell>{job.title}</TableCell>
+            <TableCell>{job.companyName}</TableCell>
+            <TableCell>{job.category}</TableCell>
+            <TableCell>{job.jobType}</TableCell>
+            <TableCell>
+              {job.salary}/{job.salaryType}
+            </TableCell>
+
+            <TableCell>{job.experience}</TableCell>
+            <TableCell>{job.location}</TableCell>
+            <TableCell>{job.deadline}</TableCell>
+            <TableCell>{job.aboutJob}</TableCell>
+            <TableCell>{job.skillNames.join(", ")}</TableCell>
+            <TableCell>
               <DropdownMenu>
                 <DropdownMenuTrigger>
                   <EllipsisVertical />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuLabel onClick={() => handleEdit(job)}>Edit Job</DropdownMenuLabel>
-                  <DropdownMenuLabel onClick={() => handleDelete(job.id)}>Delete Job</DropdownMenuLabel>
-                  <DropdownMenuLabel onClick={() => handleInvite(job)}>Invite</DropdownMenuLabel>
+                  <DropdownMenuLabel onClick={() => handleEdit(job)}>
+                    Edit Job
+                  </DropdownMenuLabel>
+                  <DropdownMenuLabel onClick={() => handleDelete(job.id)}>
+                    Delete Job
+                  </DropdownMenuLabel>
+                  <DropdownMenuLabel onClick={() => handleInvite(job)}>
+                    Invite
+                  </DropdownMenuLabel>
                 </DropdownMenuContent>
               </DropdownMenu>
-            </TableHead>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
@@ -136,9 +152,11 @@ const TableBodyComp: React.FC<{ searchCriteria: SearchCriteria }> = ({ searchCri
         />
       )}
 
-     {isInviteModalOpen && selectedJob && (
+      {isInviteModalOpen && selectedJob && (
         <ModalInviteJob
-         closeModal={() => setIsInviteModalOpen(false)} job={selectedJob} />
+          closeModal={() => setIsInviteModalOpen(false)}
+          job={selectedJob}
+        />
       )}
     </>
   );

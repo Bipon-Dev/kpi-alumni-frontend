@@ -9,11 +9,13 @@ interface AdmJobsPageTableSectionProps {
   searchCriteria: SearchCriteria; // Accept searchCriteria as a prop
 }
 
-const AdmJobsPageTableSection: React.FC<AdmJobsPageTableSectionProps> = ({ searchCriteria }) => {
+const AdmJobsPageTableSection: React.FC<AdmJobsPageTableSectionProps> = ({
+  searchCriteria,
+}) => {
   return (
     <div className="mt-3">
       <Table>
-        <TableHeaderComp  />
+        <TableHeaderComp />
         {/* Pass searchCriteria to TableBodyComp */}
         <TableBodyComp searchCriteria={searchCriteria} />
       </Table>
