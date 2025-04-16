@@ -7,11 +7,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/lib/ui/dialog";
-import { Input } from "@/lib/ui/input";
 import { useState } from "react";
 import { useAdmEvent } from "../context/AdmEventProvider";
 import { createEvent } from "../AdmEventOperation";
-import { InputDate, InputField } from "@/app/shared/features/InputField";
+import {
+  AnimatedInputField,
+  AnimatedTextArea,
+  DateInputField,
+} from "@bikiran/inputs";
+import dayjs from "dayjs";
 
 interface TProps {
   closeModel: () => void;
@@ -20,12 +24,13 @@ const defaultFormData = {
   title: "",
   organizer: "",
   description: "",
-  dateStart: 0,
-  dateEnd: 0,
+  dateStart: dayjs().format("YYYY-MM-DD"),
+  dateEnd: dayjs().add(7, "day").format("YYYY-MM-DD"),
   location: "",
 };
 const ModalBody: React.FC<TProps> = ({ closeModel }) => {
-  const [formData, setFormData] = useState<any>(defaultFormData);
+  const [formData, setFormData] =
+    useState<Record<string, any>>(defaultFormData);
   const { refetch } = useAdmEvent();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,8 +42,13 @@ const ModalBody: React.FC<TProps> = ({ closeModel }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const payLoad = {
+      ...formData,
+      dateStart: dayjs(formData.dateStart).startOf("day").valueOf(),
+      dateEnd: dayjs(formData.dateEnd).startOf("day").valueOf(),
+    };
     try {
-      await createEvent(formData);
+      await createEvent(payLoad);
       refetch();
     } catch (error) {
       console.error("Error creating event:", error);
@@ -49,55 +59,57 @@ const ModalBody: React.FC<TProps> = ({ closeModel }) => {
 
   return (
     <form className="flex flex-col gap-3 mt-1" onSubmit={handleSubmit}>
-      <InputField
+      <AnimatedInputField
         placeholder="Title"
         name="title"
         onChange={handleChange}
         formData={formData}
-        label=""
+        label="Title"
+        className="mt-2"
       />
       <div className="grid grid-cols-2 gap-2">
-        <label className=" text-primary font-medium ">Date Start</label>
-        <label className=" text-primary font-medium ">Date End</label>
-        <InputDate
-          formData={formData}
-          name="dateStart"
-          setFormData={setFormData}
-        />
-        <InputDate
-          formData={formData}
-          name="dateEnd"
-          setFormData={setFormData}
-        />
+        <div className="text-primary font-medium">
+          <label htmlFor="">Date Start</label>
+          <DateInputField
+            formData={formData}
+            name="dateStart"
+            onChange={handleChange}
+            className=""
+          />
+        </div>
+        <div className="text-primary font-medium">
+          <label htmlFor="">Date End</label>
+          <DateInputField
+            formData={formData}
+            name="dateEnd"
+            onChange={handleChange}
+            className=""
+          />
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-2">
-        <InputField
-          placeholder="Add Location"
+        <AnimatedInputField
+          placeholder="ex: Dhaka, Bangladesh"
           name="location"
           formData={formData}
-          label=""
+          label="Add Location"
           onChange={handleChange}
         />
-        <InputField
-          placeholder="Organizer"
+        <AnimatedInputField
+          placeholder="ex: KPI Alumni Association"
           name="organizer"
           onChange={handleChange}
           formData={formData}
-          label=""
+          label="Organizer"
         />
       </div>
       <div className="flex flex-col gap-1">
-        <label
-          htmlFor="description"
-          className="text-base font-medium text-primary"
-        >
-          Description
-        </label>
-        <Input
+        <AnimatedTextArea
           className="w-full h-[100px] "
           name="description"
-          value={formData.description}
           onChange={handleChange}
+          formData={formData}
+          label="Description"
         />
       </div>
       <div className="flex items-center justify-end gap-2">
@@ -121,7 +133,7 @@ const ModalAddEvent = () => {
 
   return (
     <Dialog open={modalName === "add-event"} onOpenChange={closeModel}>
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent aria-describedby={undefined} className="max-w-[450px]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-medium text-primary">
             Add Event
