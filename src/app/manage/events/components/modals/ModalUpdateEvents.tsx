@@ -13,10 +13,11 @@ import { updateEvent } from "../AdmEventOperation";
 import { TEventType } from "../AdmEventTypes";
 import { SelectField } from "@/app/shared/features/SelectField";
 import {
-  InputDate,
-  InputField,
-  InputTextareaField,
-} from "@/app/shared/features/InputField";
+  AnimatedInputField,
+  DateInputField,
+  AnimatedTextArea,
+} from "@bikiran/inputs";
+import dayjs from "dayjs";
 
 interface TProps {
   closeModel: () => void;
@@ -58,8 +59,13 @@ const ModalBody: React.FC<TProps> = ({ closeModel, modalData }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const payLoad = {
+      ...formData,
+      dateStart: dayjs(formData.dateStart).startOf("day").valueOf(),
+      dateEnd: dayjs(formData.dateEnd).startOf("day").valueOf(),
+    };
     try {
-      await updateEvent(modalData.id, formData);
+      await updateEvent(modalData.id, payLoad);
       refetch();
     } catch (error) {
       console.error("Error creating event:", error);
@@ -70,38 +76,48 @@ const ModalBody: React.FC<TProps> = ({ closeModel, modalData }) => {
 
   return (
     <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-      <InputField
-        formData={formData}
-        label="Title"
+      <AnimatedInputField
+        placeholder="Title"
         name="title"
         onChange={handleChange}
+        formData={formData}
+        label="Title"
+        className="mt-2"
       />
       <div className="grid grid-cols-2 gap-2">
-        <label className=" text-primary font-medium ">Date Start</label>
-        <label className=" text-primary font-medium ">Date End</label>
-        <InputDate
-          formData={formData}
-          name="dateStart"
-          setFormData={setFormData}
-        />
-        <InputDate
-          formData={formData}
-          name="dateEnd"
-          setFormData={setFormData}
-        />
+        <div className="text-primary font-medium">
+          <label htmlFor="">Date Start</label>
+          <DateInputField
+            formData={formData}
+            name="dateStart"
+            onChange={handleChange}
+            className=""
+          />
+        </div>
+        <div className="text-primary font-medium">
+          <label htmlFor="">Date End</label>
+          <DateInputField
+            formData={formData}
+            name="dateEnd"
+            onChange={handleChange}
+            className=""
+          />
+        </div>
       </div>
       <div className="flex gap-2">
-        <InputField
-          formData={formData}
-          label="Add location"
+        <AnimatedInputField
+          placeholder="ex: Dhaka, Bangladesh"
           name="location"
+          formData={formData}
+          label="Add Location"
           onChange={handleChange}
         />
-        <InputField
-          formData={formData}
-          label="Organizer"
+        <AnimatedInputField
+          placeholder="ex: KPI Alumni Association"
           name="organizer"
           onChange={handleChange}
+          formData={formData}
+          label="Organizer"
         />
       </div>
       <div>
@@ -118,11 +134,12 @@ const ModalBody: React.FC<TProps> = ({ closeModel, modalData }) => {
         />
       </div>
       <div className="flex flex-col gap-1">
-        <InputTextareaField
+        <AnimatedTextArea
+          className="w-full h-[100px] "
+          name="description"
+          onChange={handleChange}
           formData={formData}
           label="Description"
-          name="Description"
-          onChange={handleChange}
         />
       </div>
       <div className="flex items-center justify-end gap-2">

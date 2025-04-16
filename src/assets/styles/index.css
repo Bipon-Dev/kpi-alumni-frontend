@@ -88,7 +88,11 @@
   body {
     @apply bg-background text-foreground;
   }
-  .react-datepicker__input-container {
-    @apply h-[45px];
-  }
+}
+
+.react-datepicker-input {
+  @apply !h-[45px];
+}
+.react-datepicker-popper {
+  @apply !z-[11];
 }

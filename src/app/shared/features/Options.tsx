@@ -71,7 +71,7 @@ export const Option: React.FC<{
         )}
         disabled={disabled}
       >
-        <div className="flex items-center justify-center w-full h-full rounded-sm bg-secondary-200 text-primary-500 group-hover/button:bg-secondary-700 group-hover/button:text-white transition-all duration-200">
+        <div className="flex items-center justify-center w-full h-full rounded-8 bg-secondary-200 text-secondary group-hover/button:bg-secondary-700 group-hover/button:text-white transition-all duration-200">
           <EllipsisVertical />
         </div>
       </DropdownMenuTrigger>

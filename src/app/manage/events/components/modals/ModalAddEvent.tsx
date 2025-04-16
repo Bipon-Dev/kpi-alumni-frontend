@@ -41,12 +41,12 @@ const ModalBody: React.FC<TProps> = ({ closeModel }) => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const payLoad = {
       ...formData,
-      dateStart: new Date(formData.dateStart).getTime(),
-      dateEnd: new Date(formData.dateEnd).getTime(),
+      dateStart: dayjs(formData.dateStart).startOf("day").valueOf(),
+      dateEnd: dayjs(formData.dateEnd).startOf("day").valueOf(),
     };
-    e.preventDefault();
     try {
       await createEvent(payLoad);
       refetch();
