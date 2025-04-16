@@ -15,6 +15,13 @@ export type TEventType = {
 };
 
 export type TEventAdmData = {
-  // eventStatus: string[];
+  eventStatus: TEventStatus[];
   events: TEventType[];
 };
+
+export type TEventStatus =
+  | "Upcoming"
+  | "Ongoing"
+  | "Postponed"
+  | "Cancelled"
+  | "Finished";
