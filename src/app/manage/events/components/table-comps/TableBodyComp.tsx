@@ -16,13 +16,13 @@ import { deleteEvent } from "../AdmEventOperation";
 const TableBodyComp: React.FC = () => {
   const { data, refetch } = useAdmEvent();
   const { openModel } = useModelStore();
-  const events = data.events;
+  const events = data.data;
 
   const handleDelete = (id: number) => {
     deleteEvent(id);
     refetch();
   };
-
+  console.log(events, "data from table body comp");
   return (
     <TableBody>
       {events?.map((event: any) => (

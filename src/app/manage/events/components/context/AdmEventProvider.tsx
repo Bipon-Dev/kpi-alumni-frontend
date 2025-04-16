@@ -11,14 +11,16 @@ import { getEvents } from "../AdmEventOperation";
 import { TEventAdmData } from "../AdmEventTypes";
 
 type TAdmEventContext = {
-  data: TEventAdmData;
+  data: {
+    data: TEventAdmData;
+  };
   setData: (data: TEventAdmData) => void;
   loading: boolean;
   refetch: () => void;
 };
 const AdmEventContext = createContext<TAdmEventContext>({
   data: {
-    events: [],
+    data: [],
   },
   setData: () => {},
   loading: false,
