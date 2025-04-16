@@ -11,16 +11,15 @@ import { getEvents } from "../AdmEventOperation";
 import { TEventAdmData } from "../AdmEventTypes";
 
 type TAdmEventContext = {
-  data: {
-    data: TEventAdmData;
-  };
+  data: TEventAdmData;
   setData: (data: TEventAdmData) => void;
   loading: boolean;
   refetch: () => void;
 };
 const AdmEventContext = createContext<TAdmEventContext>({
   data: {
-    data: [],
+    events: [],
+    eventStatus: [],
   },
   setData: () => {},
   loading: false,
@@ -38,8 +37,9 @@ type TProps = {
 const AdmEventProvider: FC<TProps> = ({ children }) => {
   // reload -2 = no reload, -1 = reload, -1 = default
   const [reloadKey, setReloadKey] = useState<number>(-1);
-  const [data, setData] = useState<any>({
+  const [data, setData] = useState<TEventAdmData>({
     events: [],
+    eventStatus: [],
   });
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const AdmEventProvider: FC<TProps> = ({ children }) => {
       const fetchData = async () => {
         try {
           const eventData = await getEvents();
-          setData(eventData);
+          setData(eventData.data);
         } catch (error) {
           console.log("Failed to fetch events:", error);
         }

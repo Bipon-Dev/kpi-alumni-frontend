@@ -34,7 +34,7 @@ const EventCardListSection = () => {
     const fetchEventData = async () => {
       try {
         const response = await axios.get("http://localhost:5050/api/event");
-        setEventData(response.data.data);
+        setEventData(response.data.data.events);
       } catch (error) {
         console.error("Error fetching event data:", error);
       }
