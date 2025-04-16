@@ -52,11 +52,18 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        5: "5px",
+        8: "8px",
+        10: "10px",
+        15: "15px",
+        20: "20px",
+        30: "30px",
       },
       colors: {
         primary: {
           DEFAULT: "var(--primary)",
           700: "var(--primary-700)",
+          300: "var(--primary-300)",
           200: "var(--primary-200)",
           100: "var(--primary-100)",
           50: "var(--primary-50)",
