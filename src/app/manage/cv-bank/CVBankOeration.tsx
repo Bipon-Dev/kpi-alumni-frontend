@@ -22,6 +22,7 @@ export const addMember = async (addMemberData: any) => {
     throw error;
   }
 };
+
 export const updateMember = async (
   payload: {
     name: string;

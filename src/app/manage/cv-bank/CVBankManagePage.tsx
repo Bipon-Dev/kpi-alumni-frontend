@@ -4,6 +4,8 @@ import { InstOption } from "../members/components/inst-option/InstOption";
 import { Link } from "react-router-dom";
 import CVBankProvider, { useCVBankContext } from "./context/CVBankProvider";
 import { Button } from "@/lib/ui/button";
+import UploadCVModal from "./modal/UploadCVModal";
+
 const TableBody: FC<{ data: any }> = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
@@ -51,10 +53,11 @@ const TableBody: FC<{ data: any }> = ({ data }) => {
   );
 };
 const TableTopHeader: FC = () => {
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   return (
     <div className=" flex w-full items-center justify-between">
       <h1 className="text-xl font-bold text-secondary "># CV Bank</h1>
-      <div className="m-5">
+      <div className="my-5 flex gap-4">
         <Button
           title="Invite"
           variant="secondary"
@@ -63,6 +66,17 @@ const TableTopHeader: FC = () => {
         >
           Download all CV
         </Button>
+        <Button
+          title="Invite"
+          variant="secondary"
+          className="text-white"
+          onClick={() => setIsUploadModalOpen(true)}
+        >
+          Upload CV
+        </Button>
+        {isUploadModalOpen && (
+          <UploadCVModal closeModal={() => setIsUploadModalOpen(false)} />
+        )}
       </div>
     </div>
   );
