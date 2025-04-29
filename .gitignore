@@ -24,6 +24,6 @@ dist-ssr
 .vscode
 
 # Environment
-.env
 
 yarn.lock
+config.bat
