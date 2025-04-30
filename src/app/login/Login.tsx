@@ -23,11 +23,11 @@ import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import Loader from "./Loader";
 import FormInput from "./FormInput";
 import AuthHeader from "./AuthHeader";
-import NonAuthLayoutWrapper from "./NonAutnLayoutWrapper copy";
+import NonAuthLayoutWrapper from "./NonAutnLayoutWrapper";
 import config from "../shared/config";
-import { loginUser } from "@/redux/actions";
+import { loginUser, socialLogin } from "@/redux/actions";
 
-type LoginProps = [];
+// type LoginProps = [];??????????
 
 const YourComponent = () => {
   const login = useGoogleLogin({
@@ -121,13 +121,13 @@ const Login = () => {
         token: res.tokenObj.access_token,
         idToken: res.tokenId,
       };
-      // dispatch(socialLogin(postData, type));
+      dispatch(socialLogin(postData, type));
     } else if (type === "facebook" && res) {
       const postData = {
         name: res.name,
         token: res.accessToken,
       };
-      // dispatch(socialLogin(postData, type));
+      dispatch(socialLogin(postData, type));
     }
   };
 

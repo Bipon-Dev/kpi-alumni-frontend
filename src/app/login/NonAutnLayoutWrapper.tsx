@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 // images
-import authImage from "../assets/images/auth-img.png";
+import authImage from "@/assets/images/kpi-alumni-logo.png";
 
 interface NonAuthLayoutWrapperProps {
   children: any;

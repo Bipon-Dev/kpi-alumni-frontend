@@ -15,7 +15,7 @@ const TableBodyComp: React.FC = () => {
     deleteEvent(id);
     refetch();
   };
-  console.log(events, "data from table body comp");
+
   return (
     <TableBody>
       {events?.map((event: any) => (

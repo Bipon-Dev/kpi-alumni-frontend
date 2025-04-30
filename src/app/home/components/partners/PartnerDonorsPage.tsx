@@ -18,7 +18,7 @@ const PartnerDonorsPage: FC = () => {
           </a>
         </div>
         <div className="flex justify-center ">
-          {[1, 2, 3].map((item) => (
+          {[1, 2, 3].map(() => (
             <div className="w-90">
               <a href="/">
                 <img src={google} alt="" className="w-30" />

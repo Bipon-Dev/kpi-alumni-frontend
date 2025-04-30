@@ -11,11 +11,11 @@ import {
 } from "react";
 import { getCV } from "../CVBankOeration";
 
-type TContext = {
-  cVBankData: any[];
-  setCVBankData: React.Dispatch<React.SetStateAction<any[]>>;
-  loading: boolean;
-};
+// type TContext = {
+//   cVBankData: any[];
+//   setCVBankData: React.Dispatch<React.SetStateAction<any[]>>;
+//   loading: boolean;
+// };
 
 const CVBankContext = createContext<any>({
   cVBankData: [],
