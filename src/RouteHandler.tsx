@@ -27,6 +27,7 @@ import BloodDonetionPage from "./app/manage/donate-blood/BloodDonetionPage";
 import GalleryPage from "./app/gallery/GalleryPage";
 import JobPage from "./app/job/JobPage";
 import EventDetailsPage from "./app/event-details/EventDetailsPage";
+import Login from "./app/login/Login";
 
 const isAuthenticated = true; // Change this based on real authentication state
 
@@ -62,7 +63,8 @@ const router = createBrowserRouter(
         },
         {
           path: "/login",
-          element: <LoginPage />,
+          // element: <LoginPage />,
+          element: <Login />,
         },
         {
           path: "/signup",

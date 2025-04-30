@@ -12,21 +12,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
-// config
-import config from "../../config";
-
 // hooks
 import { useProfile, useRedux } from "../../hooks/index";
 import { createSelector } from "reselect";
 // actions
-import { loginUser, socialLogin } from "../../redux/actions";
 
 // components
-import NonAuthLayoutWrapper from "../../components/NonAutnLayoutWrapper";
-import AuthHeader from "../../components/AuthHeader";
-import FormInput from "../../components/FormInput";
-import Loader from "../../components/Loader";
+
 import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
+import Loader from "./Loader";
+import FormInput from "./FormInput";
+import AuthHeader from "./AuthHeader";
+import NonAuthLayoutWrapper from "./NonAutnLayoutWrapper copy";
+import config from "../shared/config";
+import { loginUser } from "@/redux/actions";
 
 type LoginProps = [];
 
@@ -51,13 +50,13 @@ const YourComponent = () => {
   );
 };
 
-const Login = (props: LoginProps) => {
+const Login = () => {
   // global store
   const { dispatch, useAppSelector } = useRedux();
 
   const errorData = createSelector(
     (state: any) => state.Login,
-    (state) => ({
+    (state: any) => ({
       isUserLogin: state.isUserLogin,
       error: state.error,
       loginLoading: state.loading,
@@ -122,13 +121,13 @@ const Login = (props: LoginProps) => {
         token: res.tokenObj.access_token,
         idToken: res.tokenId,
       };
-      dispatch(socialLogin(postData, type));
+      // dispatch(socialLogin(postData, type));
     } else if (type === "facebook" && res) {
       const postData = {
         name: res.name,
         token: res.accessToken,
       };
-      dispatch(socialLogin(postData, type));
+      // dispatch(socialLogin(postData, type));
     }
   };
 
@@ -213,7 +212,7 @@ const Login = (props: LoginProps) => {
               </div>
               <div className="flex justify-center space-x-4">
                 <FacebookLogin
-                  appId={config.FACEBOOK.APP_ID}
+                  appId={config.FACEBOOK.APP_ID || ""}
                   autoLoad={false}
                   callback={facebookResponse}
                   render={(renderProps: any) => (
