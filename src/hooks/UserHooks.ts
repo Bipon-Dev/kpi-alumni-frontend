@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import { useRedux } from "../hooks/index";
 
 // api
-import { getLoggedinUser } from "../api/apiCore";
+
 import { createSelector } from "reselect";
 //utils
-import { divideByKey } from "../utils";
+import { divideByKey } from "./utils";
+import { getLoggedinUser } from "./apiCore";
 
 const useProfile = () => {
   // global store
@@ -18,16 +19,13 @@ const useProfile = () => {
   // }));
 
   const errorData = createSelector(
-    (state : any) => state.Settings,
+    (state: any) => state.Settings,
     (state) => ({
       settings: state.settings,
     })
   );
   // Inside your component
-  const { settings} = useAppSelector(errorData);
-
-
-
+  const { settings } = useAppSelector(errorData);
 
   const image = settings.basicDetails && settings.basicDetails.profile;
   const userProfileSession = getLoggedinUser();
@@ -53,16 +51,14 @@ const useContacts = () => {
   //   contactsList: state.Contacts.contacts,
   // }));
 
-
-
   const errorData = createSelector(
-    (state : any) => state.Contacts,
+    (state: any) => state.Contacts,
     (state) => ({
       contactsList: state.contacts,
     })
   );
   // Inside your component
-  const { contactsList} = useAppSelector(errorData);
+  const { contactsList } = useAppSelector(errorData);
 
   const [contacts, setContacts] = useState<Array<any>>([]);
   const [categorizedContacts, setCategorizedContacts] = useState<Array<any>>(
@@ -94,13 +90,13 @@ const useConversationUserType = () => {
   // }));
 
   const errorData = createSelector(
-    (state : any) => state.Chats,
+    (state: any) => state.Chats,
     (state) => ({
       chatUserDetails: state.chatUserDetails,
     })
   );
   // Inside your component
-  const { chatUserDetails} = useAppSelector(errorData);
+  const { chatUserDetails } = useAppSelector(errorData);
 
   const [isChannel, setIsChannel] = useState<boolean>(false);
   useEffect(() => {
