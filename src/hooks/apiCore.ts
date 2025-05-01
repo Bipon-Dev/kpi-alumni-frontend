@@ -72,7 +72,7 @@ class APIClient {
   /*
    file upload update method
   */
-  updateWithFile = (url: string, data: any) => {
+  updateWithFile = (data: any) => {
     const formData = new FormData();
     for (const k in data) {
       formData.append(k, data[k]);
