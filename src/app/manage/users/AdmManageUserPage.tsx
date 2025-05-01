@@ -63,8 +63,8 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
   );
 };
 const MembersGroupsTopHeader: FC = () => {
-  const memberContext = useMemberContext();
-  const memberData = memberContext?.memberData || [];
+  // const memberContext = useMemberContext();
+  // const memberData = memberContext?.memberData || [];
   // const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className=" flex w-full items-center justify-between">

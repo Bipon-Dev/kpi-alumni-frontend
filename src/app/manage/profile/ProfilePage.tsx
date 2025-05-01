@@ -154,7 +154,7 @@ const ProfileStudyComp: FC<{ data: any }> = ({ data }) => {
     </div>
   );
 };
-const ProfileDetailsComp: FC<{ data: ProfileData }> = ({ data }) => {
+const ProfileDetailsComp: FC<{ data: ProfileData }> = () => {
   return (
     <div className="w-full p-6 flex gap-2 bg-white shadow-md rounded-md">
       <div className=" w-full border-r-2 pr-5">
@@ -198,6 +198,8 @@ const ProfilePage: React.FC = () => {
   const [data, setData] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  console.log(loading, error);
 
   useEffect(() => {
     const fetchData = async () => {
