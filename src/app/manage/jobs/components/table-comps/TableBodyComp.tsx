@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TableBody, TableRow, TableHead, TableCell } from "@/lib/ui/table";
+import { TableBody, TableRow, TableCell } from "@/lib/ui/table";
 import { EllipsisVertical } from "lucide-react";
 import {
   DropdownMenu,

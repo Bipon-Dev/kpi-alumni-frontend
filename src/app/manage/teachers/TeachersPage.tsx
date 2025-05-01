@@ -3,41 +3,12 @@ import { FC, useState } from "react";
 import MemberProvider, {
   useMemberContext,
 } from "../members/context/MemberProvider";
-import { Button } from "@/lib/ui/button";
-import ModalAdd from "../members/modal/ModalAdd";
-import FilterBar from "@/app/members/filter-bar/FilterBar";
+// import { Button } from "@/lib/ui/button";
+// import ModalAdd from "../members/modal/ModalAdd";
+// import FilterBar from "@/app/members/filter-bar/FilterBar";
 import ModalEdit from "../members/modal/ModalEdit";
 import { InstOption } from "../members/components/inst-option/InstOption";
 import { Link } from "react-router-dom";
-import { TFilterField } from "@/app/members/filter-bar/filterBarTypes";
-
-const filterFields: TFilterField[] = [
-  {
-    label: "Name",
-    name: "name",
-    type: "text",
-    placeholder: "Ex: John Doe",
-  },
-  {
-    label: "Session",
-    name: "session",
-    type: "text",
-    placeholder: "Ex: 20-21",
-  },
-  { label: "Email", name: "email", type: "text", placeholder: "Ex:@gmail.com" },
-  {
-    label: "Department",
-    name: "department",
-    type: "text",
-    placeholder: "Ex: CST",
-  },
-  {
-    label: "Status",
-    name: "status",
-    type: "select",
-    options: ["Active", "Inactive"],
-  },
-];
 
 const MemberBody: FC<{ data: any }> = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -95,7 +66,6 @@ const MemberBody: FC<{ data: any }> = ({ data }) => {
   );
 };
 const MembersGroupsTopHeader: FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className=" flex w-full items-center justify-between pb-2">
       <h1 className="text-xl font-bold text-secondary "># Teachers</h1>

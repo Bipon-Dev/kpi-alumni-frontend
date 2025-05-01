@@ -1,8 +1,14 @@
 {
   "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
   "compilerOptions": {
     "baseUrl": ".",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "types": ["node"],
     "paths": {
       "@/*": ["./src/*"]
     }
